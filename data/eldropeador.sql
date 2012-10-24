@@ -1,0 +1,16 @@
+drop table LOSGROSOS_RELOADED.Carga
+drop table LOSGROSOS_RELOADED.Ciudad
+drop table LOSGROSOS_RELOADED.CiudadesPreferidas
+drop table LOSGROSOS_RELOADED.Clientes
+drop table LOSGROSOS_RELOADED.Cupon
+drop table LOSGROSOS_RELOADED.CuponCiudad
+drop table LOSGROSOS_RELOADED.CuponComprado
+drop table LOSGROSOS_RELOADED.Factura
+drop table LOSGROSOS_RELOADED.GiftCard
+drop table LOSGROSOS_RELOADED.Permiso
+drop table LOSGROSOS_RELOADED.PermisoPorRol
+drop table LOSGROSOS_RELOADED.Proveedor
+drop table LOSGROSOS_RELOADED.Rol
+drop table LOSGROSOS_RELOADED.Rubro
+drop table LOSGROSOS_RELOADED.TipoPago
+drop table LOSGROSOS_RELOADED.Usuario
