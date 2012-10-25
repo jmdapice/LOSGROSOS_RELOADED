@@ -63,6 +63,7 @@
 	nombre nvarchar(255) NOT NULL,
 	apellido nvarchar(255) NOT NULL,
 	dni numeric(18,0) NOT NULL UNIQUE,
+	direccion nvarchar(255),
 	tel numeric(18,0) NOT NULL UNIQUE,
 	mail nvarchar(255) NOT NULL,
 	fechaNac datetime,
@@ -336,8 +337,8 @@ INSERT INTO LOSGROSOS_RELOADED.Usuario (nombreUsuario,contrasena,idRol)
 /*                             CARGA TABLA CLIENTES                                 */
 /************************************************************************************/  
 
-INSERT INTO LOSGROSOS_RELOADED.Clientes (nombre,apellido,dni,tel,mail,fechaNac,idCiudad,idUsuario)
-	SELECT DISTINCT a.Cli_Nombre,a.Cli_Apellido,a.Cli_Dni,a.Cli_Telefono,a.Cli_Mail,
+INSERT INTO LOSGROSOS_RELOADED.Clientes (nombre,apellido,dni,direccion,tel,mail,fechaNac,idCiudad,idUsuario)
+	SELECT DISTINCT a.Cli_Nombre,a.Cli_Apellido,a.Cli_Dni,a.Cli_Direccion,a.Cli_Telefono,a.Cli_Mail,
 					a.Cli_Fecha_Nac,b.idCiudad,c.idUsuario
 	FROM gd_esquema.Maestra a, LOSGROSOS_RELOADED.Ciudad b,LOSGROSOS_RELOADED.Usuario c
 	WHERE a.Cli_Ciudad = b.nombre
