@@ -200,6 +200,7 @@
 	facturaNro	numeric(18,0),	
 	fechaFact	datetime,	
 	idProveedor	numeric(18,0) FOREIGN KEY REFERENCES [LOSGROSOS_RELOADED].[Proveedor](idProveedor) NOT NULL,
+	importe     numeric(18,2) DEFAULT 0,	
 	)
 /************************************************************************************/
 /*                             CREACION TABLA CUPONCOMPRADO                         */
@@ -238,6 +239,7 @@ CREATE TRIGGER LOSGROSOS_RELOADED.tr_Carga_ActualizarSaldo ON LOSGROSOS_RELOADED
 	
 	END
 GO
+
 /************************************************************************************/
 /*       TRIGGER QUE ACTUALIZA EL SALDO DEL CLIENTE POR CADA GIFTCARD               */
 /************************************************************************************/
@@ -389,55 +391,60 @@ WHERE a.Provee_CUIT = b.cuit
 /*                             CARGA TABLA FACTURA                                  */
 /************************************************************************************/ 
 
-INSERT INTO LOSGROSOS_RELOADED.Factura (facturaNro,fechaFact,idProveedor)
-SELECT DISTINCT a.Factura_Nro, a.Factura_Fecha, b.idProveedor
+-- Puse ese 0.5 para facturar por algo... La idea es q en el aplicativo
+-- ese 0.5 sea un valor que el administrador elija
+INSERT INTO LOSGROSOS_RELOADED.Factura (facturaNro,fechaFact,idProveedor,importe)
+SELECT a.Factura_Nro, a.Factura_Fecha, b.idProveedor,
+       SUM(a.Groupon_Precio * 0.5) as importe         
 FROM gd_esquema.Maestra a, LOSGROSOS_RELOADED.Proveedor b
 WHERE a.Factura_Nro IS NOT NULL
   AND a.Provee_CUIT = b.cuit
- 
+GROUP BY a.Factura_Nro, a.Factura_Fecha, b.idProveedor
+ORDER BY a.Factura_Nro
+
 /************************************************************************************/
 /*                             CARGA TABLA CUPONCOMPRADO                            */ 
 /************************************************************************************/ 
 
-INSERT INTO LOSGROSOS_RELOADED.CuponComprado
-SELECT a.Groupon_Codigo,b.idCli, a.Groupon_Fecha_Compra,a.Groupon_Entregado_Fecha,
-		a.Groupon_Devolucion_Fecha,a.Factura_Nro, ''
-FROM gd_esquema.Maestra a
-INNER JOIN LOSGROSOS_RELOADED.Clientes b on a.Cli_Dni=b.dni
-WHERE a.Groupon_Codigo is not null
-AND a.Groupon_Entregado_Fecha is null
-AND a.Groupon_Devolucion_Fecha is null
-AND a.Factura_Nro is null;  
+--INSERT INTO LOSGROSOS_RELOADED.CuponComprado
+--SELECT a.Groupon_Codigo,b.idCli, a.Groupon_Fecha_Compra,a.Groupon_Entregado_Fecha,
+--		a.Groupon_Devolucion_Fecha,a.Factura_Nro, ''
+--FROM gd_esquema.Maestra a
+--INNER JOIN LOSGROSOS_RELOADED.Clientes b on a.Cli_Dni=b.dni
+--WHERE a.Groupon_Codigo is not null
+--AND a.Groupon_Entregado_Fecha is null
+--AND a.Groupon_Devolucion_Fecha is null
+--AND a.Factura_Nro is null;  
 
-UPDATE LOSGROSOS_RELOADED.CuponComprado
-SET LOSGROSOS_RELOADED.CuponComprado.fechaCanje = a.Groupon_Entregado_Fecha
-FROM gd_esquema.Maestra a , LOSGROSOS_RELOADED.Clientes b
-WHERE LOSGROSOS_RELOADED.CuponComprado.idCli = b.idCli
-AND LOSGROSOS_RELOADED.CuponComprado.codigoCupon = a.Groupon_Codigo 
-AND LOSGROSOS_RELOADED.CuponComprado.fechaCompra = a.Groupon_Fecha_Compra
-AND a.Cli_Dni = b.dni
-AND a.Groupon_Entregado_Fecha is not null;
-
-
-UPDATE LOSGROSOS_RELOADED.CuponComprado
-SET LOSGROSOS_RELOADED.CuponComprado.fechaDevolucion = a.Groupon_Devolucion_Fecha
-FROM gd_esquema.Maestra a , LOSGROSOS_RELOADED.Clientes b
-WHERE LOSGROSOS_RELOADED.CuponComprado.idCli = b.idCli
-AND LOSGROSOS_RELOADED.CuponComprado.codigoCupon = a.Groupon_Codigo 
-AND LOSGROSOS_RELOADED.CuponComprado.fechaCompra = a.Groupon_Fecha_Compra
-AND a.Cli_Dni = b.dni
-AND a.Groupon_Devolucion_Fecha is not null;
+--UPDATE LOSGROSOS_RELOADED.CuponComprado
+--SET LOSGROSOS_RELOADED.CuponComprado.fechaCanje = a.Groupon_Entregado_Fecha
+--FROM gd_esquema.Maestra a , LOSGROSOS_RELOADED.Clientes b
+--WHERE LOSGROSOS_RELOADED.CuponComprado.idCli = b.idCli
+--AND LOSGROSOS_RELOADED.CuponComprado.codigoCupon = a.Groupon_Codigo 
+--AND LOSGROSOS_RELOADED.CuponComprado.fechaCompra = a.Groupon_Fecha_Compra
+--AND a.Cli_Dni = b.dni
+--AND a.Groupon_Entregado_Fecha is not null;
 
 
-UPDATE LOSGROSOS_RELOADED.CuponComprado
-SET LOSGROSOS_RELOADED.CuponComprado.idFactura = c.idFactura
-FROM gd_esquema.Maestra a , LOSGROSOS_RELOADED.Clientes b, LOSGROSOS_RELOADED.Factura c
-WHERE LOSGROSOS_RELOADED.CuponComprado.idCli = b.idCli
-AND LOSGROSOS_RELOADED.CuponComprado.codigoCupon = a.Groupon_Codigo 
-AND LOSGROSOS_RELOADED.CuponComprado.fechaCompra = a.Groupon_Fecha_Compra
-AND a.Cli_Dni = b.dni
-AND a.Factura_Nro = c.facturaNro
-AND a.Factura_Nro is not null;
+--UPDATE LOSGROSOS_RELOADED.CuponComprado
+--SET LOSGROSOS_RELOADED.CuponComprado.fechaDevolucion = a.Groupon_Devolucion_Fecha
+--FROM gd_esquema.Maestra a , LOSGROSOS_RELOADED.Clientes b
+--WHERE LOSGROSOS_RELOADED.CuponComprado.idCli = b.idCli
+--AND LOSGROSOS_RELOADED.CuponComprado.codigoCupon = a.Groupon_Codigo 
+--AND LOSGROSOS_RELOADED.CuponComprado.fechaCompra = a.Groupon_Fecha_Compra
+--AND a.Cli_Dni = b.dni
+--AND a.Groupon_Devolucion_Fecha is not null;
+
+
+--UPDATE LOSGROSOS_RELOADED.CuponComprado
+--SET LOSGROSOS_RELOADED.CuponComprado.idFactura = c.idFactura
+--FROM gd_esquema.Maestra a , LOSGROSOS_RELOADED.Clientes b, LOSGROSOS_RELOADED.Factura c
+--WHERE LOSGROSOS_RELOADED.CuponComprado.idCli = b.idCli
+--AND LOSGROSOS_RELOADED.CuponComprado.codigoCupon = a.Groupon_Codigo 
+--AND LOSGROSOS_RELOADED.CuponComprado.fechaCompra = a.Groupon_Fecha_Compra
+--AND a.Cli_Dni = b.dni
+--AND a.Factura_Nro = c.facturaNro
+--AND a.Factura_Nro is not null;
 
 /************************************************************************************/
 /*                             CARGA TABLA CIUDADESPREFERIDAS                       */
