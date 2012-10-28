@@ -35,12 +35,13 @@
             this.btnIngresar = new System.Windows.Forms.Button();
             this.lblContrasena = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
+            this.btnReg = new System.Windows.Forms.Button();
             this.grpLogin.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtPass
             // 
-            this.txtPass.Location = new System.Drawing.Point(56, 117);
+            this.txtPass.Location = new System.Drawing.Point(123, 117);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(148, 20);
             this.txtPass.TabIndex = 1;
@@ -49,7 +50,7 @@
             // txtUsuario
             // 
             this.txtUsuario.AcceptsTab = true;
-            this.txtUsuario.Location = new System.Drawing.Point(56, 63);
+            this.txtUsuario.Location = new System.Drawing.Point(123, 63);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(148, 20);
             this.txtUsuario.TabIndex = 0;
@@ -65,7 +66,7 @@
             this.grpLogin.Controls.Add(this.txtPass);
             this.grpLogin.Location = new System.Drawing.Point(12, 8);
             this.grpLogin.Name = "grpLogin";
-            this.grpLogin.Size = new System.Drawing.Size(261, 234);
+            this.grpLogin.Size = new System.Drawing.Size(395, 234);
             this.grpLogin.TabIndex = 2;
             this.grpLogin.TabStop = false;
             this.grpLogin.Text = "Login";
@@ -73,7 +74,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(130, 184);
+            this.btnCancelar.Location = new System.Drawing.Point(144, 184);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(94, 32);
             this.btnCancelar.TabIndex = 3;
@@ -83,7 +84,7 @@
             // 
             // btnIngresar
             // 
-            this.btnIngresar.Location = new System.Drawing.Point(30, 184);
+            this.btnIngresar.Location = new System.Drawing.Point(44, 184);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(94, 32);
             this.btnIngresar.TabIndex = 2;
@@ -95,7 +96,7 @@
             // 
             this.lblContrasena.AutoSize = true;
             this.lblContrasena.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContrasena.Location = new System.Drawing.Point(83, 91);
+            this.lblContrasena.Location = new System.Drawing.Point(150, 91);
             this.lblContrasena.Name = "lblContrasena";
             this.lblContrasena.Size = new System.Drawing.Size(95, 18);
             this.lblContrasena.TabIndex = 3;
@@ -105,11 +106,22 @@
             // 
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(54, 37);
+            this.lblUsuario.Location = new System.Drawing.Point(121, 37);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(152, 18);
             this.lblUsuario.TabIndex = 2;
             this.lblUsuario.Text = "Nombre de usuario";
+            // 
+            // btnReg
+            // 
+            this.btnReg.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnReg.Location = new System.Drawing.Point(256, 192);
+            this.btnReg.Name = "btnReg";
+            this.btnReg.Size = new System.Drawing.Size(94, 32);
+            this.btnReg.TabIndex = 4;
+            this.btnReg.Text = "Registrarse";
+            this.btnReg.UseVisualStyleBackColor = true;
+            this.btnReg.Click += new System.EventHandler(this.btnReg_Click);
             // 
             // Login
             // 
@@ -117,7 +129,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(284, 254);
+            this.ClientSize = new System.Drawing.Size(419, 256);
+            this.Controls.Add(this.btnReg);
             this.Controls.Add(this.grpLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Login";
@@ -137,6 +150,7 @@
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnIngresar;
+        private System.Windows.Forms.Button btnReg;
     }
 }
 

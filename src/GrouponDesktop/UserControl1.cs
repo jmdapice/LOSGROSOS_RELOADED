@@ -1,24 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace GrouponDesktop.AbmCliente
+namespace GrouponDesktop
 {
-    public partial class AbmCliente : Form
+    public partial class UserControl1 : UserControl
     {
-        public AbmCliente()
+        public UserControl1()
         {
             InitializeComponent();
-        }
-
-        private void AbmCliente_Load(object sender, EventArgs e)
-        {
-            
         }
     }
 }

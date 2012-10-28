@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -14,6 +15,8 @@ namespace GrouponDesktop
 {
     public partial class Login : Form
     {
+        
+        
         //esto habria q ponerlo en otra clase
         public static string byteArrayToString(byte[] inputArray)
         {
@@ -48,40 +51,105 @@ namespace GrouponDesktop
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             SHA256 hash = new SHA256Managed();
-            string usuario=txtUsuario.Text.ToString();
+            string usuario = txtUsuario.Text.ToString();
             string pass = GenerarSha256(txtPass.Text.ToString());
             string descripRol = "";
             usuario = usuario.ToLower();
-            pass = pass.ToLower();
-            
-            SqlConnection dbcon = new SqlConnection("Data Source=localhost\\SQLSERVER2008;Initial Catalog=GD2C2012;Persist Security Info=True;User ID=gd;Password=gd2012");
-            SqlCommand cmd = new SqlCommand(@"Select b.descripcion 
+
+
+
+            if (this.existeUsuario(usuario))
+            {
+
+                SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
+                dbcon.Open();
+                SqlCommand cmd = new SqlCommand(@"Select a.intentosFallidos, a.inhabilitado as inhabUser, b.inhabilitado as inhabRol, b.descripcion 
                                             from LOSGROSOS_RELOADED.Usuario a,LOSGROSOS_RELOADED.Rol b 
                                             where a.nombreUsuario=@usuario 
                                             and a.contrasena=@pass and b.idRol=a.idRol", dbcon);
-            
-            cmd.Parameters.Add("@usuario", SqlDbType.VarChar, 100);
-            cmd.Parameters.Add("@pass", SqlDbType.Char, 64);
-            cmd.Parameters["@usuario"].Value = usuario;
-            cmd.Parameters["@pass"].Value = pass;
-            
-            dbcon.Open();
-            
-            SqlDataReader dr = cmd.ExecuteReader();
-            if (dr.HasRows)
-            {
-                dr.Read();
-                descripRol = dr.GetSqlString(0).ToString();
-                MessageBox.Show(string.Format("Bienvenido al sistema.\n\n Su nivel de acceso es: {0}", descripRol));
-                AbmCliente.AbmCliente frmAbmCliente = new AbmCliente.AbmCliente(); //namespace.class nombreObjeto = mensaje namespace.class
-                frmAbmCliente.Show();
-                
+
+                cmd.Parameters.Add("@usuario", SqlDbType.VarChar, 100);
+                cmd.Parameters.Add("@pass", SqlDbType.Char, 64);
+                cmd.Parameters["@usuario"].Value = usuario;
+                cmd.Parameters["@pass"].Value = pass;
+
+
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    if ((dt.Rows[0]["inhabUser"].ToString() == "1") || (dt.Rows[0]["inhabRol"].ToString() == "1"))
+                    {
+
+                        MessageBox.Show("Su usuario esta inhabilitado");
+                    }
+                    else
+                    {
+
+                        cmd.CommandText = @"update LOSGROSOS_RELOADED.Usuario 
+                                                  set intentosFallidos = 0
+                                                  where nombreUsuario = @usuario";
+                        cmd.ExecuteNonQuery();
+                        descripRol = dt.Rows[0]["descripcion"].ToString();
+                        MessageBox.Show(string.Format("Bienvenido al sistema.\n\n Su nivel de acceso es: {0}", descripRol));
+                        //Abrir Menu segun Rol
+                    }
+
+                }
+                else
+                {
+                    cmd.CommandText = @"update LOSGROSOS_RELOADED.Usuario 
+                                                  set intentosFallidos = intentosFallidos + 1
+                                                  where nombreUsuario = @usuario";
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException ex) //Capturar excepcion
+                    {
+                        MessageBox.Show("Se ha producido un error: " + ex.Message.ToString());
+                    }
+
+                    MessageBox.Show("La contraseña ingresada es incorrecta");
+                }
+                dbcon.Close();
             }
             else
-                MessageBox.Show("Nombre de usuario y/o contraseña incorrectos");
+            {
+                MessageBox.Show("El nombre de usuario ingresado es incorrecto");
+            }
             
+        }
+        
+        
+        private bool existeUsuario(string usuario)
+        {
+            SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
+            dbcon.Open();
+            SqlCommand cmd = new SqlCommand(@"Select 1 
+                                            from LOSGROSOS_RELOADED.Usuario a,LOSGROSOS_RELOADED.Rol b 
+                                            where a.nombreUsuario=@usuario", dbcon);
 
+            cmd.Parameters.Add("@usuario", SqlDbType.VarChar, 100);
+            cmd.Parameters["@usuario"].Value = usuario;
+          
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
 
+            dbcon.Close();
+
+            return (dt.Rows.Count > 0);
+       
+        }
+
+        private void btnReg_Click(object sender, EventArgs e)
+        {
+            RegistroUsuario frmRegistro = new RegistroUsuario(this);
+            this.Hide();
+            frmRegistro.Show();
         }
     }
 }
