@@ -10,3 +10,6 @@ C:\Users\Pablo\Desktop\juancarlos\GrouponDesktop\bin\Debug\GrouponDesktop.exe.co
 C:\Users\Pablo\Desktop\juancarlos\GrouponDesktop\obj\Debug\GrouponDesktop.AbmCliente.AbmCliente.resources
 C:\Users\Pablo\Desktop\juancarlos\GrouponDesktop\obj\Debug\GrouponDesktop.RegistroUsuario.resources
 C:\Users\Pablo\Desktop\juancarlos\GrouponDesktop\obj\Debug\GrouponDesktop.UserControl1.resources
+C:\Users\CasterX\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\bin\Debug\GrouponDesktop.exe.config
+C:\Users\CasterX\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.exe
+C:\Users\CasterX\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.pdb
