@@ -488,6 +488,10 @@ FROM LOSGROSOS_RELOADED.Cupon a, LOSGROSOS_RELOADED.Ciudad b
 GO
 
 
+---------------------------FIN MIGRADO DE DATOS--------------------------------------
+
+--------------------------------COMIENZO PROCEDURES----------------------------------
+
 /************************************************************************************/
 /*                             CREAR STORES PROCEDURES                              */
 /************************************************************************************/
@@ -562,3 +566,107 @@ BEGIN
 	where idProveedor = @idProveedor
 END
 go
+
+
+/************************************************************************************/
+/*                                STORED PROCEDURES CLIENTE                         */
+/************************************************************************************/
+
+CREATE PROCEDURE [LOSGROSOS_RELOADED].[P_Alta_Cliente]
+	@nombre nvarchar(255) = null,
+	@apellido nvarchar(255) = null,
+	@dni numeric(18,0) = null,
+	@direccion nvarchar(255) = null,
+	@tel numeric(18,0) = null,
+	@mail nvarchar(255) = null,
+	@fechaNac datetime = null,
+	@idCiudad numeric(18,0) = null,
+	@codPostal numeric(10,0) = null,
+	@saldo numeric(18,2) = null,
+	@idUsuario numeric(18,0) = null
+	
+AS
+BEGIN
+		
+	insert into LOSGROSOS_RELOADED.Clientes
+	(nombre, apellido, dni, direccion, tel, mail,
+	 fechaNac, idCiudad, codPostal, saldo, idUsuario)
+	values
+	(@nombre, @apellido, @dni, @direccion, @tel, @mail,
+	 @fechaNac, @idCiudad, @codPostal, @saldo, @idUsuario)
+	
+	
+END
+GO
+
+
+CREATE PROCEDURE [LOSGROSOS_RELOADED].[P_Modificar_Cliente]
+	@idCli numeric(18,0) = null,
+	@nombre nvarchar(255) = null,
+	@apellido nvarchar(255) = null,
+	@dni numeric(18,0) = null,
+	@direccion nvarchar(255) = null,
+	@tel numeric(18,0) = null,
+	@mail nvarchar(255) = null,
+	@fechaNac datetime = null,
+	@idCiudad numeric(18,0) = null,
+	@codPostal numeric(10,0) = null,
+	@saldo numeric(18,2) = null,
+	@idUsuario numeric(18,0) = null
+	
+AS
+BEGIN
+
+	update LOSGROSOS_RELOADED.Clientes
+		set	nombre = @nombre,
+			apellido = @apellido,
+			dni = @dni,
+			direccion = @direccion,
+			tel = @tel,
+			mail = @mail,
+			fechaNac = @fechaNac,
+			idCiudad = @idCiudad,
+			codPostal = @codPostal,
+			saldo = @saldo,
+			idUsuario = @idUsuario
+		where idCli = @idCli
+	
+	
+END
+GO
+
+
+CREATE PROCEDURE [LOSGROSOS_RELOADED].[P_HabilitacionCliente]
+	@idCli numeric(18,0),
+	@inhabilitado char(1)
+AS
+BEGIN
+	update LOSGROSOS_RELOADED.Clientes
+	set	inhabilitado = @inhabilitado
+	where idCli = @idCli
+END
+GO
+
+----------------------------------FIN PROCEDURES-------------------------------------
+
+
+--------------------------------COMIENZO FUNCIONES-----------------------------------
+
+/************************************************************************************/
+/*                               FUNCION DEVUELVE ID_CIUDAD                         */
+/************************************************************************************/
+
+CREATE FUNCTION [LOSGROSOS_RELOADED].[F_idCiudad] 
+(	
+   @nombre nvarchar(255) = null
+)
+RETURNS TABLE 
+AS
+RETURN 
+(
+	-- Add the SELECT statement with parameter references here
+	SELECT idCiudad 
+	FROM LOSGROSOS_RELOADED.Ciudad
+	WHERE nombre = @nombre
+)
+
