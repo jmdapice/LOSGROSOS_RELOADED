@@ -94,6 +94,13 @@ namespace GrouponDesktop
                         cmd.ExecuteNonQuery();
                         descripRol = dt.Rows[0]["descripcion"].ToString();
                         MessageBox.Show(string.Format("Bienvenido al sistema.\n\n Su nivel de acceso es: {0}", descripRol));
+
+                        Variables_globales.nombreUsuario = usuario;
+
+                        CargaCredito.CargaCredito Formcarga = new CargaCredito.CargaCredito();
+
+                        Formcarga.ShowDialog();
+
                         //Abrir Menu segun Rol
                     }
 

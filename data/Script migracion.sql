@@ -647,6 +647,34 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE [LOSGROSOS_RELOADED].[P_Insertar_Carga]
+	@nombreUsuario nvarchar(100),
+	@monto numeric(18,0),
+	@fecha datetime,
+	@idTipoPago numeric(18,0),
+	@numeroTarj numeric(18,0) = null,
+	@fechaVenc datetime = null,
+	@nombreTitularTarj nvarchar(255) = null
+
+AS
+BEGIN
+
+	DECLARE @idCli numeric(18,0);
+
+	SET @idCli = 
+	(SELECT DISTINCT idCli 
+	FROM LOSGROSOS_RELOADED.Clientes
+	WHERE idUsuario = LOSGROSOS_RELOADED.F_idUsuario(@nombreUsuario))
+	            
+	INSERT INTO LOSGROSOS_RELOADED.Carga
+	(idCli, monto, fecha, idTipoPago, numeroTarj, 
+	 fechaVencTarj, nombreTitularTarj)
+	 VALUES (@idCli, @monto,@fecha,@idTipoPago,@numeroTarj,
+	 @fechaVenc, @nombreTitularTarj);
+
+END
+GO
+
 ----------------------------------FIN PROCEDURES-------------------------------------
 
 
@@ -670,3 +698,17 @@ RETURN
 	WHERE nombre = @nombre
 )
 
+GO
+CREATE FUNCTION [LOSGROSOS_RELOADED].[F_idUsuario] 
+(	
+   @nombreUsuario nvarchar(100)
+)
+RETURNS TABLE 
+AS
+RETURN 
+(
+	-- Add the SELECT statement with parameter references here
+	SELECT DISTINCT idUsuario  
+	FROM LOSGROSOS_RELOADED.Usuario
+	WHERE nombreUsuario = @nombreUsuario
+)
