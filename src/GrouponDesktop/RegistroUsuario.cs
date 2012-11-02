@@ -58,7 +58,8 @@ namespace GrouponDesktop
             
             if (cmbRol.SelectedItem.ToString().Equals("CLIENTE"))
             {
-                //FORMALTACLI
+                AbmCliente.AbmCliente frmalta = new AbmCliente.AbmCliente();
+                frmalta.ShowDialog();
             }
             else
             {
