@@ -143,14 +143,14 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtPass;
-        private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.GroupBox grpLogin;
         private System.Windows.Forms.Label lblContrasena;
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnIngresar;
         private System.Windows.Forms.Button btnReg;
+        public System.Windows.Forms.TextBox txtPass;
+        public System.Windows.Forms.TextBox txtUsuario;
     }
 }
 
