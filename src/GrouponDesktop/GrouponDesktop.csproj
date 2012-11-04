@@ -66,6 +66,12 @@
     <Compile Include="CargaCredito\CargaCredito.Designer.cs">
       <DependentUpon>CargaCredito.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuPrincipal.Designer.cs">
+      <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    </Compile>
     <Compile Include="RegistroUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +98,9 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MenuPrincipal.resx">
+      <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -99,6 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegistroUsuario.resx">
       <DependentUpon>RegistroUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AltaRol.resx">
+      <DependentUpon>AltaRol.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -114,11 +126,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Variables_globales.cs" />
+    <Compile Include="AltaRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AltaRol.Designer.cs">
+      <DependentUpon>AltaRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Support.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ArmarCupon\" />
-    <Folder Include="ComprarCupon\" />
+    <Folder Include="CargaCredito\ComprarCupon\" />
     <Folder Include="ComprarGiftCard\" />
     <Folder Include="FacturarProveedor\" />
     <Folder Include="HistorialCupones\" />

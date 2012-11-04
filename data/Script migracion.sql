@@ -1,3 +1,104 @@
+USE [GD2C2012]
+GO
+IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'LOSGROSOS_RELOADED')	
+EXEC sys.sp_executesql N'CREATE SCHEMA [LOSGROSOS_RELOADED] AUTHORIZATION [gd]'
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.Carga') 
+				AND type in (N'U')) 
+DROP TABLE LOSGROSOS_RELOADED.Carga;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.GiftCard') 
+				AND type in (N'U')) 
+DROP TABLE LOSGROSOS_RELOADED.GiftCard;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.CiudadesPreferidas') 
+				AND type in (N'U')) 
+DROP TABLE LOSGROSOS_RELOADED.CiudadesPreferidas;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.CuponComprado') 
+				AND type in (N'U')) 
+DROP TABLE LOSGROSOS_RELOADED.CuponComprado;
+
+iF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.Clientes') 
+				AND type in (N'U')) 
+DROP TABLE LOSGROSOS_RELOADED.Clientes;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.CuponCiudad') 
+				AND type in (N'U')) 
+DROP TABLE LOSGROSOS_RELOADED.CuponCiudad;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.Cupon') 
+				AND type in (N'U')) 
+DROP TABLE LOSGROSOS_RELOADED.Cupon;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.Factura') 
+				AND type in (N'U')) 
+DROP TABLE LOSGROSOS_RELOADED.Factura;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.Proveedor') 
+				AND type in (N'U')) 
+DROP TABLE LOSGROSOS_RELOADED.Proveedor;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.Usuario') 
+				AND type in (N'U')) 
+DROP TABLE LOSGROSOS_RELOADED.Usuario;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.PermisoPorRol') 
+				AND type in (N'U')) 
+DROP TABLE LOSGROSOS_RELOADED.PermisoPorRol;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.Rol') 
+				AND type in (N'U')) 
+DROP TABLE LOSGROSOS_RELOADED.Rol;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.Permiso') 
+				AND type in (N'U')) 
+DROP TABLE LOSGROSOS_RELOADED.Permiso;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.TipoPago') 
+				AND type in (N'U')) 
+DROP TABLE LOSGROSOS_RELOADED.TipoPago;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.Rubro') 
+				AND type in (N'U')) 
+DROP TABLE LOSGROSOS_RELOADED.Rubro;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.Ciudad') 
+				AND type in (N'U')) 
+DROP TABLE LOSGROSOS_RELOADED.Ciudad;
+
  /************************************************************************************/
  /*                             CREACION TABLA CIUDAD                                */
  /************************************************************************************/
@@ -285,6 +386,29 @@ CREATE TRIGGER LOSGROSOS_RELOADED.tr_inhabilitarUsuario ON LOSGROSOS_RELOADED.Us
 		  AND idUsuario IN (select idUsuario from inserted )
 	END
 GO
+
+
+/************************************************************************************/
+/*       TRIGGER QUE QUITA UN ROL CUANDO SE DA DE BAJA                              */
+/************************************************************************************/
+
+CREATE TRIGGER LOSGROSOS_RELOADED.tr_sacarRol ON LOSGROSOS_RELOADED.Rol
+	
+	AFTER UPDATE
+		
+	AS
+			
+	BEGIN	
+	
+	UPDATE LOSGROSOS_RELOADED.Usuario
+		SET idRol = NULL
+		WHERE idRol IN (select idRol from inserted where inhabilitado = '1' ) 
+	END
+GO
+
+
+
+
 ----------------------FIN CREACIÓN TRAIGGERS --------------------------------
 
 ----------------------COMIENZA MIGRADO DE DATOS--------------------------------
@@ -330,6 +454,27 @@ INSERT INTO LOSGROSOS_RELOADED.Rol (descripcion) values ('Cliente')
 INSERT INTO LOSGROSOS_RELOADED.Rol (descripcion) values ('Proveedor')
 INSERT INTO LOSGROSOS_RELOADED.Rol (descripcion) values ('Administrador General')
 INSERT INTO LOSGROSOS_RELOADED.Rol (descripcion) values ('Administrativo')
+
+/************************************************************************************/
+/*                             CARGA TABLA PERMISO                                  */
+/************************************************************************************/
+
+INSERT INTO LOSGROSOS_RELOADED.Permiso(descripcion)
+values ('Abm Rol'), ('Abm Cliente'),
+('Abm Proveedor'), ('Carga'), ('Giftcard'),
+('Comprar cupon'), ('Devolucion cupon'), ('Historial de compra de cupones'),
+('Crear cupon'), ('Registro Consumo de cupon'), ('Publicar cupon'),
+('Facturacion'), ('Listado Estadistico'),('Gestionar usuarios');
+
+/************************************************************************************/
+/*                             CARGA TABLA PERMISOPORROL                            */
+/************************************************************************************/
+
+INSERT INTO LOSGROSOS_RELOADED.PermisoPorRol(idRol, idPermiso)
+VALUES (1, 6),(1, 7),(1, 8),(1, 5), 
+(2, 9), (2, 10), 
+(3,1),(3,2),(3,3),(3,4),(3,5),(3,6),(3,7),(3,8),(3,9),(3,10),(3,11),(3,12),(3,13),(3,14),
+(4, 2),(4, 3),(1, 4),(4,11),(4, 12),(4,14);
 
 /************************************************************************************/
 /*                             CARGA TABLA USUARIO                                  */

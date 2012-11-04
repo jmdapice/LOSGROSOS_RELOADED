@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.gb_datosgral = new System.Windows.Forms.GroupBox();
+            this.txtCarga = new System.Windows.Forms.MaskedTextBox();
             this.cb_medioPago = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gb_tarjeta = new System.Windows.Forms.GroupBox();
+            this.txtTarjeta = new System.Windows.Forms.MaskedTextBox();
+            this.txtFechaVenc = new System.Windows.Forms.MaskedTextBox();
+            this.txtTitular = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtTitular = new System.Windows.Forms.TextBox();
-            this.txtFechaVenc = new System.Windows.Forms.MaskedTextBox();
-            this.txtTarjeta = new System.Windows.Forms.MaskedTextBox();
-            this.txtCarga = new System.Windows.Forms.MaskedTextBox();
             this.gb_datosgral.SuspendLayout();
             this.gb_tarjeta.SuspendLayout();
             this.SuspendLayout();
@@ -59,10 +59,19 @@
             this.gb_datosgral.TabStop = false;
             this.gb_datosgral.Text = "Datos generales";
             // 
+            // txtCarga
+            // 
+            this.txtCarga.Location = new System.Drawing.Point(0, 46);
+            this.txtCarga.Mask = "999999999999999999";
+            this.txtCarga.Name = "txtCarga";
+            this.txtCarga.PromptChar = ' ';
+            this.txtCarga.Size = new System.Drawing.Size(175, 20);
+            this.txtCarga.TabIndex = 0;
+            // 
             // cb_medioPago
             // 
             this.cb_medioPago.FormattingEnabled = true;
-            this.cb_medioPago.Location = new System.Drawing.Point(6, 104);
+            this.cb_medioPago.Location = new System.Drawing.Point(0, 104);
             this.cb_medioPago.Name = "cb_medioPago";
             this.cb_medioPago.Size = new System.Drawing.Size(164, 21);
             this.cb_medioPago.TabIndex = 3;
@@ -96,12 +105,68 @@
             this.gb_tarjeta.Controls.Add(this.label5);
             this.gb_tarjeta.Controls.Add(this.label4);
             this.gb_tarjeta.Controls.Add(this.label3);
-            this.gb_tarjeta.Location = new System.Drawing.Point(12, 161);
+            this.gb_tarjeta.Location = new System.Drawing.Point(0, 161);
             this.gb_tarjeta.Name = "gb_tarjeta";
             this.gb_tarjeta.Size = new System.Drawing.Size(289, 192);
             this.gb_tarjeta.TabIndex = 1;
             this.gb_tarjeta.TabStop = false;
             this.gb_tarjeta.Text = "Tarjeta";
+            // 
+            // txtTarjeta
+            // 
+            this.txtTarjeta.Location = new System.Drawing.Point(12, 47);
+            this.txtTarjeta.Mask = "999999999999999999";
+            this.txtTarjeta.Name = "txtTarjeta";
+            this.txtTarjeta.PromptChar = ' ';
+            this.txtTarjeta.Size = new System.Drawing.Size(175, 20);
+            this.txtTarjeta.TabIndex = 10;
+            // 
+            // txtFechaVenc
+            // 
+            this.txtFechaVenc.Location = new System.Drawing.Point(12, 99);
+            this.txtFechaVenc.Mask = "00/00/0000";
+            this.txtFechaVenc.Name = "txtFechaVenc";
+            this.txtFechaVenc.Size = new System.Drawing.Size(175, 20);
+            this.txtFechaVenc.TabIndex = 9;
+            this.txtFechaVenc.ValidatingType = typeof(System.DateTime);
+            // 
+            // txtTitular
+            // 
+            this.txtTitular.Cursor = System.Windows.Forms.Cursors.Default;
+            this.txtTitular.Location = new System.Drawing.Point(12, 151);
+            this.txtTitular.Name = "txtTitular";
+            this.txtTitular.Size = new System.Drawing.Size(175, 20);
+            this.txtTitular.TabIndex = 8;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label5.Location = new System.Drawing.Point(18, 130);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(101, 18);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Nombre titular";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label4.Location = new System.Drawing.Point(18, 78);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(132, 18);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Fecha venc. tarjeta";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label3.Location = new System.Drawing.Point(21, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 18);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Nro. Tarjeta";
             // 
             // btnAceptar
             // 
@@ -123,69 +188,6 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.label3.Location = new System.Drawing.Point(6, 26);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 18);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Nro. Tarjeta";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.label4.Location = new System.Drawing.Point(3, 79);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(132, 18);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Fecha venc. tarjeta";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.label5.Location = new System.Drawing.Point(3, 134);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(101, 18);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Nombre titular";
-            // 
-            // txtTitular
-            // 
-            this.txtTitular.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtTitular.Location = new System.Drawing.Point(6, 155);
-            this.txtTitular.Name = "txtTitular";
-            this.txtTitular.Size = new System.Drawing.Size(175, 20);
-            this.txtTitular.TabIndex = 8;
-            // 
-            // txtFechaVenc
-            // 
-            this.txtFechaVenc.Location = new System.Drawing.Point(6, 105);
-            this.txtFechaVenc.Mask = "00/00/0000";
-            this.txtFechaVenc.Name = "txtFechaVenc";
-            this.txtFechaVenc.Size = new System.Drawing.Size(175, 20);
-            this.txtFechaVenc.TabIndex = 9;
-            this.txtFechaVenc.ValidatingType = typeof(System.DateTime);
-            // 
-            // txtTarjeta
-            // 
-            this.txtTarjeta.Location = new System.Drawing.Point(0, 56);
-            this.txtTarjeta.Mask = "999999999999999999";
-            this.txtTarjeta.Name = "txtTarjeta";
-            this.txtTarjeta.Size = new System.Drawing.Size(175, 20);
-            this.txtTarjeta.TabIndex = 10;
-            // 
-            // txtCarga
-            // 
-            this.txtCarga.Location = new System.Drawing.Point(6, 46);
-            this.txtCarga.Mask = "999999999999999999";
-            this.txtCarga.Name = "txtCarga";
-            this.txtCarga.Size = new System.Drawing.Size(175, 20);
-            this.txtCarga.TabIndex = 11;
-            // 
             // CargaCredito
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -196,6 +198,7 @@
             this.Controls.Add(this.gb_tarjeta);
             this.Controls.Add(this.gb_datosgral);
             this.Name = "CargaCredito";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Carga de crédito";
             this.Load += new System.EventHandler(this.CargaCredito_Load);
             this.gb_datosgral.ResumeLayout(false);

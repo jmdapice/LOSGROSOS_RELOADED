@@ -79,7 +79,7 @@ namespace GrouponDesktop
                 else 
                 {
                     string strError = "El nombre de usuario elegido ya existe, elija otro";
-                    MessageBox.Show(strError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Support.mostrarError(strError);
                 }
 
             }
@@ -113,35 +113,43 @@ namespace GrouponDesktop
                 strError += "- El Rol elegido esta inhabilitado\n";
                 validado = false;
             }
-            
-            if (!validado) MessageBox.Show(strError,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+
+            if (!validado) Support.mostrarError(strError);
             return validado;
         
-        }
-        private bool nombreDuplicado(string nombreUsuario)        
-        {                       
+		}
+        private bool nombreDuplicado(string nombreUsuario)
+        {
             bool duplicado = false;
             SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
-            dbcon.Open();
             SqlCommand cmd = new SqlCommand(@"Select  *
-                                            from LOSGROSOS_RELOADED.Usuario
-                                            where nombreUsuario=@usuario", dbcon);
+											from LOSGROSOS_RELOADED.Usuario
+											where nombreUsuario=@usuario", dbcon);
 
             cmd.Parameters.Add("@usuario", SqlDbType.VarChar, 100);
             cmd.Parameters["@usuario"].Value = nombreUsuario;
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            if (dt.Rows.Count > 0) duplicado = true;
+
+            try
+            {
+                dbcon.Open();
+                da.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                Support.mostrarError(ex.Message);
+            }
+			if (dt.Rows.Count > 0) duplicado = true;
             dbcon.Close();
             return duplicado;
+            
     
         }
         private bool validarRol(string rol) 
         {
             bool validado = true;
             SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
-            dbcon.Open();
             SqlCommand cmd = new SqlCommand(@"Select inhabilitado
                                             from LOSGROSOS_RELOADED.Rol
                                             where descripcion like @rol", dbcon);
@@ -150,10 +158,18 @@ namespace GrouponDesktop
             cmd.Parameters["@rol"].Value = rol;
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
+
+            try
+            {
+                dbcon.Open();
+                da.Fill(dt);
+            }
+
+            catch (Exception ex)
+            {
+                Support.mostrarError(ex.Message);
+            }
             if (dt.Rows[0]["inhabilitado"].ToString() == "1") validado = false;
-            
-            
             dbcon.Close();
             return validado;
         }

@@ -50,7 +50,7 @@ namespace GrouponDesktop.CargaCredito
             }
             catch (Exception ex) {
 
-                MessageBox.Show(ex.Message);
+                Support.mostrarError(ex.Message);
 
             }           
 
@@ -90,7 +90,7 @@ namespace GrouponDesktop.CargaCredito
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-
+            string strError="";
             bool No_hay_datos_incompletos = true; //Es una negrada.... ya lo voy a corregir
 
             String str_seleccionado = cb_medioPago.SelectedValue.ToString();
@@ -102,8 +102,8 @@ namespace GrouponDesktop.CargaCredito
                     txtTitular.Text == "")
                 {
 
-                    MessageBox.Show("Por favor, complete los campos del grupo 'Tarjeta'");
-                    No_hay_datos_incompletos = false;
+                   strError += "- Por favor, complete los campos del grupo 'Tarjeta'\n";
+                   No_hay_datos_incompletos = false;
 
                 }
 
@@ -111,7 +111,7 @@ namespace GrouponDesktop.CargaCredito
 
             if (txtCarga.Text == "")
             {
-                MessageBox.Show("Por favor complete el campo 'Crédito a cargar'");
+                strError += "- Por favor complete el campo 'Crédito a cargar'\n";
                 No_hay_datos_incompletos = false;
             }
             
