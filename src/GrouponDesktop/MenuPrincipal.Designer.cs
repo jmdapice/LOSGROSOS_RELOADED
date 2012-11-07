@@ -98,21 +98,23 @@
             // agregarRolToolStripMenuItem
             // 
             this.agregarRolToolStripMenuItem.Name = "agregarRolToolStripMenuItem";
-            this.agregarRolToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.agregarRolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.agregarRolToolStripMenuItem.Text = "Agregar";
             this.agregarRolToolStripMenuItem.Click += new System.EventHandler(this.agregarRolToolStripMenuItem_Click);
             // 
             // modificarRolToolStripMenuItem
             // 
             this.modificarRolToolStripMenuItem.Name = "modificarRolToolStripMenuItem";
-            this.modificarRolToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.modificarRolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.modificarRolToolStripMenuItem.Text = "Modificar";
+            this.modificarRolToolStripMenuItem.Click += new System.EventHandler(this.modificarRolToolStripMenuItem_Click);
             // 
             // eliminarRolToolStripMenuItem
             // 
             this.eliminarRolToolStripMenuItem.Name = "eliminarRolToolStripMenuItem";
-            this.eliminarRolToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.eliminarRolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.eliminarRolToolStripMenuItem.Text = "Eliminar";
+            this.eliminarRolToolStripMenuItem.Click += new System.EventHandler(this.eliminarRolToolStripMenuItem_Click);
             // 
             // listadoEstadisticoToolStripMenuItem
             // 

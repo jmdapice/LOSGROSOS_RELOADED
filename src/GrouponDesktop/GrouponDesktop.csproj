@@ -60,6 +60,24 @@
     <Compile Include="AbmProveedor\Form1.Designer.cs">
       <DependentUpon>AbmProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmRoles\ElimRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRoles\ElimRol.Designer.cs">
+      <DependentUpon>ElimRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRoles\ModRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRoles\ModRol.Designer.cs">
+      <DependentUpon>ModRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRoles\ModRol2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRoles\ModRol2.Designer.cs">
+      <DependentUpon>ModRol2.cs</DependentUpon>
+    </Compile>
     <Compile Include="CargaCredito\CargaCredito.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +110,15 @@
     <EmbeddedResource Include="AbmProveedor\AbmProveedor.resx">
       <DependentUpon>AbmProveedor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmRoles\ElimRol.resx">
+      <DependentUpon>ElimRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRoles\ModRol.resx">
+      <DependentUpon>ModRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRoles\ModRol2.resx">
+      <DependentUpon>ModRol2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CargaCredito\CargaCredito.resx">
       <DependentUpon>CargaCredito.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,7 +136,7 @@
     <EmbeddedResource Include="RegistroUsuario.resx">
       <DependentUpon>RegistroUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AltaRol.resx">
+    <EmbeddedResource Include="AbmRoles\AltaRol.resx">
       <DependentUpon>AltaRol.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -126,17 +153,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="AltaRol.cs">
+    <Compile Include="AbmRoles\AltaRol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AltaRol.Designer.cs">
+    <Compile Include="AbmRoles\AltaRol.Designer.cs">
       <DependentUpon>AltaRol.cs</DependentUpon>
     </Compile>
     <Compile Include="Support.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ArmarCupon\" />
-    <Folder Include="CargaCredito\ComprarCupon\" />
+    <Folder Include="ComprarCupon\" />
     <Folder Include="ComprarGiftCard\" />
     <Folder Include="FacturarProveedor\" />
     <Folder Include="HistorialCupones\" />

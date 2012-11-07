@@ -180,6 +180,18 @@ namespace GrouponDesktop
                 AltaRol frm = new AltaRol();
                 frm.ShowDialog();
             }
+
+            private void modificarRolToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                AbmRoles.ModRol frm = new AbmRoles.ModRol();
+                frm.ShowDialog();
+            }
+
+            private void eliminarRolToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                AbmRoles.ElimRol frm = new AbmRoles.ElimRol();
+                frm.ShowDialog();
+            }
         }
     }
 

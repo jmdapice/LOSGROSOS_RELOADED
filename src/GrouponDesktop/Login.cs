@@ -86,7 +86,14 @@ namespace GrouponDesktop
                         }
 
                         Support.nombreUsuario = usuario;
-                        Support.idRol = Convert.ToInt32(dt.Rows[0]["idRol"]);
+                        if (!(dt.Rows[0]["idRol"] == DBNull.Value))
+                        {
+                            Support.idRol = Convert.ToInt32(dt.Rows[0]["idRol"]);
+                        }
+                        else
+                        {
+                            Support.idRol = 0;
+                        }
 
                         MenuPrincipal frmPrincipal = new MenuPrincipal();
                         frmPrincipal.Show();
