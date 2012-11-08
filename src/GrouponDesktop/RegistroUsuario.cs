@@ -45,7 +45,7 @@ namespace GrouponDesktop
             cmbRol.SelectedItem = "CLIENTE";
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        public void btnCancelar_Click(object sender, EventArgs e)
         {
             
             this.DestroyHandle();
@@ -68,7 +68,7 @@ namespace GrouponDesktop
                 {
                     if (cmbRol.SelectedItem.ToString().Equals("CLIENTE"))
                     {
-                        AbmCliente.AbmCliente frmalta = new AbmCliente.AbmCliente();
+                        AbmCliente.AltaCliente frmalta = new AbmCliente.AltaCliente(this);
                         frmalta.ShowDialog();
                     }
                     else

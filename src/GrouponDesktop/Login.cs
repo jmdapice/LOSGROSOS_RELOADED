@@ -160,8 +160,6 @@ namespace GrouponDesktop
             RegistroUsuario frmRegistro = new RegistroUsuario(this);
             this.Hide();
             frmRegistro.Show();
-            CargaCredito.CargaCredito frmCC = new CargaCredito.CargaCredito();
-            frmCC.Show();
         }
     }
 }

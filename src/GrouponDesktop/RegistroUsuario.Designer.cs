@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtUser = new System.Windows.Forms.TextBox();
             this.txtPass1 = new System.Windows.Forms.TextBox();
             this.txtPass2 = new System.Windows.Forms.TextBox();
@@ -39,7 +40,6 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.cmbRol = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,6 +63,15 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Paso 1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(78, 256);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(229, 13);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Los campos marcados con (*) son obliogatorios";
             // 
             // txtUser
             // 
@@ -162,15 +171,6 @@
             this.cmbRol.Size = new System.Drawing.Size(182, 21);
             this.cmbRol.TabIndex = 3;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(78, 256);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(229, 13);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Los campos marcados con (*) son obliogatorios";
-            // 
             // RegistroUsuario
             // 
             this.AcceptButton = this.btnSiguiente;
@@ -195,7 +195,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtPass1;
         private System.Windows.Forms.TextBox txtPass2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -206,6 +205,7 @@
         private System.Windows.Forms.ComboBox cmbRol;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox txtUser;
+        public System.Windows.Forms.TextBox txtPass1;
 
     }
 }
