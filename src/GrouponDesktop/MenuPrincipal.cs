@@ -192,6 +192,22 @@ namespace GrouponDesktop
                 AbmRoles.ElimRol frm = new AbmRoles.ElimRol();
                 frm.ShowDialog();
             }
+
+            private void modificarClienteToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                AbmCliente.ModCliente frmMod = new AbmCliente.ModCliente();
+                frmMod.ShowDialog();
+
+            }
+
+            private void agregarClienteToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                RegistroUsuario frmAlta = new RegistroUsuario(this);
+                frmAlta.Text = "Alta Cliente";
+                frmAlta.cmbRol.Visible = false;
+                frmAlta.label4.Visible = false;
+                frmAlta.ShowDialog();
+            }
         }
     }
 

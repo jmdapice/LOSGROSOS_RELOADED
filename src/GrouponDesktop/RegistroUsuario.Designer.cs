@@ -196,16 +196,16 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtPass2;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblNomUsuario;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnSiguiente;
-        private System.Windows.Forms.ComboBox cmbRol;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox txtUser;
         public System.Windows.Forms.TextBox txtPass1;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.ComboBox cmbRol;
 
     }
 }

@@ -70,7 +70,7 @@ namespace GrouponDesktop.AbmCliente
             this.txtMail.Clear();
             this.masktxtNombre.Clear();
             this.masktxtCodPos.Clear();
-            this.txtTel.Clear();
+            this.masktxtTel.Clear();
             this.cmbCiudades.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
@@ -115,13 +115,32 @@ namespace GrouponDesktop.AbmCliente
                 strError += "- Debe completar el campo Nombre, ya que es obligatorio\n";
                 validado = false;
             }
+            else
+            {
+                if (this.masktxtNombre.Text.Length > 255)
+                {
+                    lblNombre.ForeColor = System.Drawing.Color.Red;
+                    strError += "- La longitud del nombre excede la permitida\n";
+                    validado = false;
+                }
+
+            }
             if (this.txtApellido.Text == "")
             {
                 lblApellido.ForeColor = System.Drawing.Color.Red;
                 strError += "- Debe completar el campo Apellido, ya que es obligatorio\n";
                 validado = false;
             }
-            if (this.txtTel.Text == "")
+            else
+            {
+                if (this.txtApellido.Text.Length > 255)
+                {
+                    lblApellido.ForeColor = System.Drawing.Color.Red;
+                    strError += "- La longitud del apellido excede la permitida\n";
+                    validado = false;
+                }
+            }
+            if (this.masktxtTel.Text == "")
             {
                 lblTel.ForeColor = System.Drawing.Color.Red;
                 strError += "- Debe completar el campo Telefono, ya que es obligatorio\n";
@@ -129,7 +148,7 @@ namespace GrouponDesktop.AbmCliente
             }
             else
             {
-                if (!validarTelUnico(Convert.ToInt32(this.txtTel.Text)))
+                if (!validarTelUnico(Convert.ToInt32(this.masktxtTel.Text)))
                 {
                     lblTel.ForeColor = System.Drawing.Color.Red;
                     strError += "- Ya hay registrado un cliente con este telefono\n";
@@ -267,7 +286,7 @@ namespace GrouponDesktop.AbmCliente
             cmd.Parameters["@apellido"].Value = this.txtApellido.Text;
             cmd.Parameters["@dni"].Value = Convert.ToInt32(this.txtDni.Text);
             cmd.Parameters["@direccion"].Value = this.txtDireccion.Text;
-            cmd.Parameters["@tel"].Value = Convert.ToInt32(this.txtTel.Text);
+            cmd.Parameters["@tel"].Value = Convert.ToInt32(this.masktxtTel.Text);
             cmd.Parameters["@mail"].Value = this.txtMail.Text;
             cmd.Parameters["@idCiudad"].Value = idCiudad;
             cmd.Parameters["@saldo"].Value = Support.saldoBienvenida;

@@ -32,6 +32,7 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtDni = new System.Windows.Forms.MaskedTextBox();
             this.masktxtNombre = new System.Windows.Forms.MaskedTextBox();
             this.masktxtCodPos = new System.Windows.Forms.MaskedTextBox();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
@@ -51,10 +52,9 @@
             this.lblNombre = new System.Windows.Forms.Label();
             this.txtMail = new System.Windows.Forms.TextBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
-            this.txtTel = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtDni = new System.Windows.Forms.MaskedTextBox();
+            this.masktxtTel = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,6 +90,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.masktxtTel);
             this.groupBox1.Controls.Add(this.txtDni);
             this.groupBox1.Controls.Add(this.masktxtNombre);
             this.groupBox1.Controls.Add(this.masktxtCodPos);
@@ -110,7 +111,6 @@
             this.groupBox1.Controls.Add(this.lblNombre);
             this.groupBox1.Controls.Add(this.txtMail);
             this.groupBox1.Controls.Add(this.txtDireccion);
-            this.groupBox1.Controls.Add(this.txtTel);
             this.groupBox1.Controls.Add(this.txtApellido);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Location = new System.Drawing.Point(14, 17);
@@ -120,11 +120,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Paso 2";
             // 
+            // txtDni
+            // 
+            this.txtDni.AsciiOnly = true;
+            this.txtDni.Location = new System.Drawing.Point(341, 48);
+            this.txtDni.Mask = "999999999999999999";
+            this.txtDni.Name = "txtDni";
+            this.txtDni.PromptChar = ' ';
+            this.txtDni.Size = new System.Drawing.Size(286, 20);
+            this.txtDni.TabIndex = 6;
+            // 
             // masktxtNombre
             // 
             this.masktxtNombre.AsciiOnly = true;
             this.masktxtNombre.Location = new System.Drawing.Point(18, 46);
-            this.masktxtNombre.Mask = "LLLLLLLLLLLLLL";
             this.masktxtNombre.Name = "masktxtNombre";
             this.masktxtNombre.PromptChar = ' ';
             this.masktxtNombre.Size = new System.Drawing.Size(286, 20);
@@ -301,14 +310,6 @@
             this.txtDireccion.Size = new System.Drawing.Size(286, 20);
             this.txtDireccion.TabIndex = 3;
             // 
-            // txtTel
-            // 
-            this.txtTel.Location = new System.Drawing.Point(18, 160);
-            this.txtTel.MaxLength = 18;
-            this.txtTel.Name = "txtTel";
-            this.txtTel.Size = new System.Drawing.Size(286, 20);
-            this.txtTel.TabIndex = 2;
-            // 
             // txtApellido
             // 
             this.txtApellido.Location = new System.Drawing.Point(18, 103);
@@ -326,15 +327,15 @@
             this.label10.TabIndex = 21;
             this.label10.Text = "Los campos marcados con (*) son obliogatorios";
             // 
-            // txtDni
+            // masktxtTel
             // 
-            this.txtDni.AsciiOnly = true;
-            this.txtDni.Location = new System.Drawing.Point(341, 48);
-            this.txtDni.Mask = "999999999999999999";
-            this.txtDni.Name = "txtDni";
-            this.txtDni.PromptChar = ' ';
-            this.txtDni.Size = new System.Drawing.Size(286, 20);
-            this.txtDni.TabIndex = 6;
+            this.masktxtTel.AsciiOnly = true;
+            this.masktxtTel.Location = new System.Drawing.Point(18, 160);
+            this.masktxtTel.Mask = "999999999999999999";
+            this.masktxtTel.Name = "masktxtTel";
+            this.masktxtTel.PromptChar = ' ';
+            this.masktxtTel.Size = new System.Drawing.Size(286, 20);
+            this.masktxtTel.TabIndex = 22;
             // 
             // AltaCliente
             // 
@@ -345,6 +346,8 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AltaCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AltaCliente";
@@ -377,12 +380,12 @@
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.TextBox txtDireccion;
-        private System.Windows.Forms.TextBox txtTel;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.CheckedListBox lstCiudadesElegidas;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.MaskedTextBox masktxtCodPos;
         private System.Windows.Forms.MaskedTextBox masktxtNombre;
         private System.Windows.Forms.MaskedTextBox txtDni;
+        private System.Windows.Forms.MaskedTextBox masktxtTel;
     }
 }

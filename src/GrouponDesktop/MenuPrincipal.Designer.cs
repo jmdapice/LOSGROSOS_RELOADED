@@ -98,21 +98,21 @@
             // agregarRolToolStripMenuItem
             // 
             this.agregarRolToolStripMenuItem.Name = "agregarRolToolStripMenuItem";
-            this.agregarRolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.agregarRolToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.agregarRolToolStripMenuItem.Text = "Agregar";
             this.agregarRolToolStripMenuItem.Click += new System.EventHandler(this.agregarRolToolStripMenuItem_Click);
             // 
             // modificarRolToolStripMenuItem
             // 
             this.modificarRolToolStripMenuItem.Name = "modificarRolToolStripMenuItem";
-            this.modificarRolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.modificarRolToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.modificarRolToolStripMenuItem.Text = "Modificar";
             this.modificarRolToolStripMenuItem.Click += new System.EventHandler(this.modificarRolToolStripMenuItem_Click);
             // 
             // eliminarRolToolStripMenuItem
             // 
             this.eliminarRolToolStripMenuItem.Name = "eliminarRolToolStripMenuItem";
-            this.eliminarRolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.eliminarRolToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.eliminarRolToolStripMenuItem.Text = "Eliminar";
             this.eliminarRolToolStripMenuItem.Click += new System.EventHandler(this.eliminarRolToolStripMenuItem_Click);
             // 
@@ -153,6 +153,7 @@
             this.agregarClienteToolStripMenuItem.Name = "agregarClienteToolStripMenuItem";
             this.agregarClienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.agregarClienteToolStripMenuItem.Text = "Agregar...";
+            this.agregarClienteToolStripMenuItem.Click += new System.EventHandler(this.agregarClienteToolStripMenuItem_Click);
             // 
             // eliminarClienteToolStripMenuItem1
             // 
@@ -165,6 +166,7 @@
             this.modificarClienteToolStripMenuItem.Name = "modificarClienteToolStripMenuItem";
             this.modificarClienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.modificarClienteToolStripMenuItem.Text = "Modificar  Datos...";
+            this.modificarClienteToolStripMenuItem.Click += new System.EventHandler(this.modificarClienteToolStripMenuItem_Click);
             // 
             // cargarCreditoToolStripMenuItem
             // 

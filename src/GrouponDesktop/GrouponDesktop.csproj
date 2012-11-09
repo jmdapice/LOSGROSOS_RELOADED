@@ -48,11 +48,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbmCliente\AbmCliente.cs">
+    <Compile Include="AbmCliente\AltaCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmCliente\AbmCliente.Designer.cs">
-      <DependentUpon>AbmCliente.cs</DependentUpon>
+    <Compile Include="AbmCliente\AltaCliente.Designer.cs">
+      <DependentUpon>AltaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmCliente\ModCli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCliente\ModCli.Designer.cs">
+      <DependentUpon>ModCli.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmCliente\ModCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCliente\ModCliente.Designer.cs">
+      <DependentUpon>ModCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmProveedor\AbmProveedor.cs">
       <SubType>Form</SubType>
@@ -104,8 +116,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AbmCliente\AbmCliente.resx">
-      <DependentUpon>AbmCliente.cs</DependentUpon>
+    <EmbeddedResource Include="AbmCliente\AltaCliente.resx">
+      <DependentUpon>AltaCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmCliente\ModCli.resx">
+      <DependentUpon>ModCli.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmCliente\ModCliente.resx">
+      <DependentUpon>ModCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmProveedor\AbmProveedor.resx">
       <DependentUpon>AbmProveedor.cs</DependentUpon>
