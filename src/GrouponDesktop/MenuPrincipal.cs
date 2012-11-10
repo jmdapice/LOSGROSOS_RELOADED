@@ -214,6 +214,18 @@ namespace GrouponDesktop
                 AbmCliente.BajaCliente frmBaja = new AbmCliente.BajaCliente();
                 frmBaja.ShowDialog();
             }
+
+            private void cargarCreditoToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                CargaCredito.CargaCredito frm = new CargaCredito.CargaCredito();
+                frm.ShowDialog();
+            }
+
+            private void comprarGiftCardToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                ComprarGiftCard.Giftcard frm = new ComprarGiftCard.Giftcard();
+                frm.ShowDialog();
+            }
         }
     }
 

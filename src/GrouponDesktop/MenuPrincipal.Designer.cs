@@ -174,12 +174,14 @@
             this.cargarCreditoToolStripMenuItem.Name = "cargarCreditoToolStripMenuItem";
             this.cargarCreditoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cargarCreditoToolStripMenuItem.Text = "Cargar Credito...";
+            this.cargarCreditoToolStripMenuItem.Click += new System.EventHandler(this.cargarCreditoToolStripMenuItem_Click);
             // 
             // comprarGiftCardToolStripMenuItem
             // 
             this.comprarGiftCardToolStripMenuItem.Name = "comprarGiftCardToolStripMenuItem";
             this.comprarGiftCardToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.comprarGiftCardToolStripMenuItem.Text = "Comprar Gift Card...";
+            this.comprarGiftCardToolStripMenuItem.Click += new System.EventHandler(this.comprarGiftCardToolStripMenuItem_Click);
             // 
             // cuponClienteToolStripMenuItem
             // 

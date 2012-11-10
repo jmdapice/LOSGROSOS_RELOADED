@@ -34,14 +34,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gb_tarjeta = new System.Windows.Forms.GroupBox();
+            this.calendarioVencimiento = new System.Windows.Forms.MonthCalendar();
+            this.btnSeleccion = new System.Windows.Forms.Button();
+            this.txtFechaVenc = new System.Windows.Forms.TextBox();
             this.txtTarjeta = new System.Windows.Forms.MaskedTextBox();
-            this.txtFechaVenc = new System.Windows.Forms.MaskedTextBox();
             this.txtTitular = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.gb_datosgral.SuspendLayout();
             this.gb_tarjeta.SuspendLayout();
             this.SuspendLayout();
@@ -54,14 +57,14 @@
             this.gb_datosgral.Controls.Add(this.label1);
             this.gb_datosgral.Location = new System.Drawing.Point(12, 12);
             this.gb_datosgral.Name = "gb_datosgral";
-            this.gb_datosgral.Size = new System.Drawing.Size(289, 143);
+            this.gb_datosgral.Size = new System.Drawing.Size(312, 143);
             this.gb_datosgral.TabIndex = 0;
             this.gb_datosgral.TabStop = false;
             this.gb_datosgral.Text = "Datos generales";
             // 
             // txtCarga
             // 
-            this.txtCarga.Location = new System.Drawing.Point(0, 46);
+            this.txtCarga.Location = new System.Drawing.Point(12, 46);
             this.txtCarga.Mask = "999999999999999999";
             this.txtCarga.Name = "txtCarga";
             this.txtCarga.PromptChar = ' ';
@@ -71,9 +74,9 @@
             // cb_medioPago
             // 
             this.cb_medioPago.FormattingEnabled = true;
-            this.cb_medioPago.Location = new System.Drawing.Point(0, 104);
+            this.cb_medioPago.Location = new System.Drawing.Point(12, 104);
             this.cb_medioPago.Name = "cb_medioPago";
-            this.cb_medioPago.Size = new System.Drawing.Size(164, 21);
+            this.cb_medioPago.Size = new System.Drawing.Size(175, 21);
             this.cb_medioPago.TabIndex = 3;
             this.cb_medioPago.SelectedValueChanged += new System.EventHandler(this.cb_medioPago_SelectedValueChanged);
             // 
@@ -99,18 +102,46 @@
             // 
             // gb_tarjeta
             // 
-            this.gb_tarjeta.Controls.Add(this.txtTarjeta);
+            this.gb_tarjeta.Controls.Add(this.calendarioVencimiento);
+            this.gb_tarjeta.Controls.Add(this.btnSeleccion);
             this.gb_tarjeta.Controls.Add(this.txtFechaVenc);
+            this.gb_tarjeta.Controls.Add(this.txtTarjeta);
             this.gb_tarjeta.Controls.Add(this.txtTitular);
             this.gb_tarjeta.Controls.Add(this.label5);
             this.gb_tarjeta.Controls.Add(this.label4);
             this.gb_tarjeta.Controls.Add(this.label3);
-            this.gb_tarjeta.Location = new System.Drawing.Point(0, 161);
+            this.gb_tarjeta.Location = new System.Drawing.Point(12, 161);
             this.gb_tarjeta.Name = "gb_tarjeta";
-            this.gb_tarjeta.Size = new System.Drawing.Size(289, 192);
+            this.gb_tarjeta.Size = new System.Drawing.Size(312, 192);
             this.gb_tarjeta.TabIndex = 1;
             this.gb_tarjeta.TabStop = false;
             this.gb_tarjeta.Text = "Tarjeta";
+            // 
+            // calendarioVencimiento
+            // 
+            this.calendarioVencimiento.Location = new System.Drawing.Point(6, 18);
+            this.calendarioVencimiento.Name = "calendarioVencimiento";
+            this.calendarioVencimiento.TabIndex = 13;
+            this.calendarioVencimiento.Visible = false;
+            this.calendarioVencimiento.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.calendarioVencimiento_DateSelected);
+            // 
+            // btnSeleccion
+            // 
+            this.btnSeleccion.Location = new System.Drawing.Point(196, 96);
+            this.btnSeleccion.Name = "btnSeleccion";
+            this.btnSeleccion.Size = new System.Drawing.Size(75, 23);
+            this.btnSeleccion.TabIndex = 13;
+            this.btnSeleccion.Text = "Seleccionar";
+            this.btnSeleccion.UseVisualStyleBackColor = true;
+            this.btnSeleccion.Click += new System.EventHandler(this.btnSeleccion_Click);
+            // 
+            // txtFechaVenc
+            // 
+            this.txtFechaVenc.Enabled = false;
+            this.txtFechaVenc.Location = new System.Drawing.Point(12, 99);
+            this.txtFechaVenc.Name = "txtFechaVenc";
+            this.txtFechaVenc.Size = new System.Drawing.Size(178, 20);
+            this.txtFechaVenc.TabIndex = 12;
             // 
             // txtTarjeta
             // 
@@ -120,15 +151,6 @@
             this.txtTarjeta.PromptChar = ' ';
             this.txtTarjeta.Size = new System.Drawing.Size(175, 20);
             this.txtTarjeta.TabIndex = 10;
-            // 
-            // txtFechaVenc
-            // 
-            this.txtFechaVenc.Location = new System.Drawing.Point(12, 99);
-            this.txtFechaVenc.Mask = "00/00/0000";
-            this.txtFechaVenc.Name = "txtFechaVenc";
-            this.txtFechaVenc.Size = new System.Drawing.Size(175, 20);
-            this.txtFechaVenc.TabIndex = 9;
-            this.txtFechaVenc.ValidatingType = typeof(System.DateTime);
             // 
             // txtTitular
             // 
@@ -172,7 +194,7 @@
             // 
             this.btnAceptar.Location = new System.Drawing.Point(12, 359);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(120, 31);
+            this.btnAceptar.Size = new System.Drawing.Size(100, 23);
             this.btnAceptar.TabIndex = 2;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -180,23 +202,37 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(181, 359);
+            this.btnCancelar.Location = new System.Drawing.Point(224, 359);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(120, 31);
+            this.btnCancelar.Size = new System.Drawing.Size(100, 23);
             this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(118, 359);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(100, 23);
+            this.btnLimpiar.TabIndex = 4;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // CargaCredito
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(307, 400);
+            this.ClientSize = new System.Drawing.Size(339, 400);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.gb_tarjeta);
             this.Controls.Add(this.gb_datosgral);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "CargaCredito";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Carga de crédito";
@@ -222,8 +258,11 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox txtTitular;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.MaskedTextBox txtFechaVenc;
         private System.Windows.Forms.MaskedTextBox txtTarjeta;
         private System.Windows.Forms.MaskedTextBox txtCarga;
+        private System.Windows.Forms.MonthCalendar calendarioVencimiento;
+        private System.Windows.Forms.TextBox txtFechaVenc;
+        private System.Windows.Forms.Button btnSeleccion;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }
