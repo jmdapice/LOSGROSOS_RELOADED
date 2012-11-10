@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace GrouponDesktop.AbmCliente
 {
-    public partial class ModCliente : Form
+    public partial class BajaCliente : Form
     {
-        public ModCliente()
+        public BajaCliente()
         {
             InitializeComponent();
         }
 
-        public void btnLimpiar_Click(object sender, EventArgs e)
+        private void btnLimpiar_Click(object sender, EventArgs e)
         {
             this.txtApe.Clear();
             this.txtDni.Clear();
@@ -48,7 +48,8 @@ namespace GrouponDesktop.AbmCliente
                                              and cli.apellido like '%'+@criterio2+'%'
                                              and cli.mail like '%'+@criterio4+'%'
                                              and cli.idCiudad = c.idCiudad
-                                             and cli.idUsuario = u.idUsuario", dbcon);
+                                             and cli.idUsuario = u.idUsuario
+                                             and cli.inhabilitado = '0'", dbcon);
             }
             else
             {
@@ -63,7 +64,8 @@ namespace GrouponDesktop.AbmCliente
                                              and dni = @criterio3
                                              and mail like '%'+@criterio4+'%'
                                              and cli.idCiudad = c.idCiudad
-                                             and cli.idUsuario = u.idUsuario", dbcon);
+                                             and cli.idUsuario = u.idUsuario
+                                             and cli.inhabilitado = '0'", dbcon);
                 cmd.Parameters.Add("@criterio3", SqlDbType.Int, 18);
                 cmd.Parameters["@criterio3"].Value = Convert.ToInt32(this.txtDni.Text);
             }
@@ -93,26 +95,40 @@ namespace GrouponDesktop.AbmCliente
             }
 
             dgvClientes.DataSource = dt;
-         //   dgvClientes.AutoResizeColumns();
             dgvClientes.Columns[10].Visible = false;
             DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
-            buttonColumn.Name = "btnSeleccionar";
-            buttonColumn.HeaderText = "Seleccionar";
+            buttonColumn.Name = "btnEliminar";
+            buttonColumn.HeaderText = "Eliminar";
             buttonColumn.Text = " ";
             dgvClientes.Columns["Ciudad"].Width = 95;
             dgvClientes.Columns.Insert(10, buttonColumn);
-
         }
-
 
         private void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            
-            AbmCliente.ModCli frmModCli = new AbmCliente.ModCli(this);
-            frmModCli.ShowDialog();
+            if (MessageBox.Show(this, "Esta seguro que desea eliminar este Cliente?", "Eliminar", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                inhabilitarCliente(Convert.ToInt32(dgvClientes.CurrentRow.Cells["id"].Value));
+                this.btnLimpiar_Click(this,e);
+            }
         }
 
-
-
+        private void inhabilitarCliente(int idCli)
+        {
+            SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
+            SqlCommand cmd = new SqlCommand(@"EXEC LOSGROSOS_RELOADED.P_HabilitacionCliente 
+                                            @idCli,'1'", dbcon);
+            cmd.Parameters.Add("@idCli", SqlDbType.VarChar, 100);
+            cmd.Parameters["@idCli"].Value = idCli;
+            try
+            {
+                dbcon.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Support.mostrarError(ex.Message);
+            }
+        }
     }
 }

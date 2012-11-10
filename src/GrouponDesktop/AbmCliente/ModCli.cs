@@ -61,7 +61,17 @@ namespace GrouponDesktop.AbmCliente
             this.cmbCiudades.DisplayMember = "nombre";
             this.cmbCiudades.ValueMember = "idCiudad";
           
-            //falta cargar al combo box la cuidad
+            //carga al combobox la cuidad
+            foreach (DataRow r in dt2.Rows)
+            {
+
+                if (r["nombre"].ToString().Equals(this.frmPadre.dgvClientes.CurrentRow.Cells["ciudad"].Value.ToString()))
+                {
+                    cmbCiudades.SelectedValue= r["idCiudad"];
+                }
+
+            }
+     
 
             int idCliente =Convert.ToInt32(frmPadre.dgvClientes.CurrentRow.Cells["id"].Value);   
             cmd.CommandText = @"Select idCiudad 
@@ -145,9 +155,10 @@ namespace GrouponDesktop.AbmCliente
                     Support.mostrarError(ex.Message);
                 }
                 modificarCliente(dbcon);
-                MessageBox.Show("La moficacion se realizo con exito ");
+                MessageBox.Show("La modificacion se realizo con exito ");
                 dbcon.Close();
                 this.Close();
+                frmPadre.btnLimpiar_Click(this,e);
 
             }
 
@@ -277,8 +288,7 @@ namespace GrouponDesktop.AbmCliente
             SqlCommand cmd = new SqlCommand(@"EXEC LOSGROSOS_RELOADED.P_Modificar_Cliente 
                                @idCli,@nombre,@apellido,
                                @dni,@direccion, @tel, @mail,@fechaNac, 
-                               @idCiudad, @codPostal
-                               SELECT * FROM LOSGROSOS_RELOADED.Clientes", dbcon);
+                               @idCiudad, @codPostal", dbcon);
 
             cmd.Parameters.Add("@idCli", SqlDbType.Int, 18);
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar, 255);

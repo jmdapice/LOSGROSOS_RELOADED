@@ -160,6 +160,7 @@
             this.eliminarClienteToolStripMenuItem1.Name = "eliminarClienteToolStripMenuItem1";
             this.eliminarClienteToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.eliminarClienteToolStripMenuItem1.Text = "Eliminar...";
+            this.eliminarClienteToolStripMenuItem1.Click += new System.EventHandler(this.eliminarClienteToolStripMenuItem1_Click);
             // 
             // modificarClienteToolStripMenuItem
             // 

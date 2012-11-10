@@ -267,8 +267,7 @@ namespace GrouponDesktop.AbmCliente
 
             SqlCommand cmd = new SqlCommand(@"EXEC LOSGROSOS_RELOADED.P_ALta_Cliente @nombre,@apellido,
                                @dni,@direccion, @tel, @mail,@fechaNac, 
-                               @idCiudad, @codPostal, @saldo, @idUsuario
-                               SELECT * FROM LOSGROSOS_RELOADED.Clientes",dbcon);
+                               @idCiudad, @codPostal, @saldo, @idUsuario",dbcon);
 
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar, 255);
             cmd.Parameters.Add("@apellido", SqlDbType.VarChar, 255);

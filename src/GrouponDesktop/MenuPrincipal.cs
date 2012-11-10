@@ -208,6 +208,12 @@ namespace GrouponDesktop
                 frmAlta.label4.Visible = false;
                 frmAlta.ShowDialog();
             }
+
+            private void eliminarClienteToolStripMenuItem1_Click(object sender, EventArgs e)
+            {
+                AbmCliente.BajaCliente frmBaja = new AbmCliente.BajaCliente();
+                frmBaja.ShowDialog();
+            }
         }
     }
 
