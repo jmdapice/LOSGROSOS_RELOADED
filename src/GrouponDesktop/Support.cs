@@ -5,6 +5,12 @@ using System.Text;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 
+using System.ComponentModel;
+using System.Data.SqlClient;
+using System.Data.Sql;
+using GrouponDesktop.Properties;
+using System.Configuration;
+
 namespace GrouponDesktop
 {
     class Support
@@ -17,6 +23,11 @@ namespace GrouponDesktop
         public static void mostrarError(string str)
         {
             MessageBox.Show(str, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public static void mostrarInfo(string str) 
+        {
+            MessageBox.Show(str, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public static string byteArrayToString(byte[] inputArray)
@@ -37,6 +48,10 @@ namespace GrouponDesktop
             return byteArrayToString(hashedDataBytes);
         }
 
+        public static int obtenerFechaInt(DateTime fecha)
+        {
+            return (fecha.Year * 10000 + fecha.Month * 100 + fecha.Day);
+        }
 
     }
 }
