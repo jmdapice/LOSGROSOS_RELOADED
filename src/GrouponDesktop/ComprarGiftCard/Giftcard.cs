@@ -28,7 +28,7 @@ namespace GrouponDesktop.ComprarGiftCard
         private void Giftcard_Load(object sender, EventArgs e)
         {
 
-            verificarCliente();
+            //verificarCliente();
             
             lblDestino.ForeColor = System.Drawing.Color.Black;
             lblMonto.ForeColor = System.Drawing.Color.Black;
@@ -66,9 +66,8 @@ namespace GrouponDesktop.ComprarGiftCard
                     idCliDestino = obtenerIdCliente(idUserDestino);
                     idCliOrigen = obtenerIdCliente(idUserOrigen);
 
-                    if (idCliDestino != 0)
+                    if (validarCompraGiftCard(idCliOrigen, idCliDestino))
                     {
-                        lblDestino.ForeColor = System.Drawing.Color.Black;
                         SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
                         dbcon.Open();
                         SqlCommand cmd = new SqlCommand(@"INSERT INTO 
@@ -84,7 +83,7 @@ namespace GrouponDesktop.ComprarGiftCard
 
                         cmd.Parameters["@idCliOrigen"].Value = idCliOrigen;
                         cmd.Parameters["@idCliDestino"].Value = idCliDestino;
-                        cmd.Parameters["@fecha"].Value = DateTime.Today;
+                        cmd.Parameters["@fecha"].Value = Support.fechaConfig();
                         cmd.Parameters["@monto"].Value = Convert.ToDecimal(numMonto.Value);
 
                         cmd.ExecuteNonQuery();
@@ -92,11 +91,6 @@ namespace GrouponDesktop.ComprarGiftCard
                         Support.mostrarInfo("Se le han cargado $" + numMonto.Value.ToString() + " al usuario " + txtDestino.Text);
 
                         borrar_pantalla();
-                    }
-                    else
-                    {
-                        Support.mostrarError("El usuario destino no tiene cliente asociado");
-                        lblDestino.ForeColor = System.Drawing.Color.Red;
                     }
                 }
                 catch (Exception ex)
@@ -107,6 +101,43 @@ namespace GrouponDesktop.ComprarGiftCard
 
             }
 
+        }
+
+
+        private bool validarCompraGiftCard(int idCliOrigen, int idCliDestino)
+        {
+
+            string strError = "Han ocurrido los siguientes errores:\n";
+            bool datosValidos = true;
+
+            lblDestino.ForeColor = System.Drawing.Color.Black;
+            lblMonto.ForeColor = System.Drawing.Color.Black;
+
+            if (idCliDestino == 0)
+            {
+                datosValidos = false;
+                strError += "-El usuario destino no tiene cliente asociado\n";
+                lblDestino.ForeColor = System.Drawing.Color.Red;
+            }
+            
+            if (!tieneSaldoSuficiente(idCliOrigen))
+            {
+                datosValidos = false; 
+                strError += "-Usted no posee suficiente crédito para realizar la compra\n";
+                lblMonto.ForeColor = System.Drawing.Color.Red;
+            }
+                
+            if (Support.clienteInhabilitado(idCliDestino))
+            {
+                datosValidos = false;
+                strError += "-El usuario cliente destino se encuentra inhabilitado\n";
+                lblDestino.ForeColor = System.Drawing.Color.Red;
+
+            }
+
+            if (!datosValidos) Support.mostrarError(strError);
+
+            return datosValidos;
         }
 
         private int obtenerIdCliente(int idUser) 
@@ -302,6 +333,35 @@ namespace GrouponDesktop.ComprarGiftCard
         {
             frmBuscarCli frm = new frmBuscarCli(this);
             frm.ShowDialog();
+        }
+
+        private bool tieneSaldoSuficiente(int idCli) 
+        {
+
+            int saldo = 0;
+
+            try
+            {
+                SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
+                dbcon.Open();
+                SqlCommand cmd = new SqlCommand(@"SELECT saldo
+                                                  FROM LOSGROSOS_RELOADED.Clientes
+                                                  WHERE  idCli = @idCli", dbcon);
+
+                cmd.Parameters.Add("@idCli", SqlDbType.NVarChar, 100);
+                cmd.Parameters["@idCli"].Value = idCli;
+
+                saldo = Convert.ToInt32(cmd.ExecuteScalar());
+
+            }
+            catch (Exception ex)
+            {
+                Support.mostrarError(ex.Message.ToString());
+                this.Close();
+            }
+
+            return (saldo >= numMonto.Value);
+
         }
     }
 }

@@ -217,14 +217,20 @@ namespace GrouponDesktop
 
             private void cargarCreditoToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                CargaCredito.CargaCredito frm = new CargaCredito.CargaCredito();
-                frm.ShowDialog();
+                if (Support.verificarCliente())
+                {
+                    CargaCredito.CargaCredito frm = new CargaCredito.CargaCredito();
+                    frm.ShowDialog();
+                }
             }
 
             private void comprarGiftCardToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                ComprarGiftCard.Giftcard frm = new ComprarGiftCard.Giftcard();
-                frm.ShowDialog();
+                if (Support.verificarCliente())
+                {
+                    ComprarGiftCard.Giftcard frm = new ComprarGiftCard.Giftcard();
+                    frm.ShowDialog();
+                }
             }
 
             private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
