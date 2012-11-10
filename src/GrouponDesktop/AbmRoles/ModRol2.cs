@@ -96,24 +96,33 @@ namespace GrouponDesktop.AbmRoles
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            
-            if(!(habilitado && this.checkBox1.Checked))
+            this.lblNomRol.ForeColor = System.Drawing.Color.Black;
+            if (validado())
             {
-                //se toco el tilde de habilitado
-                actualizarHabilitado();
+                if (!nombreDuplicado(txtNombRol.Text.ToString()))
+                {
+                    if (!(habilitado && this.checkBox1.Checked))
+                    {
+                        //se toco el tilde de habilitado
+                        actualizarHabilitado();
+                    }
+                    if (listaCambio)
+                    {
+                        //se tocaron las funcionalidades, hay que actualizar la db
+                        actualizarFuncionalidades(lstFuncElegidas);
+                    }
+                    if (txtNombRol.Text != nomRol)
+                    {
+                        actualizarNombreRol();
+                    }
+                }
+                else
+                {
+                    string strError = "El nombre de rol elegido ya existe, elija otro";
+                    Support.mostrarError(strError);
+                }
+                this.Close();
             }
-            if (listaCambio)
-            {
-                //se tocaron las funcionalidades, hay que actualizar la db
-                actualizarFuncionalidades(lstFuncElegidas);
-            }
-            if (txtNombRol.Text != nomRol)
-            {
-                actualizarNombreRol();
-            }
-            
-            this.Close();
-
         }
 
         private void lstFuncElegidas_ItemCheck(object sender, ItemCheckEventArgs e)
@@ -232,5 +241,51 @@ namespace GrouponDesktop.AbmRoles
         {
             this.Close();
         }
+        private bool validado()
+        {
+            string strError = "";
+            bool val = true;
+
+            if (txtNombRol.Text.Length > 100 || txtNombRol.Text == "")
+            {
+                lblNomRol.ForeColor = System.Drawing.Color.Red;
+                strError += "- La longitud del nombre de Rol es incorrecta\n";
+                val = false;
+            }
+            
+
+            if (!val) Support.mostrarError(strError);
+            return val;
+        }
+        
+        private bool nombreDuplicado(string nomRol)
+        {
+            bool duplicado = false;
+            SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
+            SqlCommand cmd = new SqlCommand(@"Select  *
+											from LOSGROSOS_RELOADED.Rol
+											where descripcion=@nomRol", dbcon);
+
+            cmd.Parameters.Add("@nomRol", SqlDbType.VarChar, 100);
+            cmd.Parameters["@nomRol"].Value = nomRol;
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            try
+            {
+                dbcon.Open();
+                da.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                Support.mostrarError(ex.Message);
+            }
+            if (dt.Rows.Count > 0) duplicado = true;
+            dbcon.Close();
+            return duplicado;
+
+
+        }
+
     }
 }

@@ -41,7 +41,7 @@ namespace GrouponDesktop.AbmCliente
                 cmd = new SqlCommand(@"Select cli.nombre as 'Nombre',cli.apellido as 'Apellido',
                                              cli.dni as 'DNI', cli.mail as 'Email', cli.direccion as 'Direccion',
                                              cli.tel as 'Telefono', cli.codPostal as 'CP', cli.fechaNac as 'Fecha Nacimiento',
-                                             c.nombre as 'Ciudad', u.nombreUsuario as 'Usuario', cli.idCli as 'id'
+                                             RTRIM(c.nombre) as 'Ciudad', u.nombreUsuario as 'Usuario', cli.idCli as 'id'
                                              from LOSGROSOS_RELOADED.Clientes cli, LOSGROSOS_RELOADED.Ciudad c,
                                              LOSGROSOS_RELOADED.Usuario u
                                              where cli.nombre like '%'+@criterio1+'%'
@@ -53,16 +53,16 @@ namespace GrouponDesktop.AbmCliente
             }
             else
             {
-                cmd = new SqlCommand(@"Selectcli.nombre as 'Nombre',cli.apellido as 'Apellido',
+                cmd = new SqlCommand(@"Select cli.nombre as 'Nombre',cli.apellido as 'Apellido',
                                              cli.dni as 'DNI', cli.mail as 'Email', cli.direccion as 'Direccion',
                                              cli.tel as 'Telefono', cli.codPostal as 'CP', cli.fechaNac as 'Fecha Nacimiento',
-                                             c.nombre as 'Ciudad', u.nombreUsuario as 'Usuario', cli.idCli as 'id'
+                                             RTRIM(c.nombre) as 'Ciudad', u.nombreUsuario as 'Usuario', cli.idCli as 'id'
                                              from LOSGROSOS_RELOADED.Clientes cli, LOSGROSOS_RELOADED.Ciudad c,
                                              LOSGROSOS_RELOADED.Usuario u
-                                             where nombre like '%'+@criterio1+'%'
-                                             and apellido like '%'+@criterio2+'%'
-                                             and dni = @criterio3
-                                             and mail like '%'+@criterio4+'%'
+                                             where cli.nombre like '%'+@criterio1+'%'
+                                             and cli.apellido like '%'+@criterio2+'%'
+                                             and cli.dni = @criterio3
+                                             and cli.mail like '%'+@criterio4+'%'
                                              and cli.idCiudad = c.idCiudad
                                              and cli.idUsuario = u.idUsuario
                                              and cli.inhabilitado = '0'", dbcon);
@@ -96,12 +96,13 @@ namespace GrouponDesktop.AbmCliente
 
             dgvClientes.DataSource = dt;
             dgvClientes.Columns[10].Visible = false;
-            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
-            buttonColumn.Name = "btnEliminar";
-            buttonColumn.HeaderText = "Eliminar";
-            buttonColumn.Text = " ";
-            dgvClientes.Columns["Ciudad"].Width = 95;
-            dgvClientes.Columns.Insert(10, buttonColumn);
+            
+            //DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+            //buttonColumn.Name = "btnEliminar";
+            //buttonColumn.HeaderText = "Eliminar";
+            //buttonColumn.Text = " ";
+            //dgvClientes.Columns["Ciudad"].Width = 95;
+            //dgvClientes.Columns.Insert(10, buttonColumn);
         }
 
         private void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

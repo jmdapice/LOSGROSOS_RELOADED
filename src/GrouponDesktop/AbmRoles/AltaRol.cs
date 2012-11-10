@@ -51,20 +51,28 @@ namespace GrouponDesktop
             if (validado())
             {
 
-                SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
-                try
+                if (!nombreDuplicado(txtNombRol.Text.ToString()))
                 {
-                    dbcon.Open();
+                    SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
+                    try
+                    {
+                        dbcon.Open();
+                    }
+                    catch (Exception ex)
+                    {
+                        Support.mostrarError(ex.Message);
+                    }
+                    int idNuevoRol = agregarNombreRol(dbcon);
+                    agregarFuncionesRol(dbcon, idNuevoRol);
+                    MessageBox.Show("El Nuevo Rol se ha cargado con exito");
+                    btnLimpiar_Click(this, e);
+                    dbcon.Close();
                 }
-                catch (Exception ex)
+                else 
                 {
-                    Support.mostrarError(ex.Message);
+                    string strError = "El nombre de rol elegido ya existe, elija otro";
+                    Support.mostrarError(strError);
                 }
-                int idNuevoRol = agregarNombreRol(dbcon);
-                agregarFuncionesRol(dbcon, idNuevoRol);
-                MessageBox.Show("El Nuevo Rol se ha cargado con exito");
-                btnLimpiar_Click(this, e);
-                dbcon.Close();
             }
         }
 
@@ -165,6 +173,35 @@ namespace GrouponDesktop
             return val;
             
         }
+        private bool nombreDuplicado(string nomRol)
+        {
+            bool duplicado = false;
+            SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
+            SqlCommand cmd = new SqlCommand(@"Select  *
+											from LOSGROSOS_RELOADED.Rol
+											where descripcion=@nomRol", dbcon);
+
+            cmd.Parameters.Add("@nomRol", SqlDbType.VarChar, 100);
+            cmd.Parameters["@nomRol"].Value = nomRol;
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            try
+            {
+                dbcon.Open();
+                da.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                Support.mostrarError(ex.Message);
+            }
+            if (dt.Rows.Count > 0) duplicado = true;
+            dbcon.Close();
+            return duplicado;
+
+
+        }
+
 
        
     }

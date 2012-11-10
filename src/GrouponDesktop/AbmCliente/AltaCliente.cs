@@ -71,7 +71,8 @@ namespace GrouponDesktop.AbmCliente
             this.masktxtNombre.Clear();
             this.masktxtCodPos.Clear();
             this.masktxtTel.Clear();
-            this.cmbCiudades.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.cmbCiudades.SelectedIndex = 0;
+    
         }
 
 

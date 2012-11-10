@@ -102,6 +102,8 @@
             // 
             this.dgvRoles.AllowUserToAddRows = false;
             this.dgvRoles.AllowUserToDeleteRows = false;
+            this.dgvRoles.AllowUserToResizeColumns = false;
+            this.dgvRoles.AllowUserToResizeRows = false;
             this.dgvRoles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRoles.Location = new System.Drawing.Point(7, 20);
@@ -128,7 +130,6 @@
             this.Name = "ModRol";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Modificar Rol";
-           
             this.grpFiltros.ResumeLayout(false);
             this.grpFiltros.PerformLayout();
             this.grpRolModif.ResumeLayout(false);
