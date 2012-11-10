@@ -55,16 +55,18 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.monthCalendar1);
+            this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.masktxtTel);
             this.groupBox1.Controls.Add(this.txtDni);
             this.groupBox1.Controls.Add(this.masktxtNombre);
             this.groupBox1.Controls.Add(this.masktxtCodPos);
-            this.groupBox1.Controls.Add(this.monthCalendar1);
             this.groupBox1.Controls.Add(this.lstCiudadesElegidas);
             this.groupBox1.Controls.Add(this.cmbCiudades);
             this.groupBox1.Controls.Add(this.txtFecNac);
@@ -145,7 +147,7 @@
             this.lstCiudadesElegidas.FormattingEnabled = true;
             this.lstCiudadesElegidas.Location = new System.Drawing.Point(343, 198);
             this.lstCiudadesElegidas.Name = "lstCiudadesElegidas";
-            this.lstCiudadesElegidas.Size = new System.Drawing.Size(290, 124);
+            this.lstCiudadesElegidas.Size = new System.Drawing.Size(174, 124);
             this.lstCiudadesElegidas.TabIndex = 9;
             // 
             // cmbCiudades
@@ -338,6 +340,16 @@
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(560, 198);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(73, 17);
+            this.checkBox1.TabIndex = 22;
+            this.checkBox1.Text = "Habilitado";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // ModCli
             // 
             this.AcceptButton = this.btnGuardar;
@@ -391,6 +403,7 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.MaskedTextBox masktxtTel;
+        private System.Windows.Forms.CheckBox checkBox1;
 
     }
 }

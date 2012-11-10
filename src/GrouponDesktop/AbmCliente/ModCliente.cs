@@ -41,7 +41,7 @@ namespace GrouponDesktop.AbmCliente
                 cmd = new SqlCommand(@"Select cli.nombre as 'Nombre',cli.apellido as 'Apellido',
                                              cli.dni as 'DNI', cli.mail as 'Email', cli.direccion as 'Direccion',
                                              cli.tel as 'Telefono', cli.codPostal as 'CP', cli.fechaNac as 'Fecha Nacimiento',
-                                             RTRIM(c.nombre) as 'Ciudad', u.nombreUsuario as 'Usuario', cli.idCli as 'id'
+                                             RTRIM(c.nombre) as 'Ciudad', u.nombreUsuario as 'Usuario', cli.idCli as 'id',cli.inhabilitado as 'inhabilitado'
                                              from LOSGROSOS_RELOADED.Clientes cli, LOSGROSOS_RELOADED.Ciudad c,
                                              LOSGROSOS_RELOADED.Usuario u
                                              where cli.nombre like '%'+@criterio1+'%'
@@ -55,7 +55,7 @@ namespace GrouponDesktop.AbmCliente
                 cmd = new SqlCommand(@"Select cli.nombre as 'Nombre',cli.apellido as 'Apellido',
                                              cli.dni as 'DNI', cli.mail as 'Email', cli.direccion as 'Direccion',
                                              cli.tel as 'Telefono', cli.codPostal as 'CP', cli.fechaNac as 'Fecha Nacimiento',
-                                             RTRIM(c.nombre) as 'Ciudad', u.nombreUsuario as 'Usuario', cli.idCli as 'id'
+                                             RTRIM(c.nombre) as 'Ciudad', u.nombreUsuario as 'Usuario', cli.idCli as 'id'',cli.inhabilitado as 'inhabilitado'
                                              from LOSGROSOS_RELOADED.Clientes cli, LOSGROSOS_RELOADED.Ciudad c,
                                              LOSGROSOS_RELOADED.Usuario u
                                              where cli.nombre like '%'+@criterio1+'%'
@@ -95,6 +95,7 @@ namespace GrouponDesktop.AbmCliente
             dgvClientes.DataSource = dt;
 
             dgvClientes.Columns[10].Visible = false;
+            dgvClientes.Columns[11].Visible = false;
            
         }
 

@@ -849,9 +849,8 @@ CREATE PROCEDURE [LOSGROSOS_RELOADED].[P_Modificar_Cliente]
 	@mail nvarchar(255) = null,
 	@fechaNac datetime = null,
 	@idCiudad numeric(18,0) = null,
-	@codPostal numeric(10,0) = null,
-	@saldo numeric(18,2) = null,
-	@idUsuario numeric(18,0) = null
+	@codPostal numeric(10,0) = null
+	
 	
 AS
 BEGIN
@@ -865,9 +864,8 @@ BEGIN
 			mail = @mail,
 			fechaNac = @fechaNac,
 			idCiudad = @idCiudad,
-			codPostal = @codPostal,
-			saldo = @saldo,
-			idUsuario = @idUsuario
+			codPostal = @codPostal
+			
 		where idCli = @idCli
 	
 	
