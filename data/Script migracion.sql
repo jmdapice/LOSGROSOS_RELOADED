@@ -99,6 +99,12 @@ IF  EXISTS (SELECT *
 				AND type in (N'U')) 
 DROP TABLE LOSGROSOS_RELOADED.Ciudad;
 
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.Parametrizacion') 
+				AND type in (N'U')) 
+DROP TABLE LOSGROSOS_RELOADED.Parametrizacion;
+
  /************************************************************************************/
  /*                             CREACION TABLA CIUDAD                                */
  /************************************************************************************/
@@ -319,6 +325,15 @@ DROP TABLE LOSGROSOS_RELOADED.Ciudad;
 	motivoDevol	nvarchar(255),
 	)	
 
+/************************************************************************************/
+/*                             CREACION TABLA PARAMETRIZACION                       */
+/************************************************************************************/
+
+  CREATE TABLE [LOSGROSOS_RELOADED].[Parametrizacion] (
+	codigo nvarchar(20) PRIMARY KEY,
+	valor nvarchar(100) NOT NULL,
+  )	  
+
 ----------------------FIN CREACION DE TABLAS----------------------------------
 GO
 ----------------------COMIENZA CREACIÓN TRIGGERS --------------------------------
@@ -406,8 +421,50 @@ CREATE TRIGGER LOSGROSOS_RELOADED.tr_sacarRol ON LOSGROSOS_RELOADED.Rol
 	END
 GO
 
+/************************************************************************************/
+/*       TRIGGER PARA CUPONES                                                       */
+/************************************************************************************/
 
+CREATE TRIGGER LOSGROSOS_RELOADED.tr_Cupon_actualizarSaldo ON LOSGROSOS_RELOADED.CuponComprado
 
+	AFTER INSERT
+	
+	AS
+	
+	BEGIN
+	
+	UPDATE LOSGROSOS_RELOADED.Clientes
+		SET saldo = saldo - b.montoTotal
+		FROM  (select a.idCli ,SUM(cupon.precio) as montoTotal 
+		       from inserted a, LOSGROSOS_RELOADED.Cupon cupon
+		       where cupon.codigoCupon = a.codigoCupon 
+		       group by a.idCli) b
+		WHERE LOSGROSOS_RELOADED.Clientes.idCli = b.idCli
+		
+	END
+
+GO
+
+CREATE TRIGGER LOSGROSOS_RELOADED.tr_Cupon_devolverSaldo ON LOSGROSOS_RELOADED.CuponComprado
+
+	AFTER UPDATE
+	
+	AS
+	
+	BEGIN
+	
+	IF (UPDATE(fechaDevolucion))
+	UPDATE LOSGROSOS_RELOADED.Clientes
+		SET saldo = saldo + b.montoTotal
+		FROM  (select a.idCli ,SUM(cupon.precio) as montoTotal 
+		       from inserted a, LOSGROSOS_RELOADED.Cupon cupon
+		       where cupon.codigoCupon = a.codigoCupon 
+		       group by a.idCli) b
+		WHERE LOSGROSOS_RELOADED.Clientes.idCli = b.idCli
+		
+	END
+
+GO
 
 ----------------------FIN CREACIÓN TRAIGGERS --------------------------------
 
@@ -632,8 +689,45 @@ FROM LOSGROSOS_RELOADED.Cupon a, LOSGROSOS_RELOADED.Ciudad b
 
 GO
 
+/************************************************************************************/
+/*                             CARGA TABLA PARAMETRIZACIONES                        */
+/************************************************************************************/
+
+INSERT INTO LOSGROSOS_RELOADED.Parametrizacion(codigo,valor)
+VALUES ('giftcard_min', '20'),
+       ('giftcard_max', '100'),
+       ('factura_porcen', '0.5')
 
 ---------------------------FIN MIGRADO DE DATOS--------------------------------------
+
+----------------------COMIENZA CREACIÓN TRIGGERS SEGUNDA PARTE -----------------------
+
+/************************************************************************************/
+/*       TRIGGER PARA CUPONES                                                       */
+/************************************************************************************/
+GO
+CREATE TRIGGER LOSGROSOS_RELOADED.tr_actualizarStockCupon ON LOSGROSOS_RELOADED.CuponComprado
+
+	AFTER INSERT
+	
+	AS
+	
+	BEGIN
+
+		UPDATE LOSGROSOS_RELOADED.Cupon 
+		SET LOSGROSOS_RELOADED.Cupon.stock = LOSGROSOS_RELOADED.Cupon.stock - 1
+		FROM inserted 
+		WHERE LOSGROSOS_RELOADED.Cupon.codigoCupon = inserted.codigoCupon
+		
+		
+	
+	END
+
+GO
+
+
+
+----------------------FIN CREACIÓN TRIGGERS SEGUNDA PARTE----------------------------
 
 --------------------------------COMIENZO PROCEDURES----------------------------------
 
@@ -792,6 +886,9 @@ BEGIN
 END
 GO
 
+DROP PROCEDURE LOSGROSOS_RELOADED.P_Insertar_Carga
+GO
+
 CREATE PROCEDURE [LOSGROSOS_RELOADED].[P_Insertar_Carga]
 	@nombreUsuario nvarchar(100),
 	@monto numeric(18,0),
@@ -805,12 +902,16 @@ AS
 BEGIN
 
 	DECLARE @idCli numeric(18,0);
+	DECLARE @idUsuario numeric(18,0);
+
+	SET @idUsuario = (SELECT DISTINCT idUsuario FROM LOSGROSOS_RELOADED.Usuario WHERE nombreUsuario = @nombreUsuario)
 
 	SET @idCli = 
 	(SELECT DISTINCT idCli 
 	FROM LOSGROSOS_RELOADED.Clientes
-	WHERE idUsuario = LOSGROSOS_RELOADED.F_idUsuario(@nombreUsuario))
-	            
+	WHERE idUsuario = @idUsuario
+	)
+	  
 	INSERT INTO LOSGROSOS_RELOADED.Carga
 	(idCli, monto, fecha, idTipoPago, numeroTarj, 
 	 fechaVencTarj, nombreTitularTarj)
@@ -844,16 +945,23 @@ RETURN
 )
 
 GO
+DROP FUNCTION [LOSGROSOS_RELOADED].[F_idUsuario] 
+GO
 CREATE FUNCTION [LOSGROSOS_RELOADED].[F_idUsuario] 
 (	
    @nombreUsuario nvarchar(100)
 )
-RETURNS TABLE 
-AS
-RETURN 
-(
-	-- Add the SELECT statement with parameter references here
-	SELECT DISTINCT idUsuario  
+RETURNS numeric(18,0)
+BEGIN
+DECLARE 
+@idUser numeric(18,0);
+
+
+	SET @idUser = 
+	(SELECT idUsuario  
 	FROM LOSGROSOS_RELOADED.Usuario
-	WHERE nombreUsuario = @nombreUsuario
-)
+	WHERE nombreUsuario = @nombreUsuario)
+
+RETURN @idUser
+
+END
