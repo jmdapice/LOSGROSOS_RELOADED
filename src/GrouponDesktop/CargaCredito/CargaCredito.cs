@@ -26,12 +26,9 @@ namespace GrouponDesktop.CargaCredito
 
 //Inicialización grupo pantallas
             //gb_tarjeta.Visible = false;
+            txtFechaVenc.Enabled = true;
             txtTarjeta.Enabled = true;
             txtTitular.Enabled = true;
-            btnSeleccion.Enabled = true;
-
-//Verifico que el que ejecuta esta funcionalidad tiene un cliente asociado
-            verificarCliente();
 
 //Carga de combobox
             try
@@ -70,7 +67,7 @@ namespace GrouponDesktop.CargaCredito
                 txtFechaVenc.Text = "";
                 txtTitular.Text = "";
                 txtTarjeta.Text = "";
-                btnSeleccion.Enabled = false;
+                txtFechaVenc.Enabled = false;
                 txtTarjeta.Enabled = false;
                 txtTitular.Enabled = false;
 
@@ -78,7 +75,7 @@ namespace GrouponDesktop.CargaCredito
             else { //Crédito
 
                 //gb_tarjeta.Visible = true;
-                btnSeleccion.Enabled = true;
+                txtFechaVenc.Enabled = true;
                 txtTarjeta.Enabled = true;
                 txtTitular.Enabled = true;
 
@@ -94,7 +91,6 @@ namespace GrouponDesktop.CargaCredito
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             string strError="";
-            DateTime fechaHoy = DateTime.Now;
             bool No_hay_datos_incompletos = true; //Es una negrada.... ya lo voy a corregir
 
             String str_seleccionado = cb_medioPago.SelectedValue.ToString();
@@ -106,8 +102,8 @@ namespace GrouponDesktop.CargaCredito
                     txtTitular.Text == "")
                 {
 
-                    strError += "- Por favor, complete los campos del grupo 'Tarjeta'\n";
-                    No_hay_datos_incompletos = false;
+                   strError += "- Por favor, complete los campos del grupo 'Tarjeta'\n";
+                   No_hay_datos_incompletos = false;
 
                 }
 
@@ -118,178 +114,67 @@ namespace GrouponDesktop.CargaCredito
                 strError += "- Por favor complete el campo 'Crédito a cargar'\n";
                 No_hay_datos_incompletos = false;
             }
-
-            if (!tarjetaNoVencida())
-            {
-                strError += "- La tarjeta ingresada esta vencida\n";
-                No_hay_datos_incompletos = false;
-            }
-
-            if (No_hay_datos_incompletos)
+            
+            if(No_hay_datos_incompletos)
             {
 
-                try
-                {
-                    SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
-                    dbcon.Open();
-                    SqlCommand cmd = new SqlCommand();
+//TODAVIA NO ESTA PROBADA ESTA PARTE
+//                try
+//                {
+//                    SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
+//                    dbcon.Open();
+//                    SqlCommand cmd = new SqlCommand(@"EXEC LOSGROSOS_RELOADED.P_Insertar_Carga
+//                                                      @usuario, @monto, @fecha,
+//                                                      @idTipoPago, @numeroTarj,
+//                                                      @fechaVenc, @nombreTitular", dbcon);
 
-                    cmd.Connection = dbcon;
+//                    cmd.Parameters.Add("@usuario", SqlDbType.NVarChar, 100);
+//                    cmd.Parameters.Add("@monto", SqlDbType.Int, 18);
+//                    cmd.Parameters.Add("@fecha", SqlDbType.DateTime);
+//                    cmd.Parameters.Add("@idTipoPago", SqlDbType.Int, 18);
+//                    cmd.Parameters.Add("@numeroTarj", SqlDbType.Int, 18);
+//                    cmd.Parameters.Add("@fechaVenc", SqlDbType.DateTime);
+//                    cmd.Parameters.Add("@idTipoPago", SqlDbType.NVarChar, 255);
 
+//                    cmd.Parameters["@usuario"].Value = Variables_globales.nombreUsuario;
+//                    cmd.Parameters["@monto"].Value = txtCarga.Text;
+//                    cmd.Parameters["@fecha"].Value = txtFechaVenc.Text;
+//                    cmd.Parameters["@idTipoPago"].Value = str_seleccionado;
+//                    cmd.Parameters["@numeroTarj"].Value = txtTarjeta.Text;
+//                    cmd.Parameters["@fechaVenc"].Value = txtFechaVenc.Text;
+//                    cmd.Parameters["@nombreTitular"].Value = txtTitular;
 
-                    cmd.Parameters.Add("@usuario", SqlDbType.NVarChar, 100);
-                    cmd.Parameters.Add("@monto", SqlDbType.Int, 18);
-                    cmd.Parameters.Add("@fecha", SqlDbType.DateTime);
-                    cmd.Parameters.Add("@idTipoPago", SqlDbType.Int, 18);
- 
-                    cmd.Parameters["@usuario"].Value = Support.nombreUsuario;
-                    cmd.Parameters["@monto"].Value = txtCarga.Text;
-                    cmd.Parameters["@fecha"].Value = Convert.ToDateTime(fechaHoy); //Cambiar por fecha archivo config
-                    cmd.Parameters["@idTipoPago"].Value = str_seleccionado;
+//                    DataSet dt = new DataSet();
+//                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+//                    da.Fill(dt);
 
-                    if (cb_medioPago.SelectedValue.ToString() == "1")
-                    {
-                        cmd.Parameters.Add("@numeroTarj", SqlDbType.Int, 18);
-                        cmd.Parameters.Add("@fechaVenc", SqlDbType.DateTime);
-                        cmd.Parameters.Add("@nombreTitularTarj", SqlDbType.NVarChar, 255);
-
-                        cmd.Parameters["@fechaVenc"].Value = Convert.ToDateTime(txtFechaVenc.Text);
-                        cmd.Parameters["@nombreTitularTarj"].Value = txtTitular.Text;
-                        cmd.Parameters["@numeroTarj"].Value = txtTarjeta.Text;
-
-                        cmd.CommandText = @"EXEC LOSGROSOS_RELOADED.P_Insertar_Carga
-                                                      @usuario, @monto, @fecha,
-                                                      @idTipoPago, @numeroTarj,
-                                                      @fechaVenc, @nombreTitularTarj";
-
-                    }
-                    else {
-
-                        cmd.CommandText = @"EXEC LOSGROSOS_RELOADED.P_Insertar_Carga
-                                                      @usuario, @monto, @fecha,
-                                                      @idTipoPago";
-
-                    }
-                    
-                    cmd.ExecuteNonQuery();
-
-                    Support.mostrarInfo("Se ha realizado la carga con éxito");
-                    borrar_pantalla();
+//                    cb_medioPago.DataSource = dt.Tables[0];
+//                    cb_medioPago.DisplayMember = "nombre";
+//                    cb_medioPago.ValueMember = "idTipoPago";
 
 
+//                    dbcon.Close();
+//                }//End try
+//                catch (Exception ex)
+//                {
 
-                    //DataSet dt = new DataSet();
-                    //SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    //da.Fill(dt);
+//                    MessageBox.Show(ex.Message);
 
-                    //cb_medioPago.DataSource = dt.Tables[0];
-                    //cb_medioPago.DisplayMember = "nombre";
-                    //cb_medioPago.ValueMember = "idTipoPago";
+//                } //End catch
 
-
-                    dbcon.Close();
-                }//End try
-                catch (Exception ex)
-                {
-                    Support.mostrarError(ex.Message.ToString());
-                    this.Close();
-
-                } //End catch
-
-            }
-            else
-            {
-                Support.mostrarError(strError);
-
-            }
+            }//end txtCarga == ""
 
 
         } //end method
 
-        private void btnSeleccion_Click(object sender, EventArgs e)
-        {
-            calendarioVencimiento.Visible = true;
-        }
-
-        private void calendarioVencimiento_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            this.txtFechaVenc.Text = this.calendarioVencimiento.SelectionStart.ToShortDateString();
-            this.calendarioVencimiento.Visible = false;
-        }
-
-        private void borrar_pantalla()
-        {
-            txtCarga.Text = "";
-            txtFechaVenc.Text = "";
-            txtTarjeta.Text = "";
-            txtTitular.Text = "";
-        }
-
-        private bool tarjetaNoVencida()
-        {
-            bool noEstaVencida = true;
-            DateTime fechaHoy = DateTime.Now; //Cambiar por fecha arch. config
-
-            if (txtFechaVenc.Text != "")
-            {
-                if( Support.obtenerFechaInt((Convert.ToDateTime(txtFechaVenc.Text))) < Support.obtenerFechaInt(fechaHoy))
-                {
-                    noEstaVencida = false;
-                }
-            }
-
-            return noEstaVencida;
-        }
 
 
 
-        private void verificarCliente()
-        {
-            int idUsuario = 0;
-            int idCli = 0;
-
-            try
-            {
-                SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
-                dbcon.Open();
-                SqlCommand cmd = new SqlCommand(@"SELECT idUsuario
-                                                  FROM LOSGROSOS_RELOADED.Usuario
-                                                  WHERE  nombreUsuario = @nombreUsuario", dbcon);
-
-                cmd.Parameters.Add("@nombreUsuario", SqlDbType.NVarChar, 100);
-                cmd.Parameters["@nombreUsuario"].Value = Support.nombreUsuario;
 
 
 
-                idUsuario = Convert.ToInt32(cmd.ExecuteScalar());
 
-                cmd.CommandText = @"SELECT idCli
-                                    FROM LOSGROSOS_RELOADED.Clientes
-                                    WHERE idUsuario = @idUsuario";
 
-                cmd.Parameters.Add("@idUsuario", SqlDbType.Int, 18);
-                cmd.Parameters["@idUsuario"].Value = idUsuario;
-
-                idCli = Convert.ToInt32(cmd.ExecuteScalar());
-
-                if (idCli == 0)
-                {
-                    Support.mostrarError("El usuario no pertenece a un cliente");
-                    this.Close();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Support.mostrarError(ex.Message.ToString());
-                this.Close();
-            }
-        }
-
-        private void btnLimpiar_Click(object sender, EventArgs e)
-        {
-            borrar_pantalla();
-        }
 
 
 

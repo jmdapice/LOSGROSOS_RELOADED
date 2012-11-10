@@ -1,0 +1,10 @@
+C:\Users\Pablo\Desktop\Pantallas Diseño de sistemas\Diseño de sistemas\Diseño de sistemas\bin\Debug\Diseño de sistemas.exe
+C:\Users\Pablo\Desktop\Pantallas Diseño de sistemas\Diseño de sistemas\Diseño de sistemas\bin\Debug\Diseño de sistemas.pdb
+C:\Users\Pablo\Desktop\Pantallas Diseño de sistemas\Diseño de sistemas\Diseño de sistemas\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Pablo\Desktop\Pantallas Diseño de sistemas\Diseño de sistemas\Diseño de sistemas\obj\Debug\Diseño_de_sistemas.Properties.Resources.resources
+C:\Users\Pablo\Desktop\Pantallas Diseño de sistemas\Diseño de sistemas\Diseño de sistemas\obj\Debug\Diseño de sistemas.csproj.GenerateResource.Cache
+C:\Users\Pablo\Desktop\Pantallas Diseño de sistemas\Diseño de sistemas\Diseño de sistemas\obj\Debug\Diseño de sistemas.exe
+C:\Users\Pablo\Desktop\Pantallas Diseño de sistemas\Diseño de sistemas\Diseño de sistemas\obj\Debug\Diseño de sistemas.pdb
+C:\Users\Pablo\Desktop\Pantallas Diseño de sistemas\Diseño de sistemas\Diseño de sistemas\obj\Debug\Diseño_de_sistemas.Carat.resources
+C:\Users\Pablo\Desktop\Pantallas Diseño de sistemas\Diseño de sistemas\Diseño de sistemas\obj\Debug\Diseño_de_sistemas.Registrar_venta.resources
+C:\Users\Pablo\Desktop\Pantallas Diseño de sistemas\Diseño de sistemas\Diseño de sistemas\obj\Debug\Diseño_de_sistemas.Registrar_cobro.resources
