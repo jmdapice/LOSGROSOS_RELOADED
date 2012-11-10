@@ -5,5 +5,8 @@
     <Setting Name="conStr" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Data Source=localhost\SQLSERVER2008;Initial Catalog=GD2C2012;Persist Security Info=True;User ID=gd;Password=gd2012</Value>
     </Setting>
+    <Setting Name="fechaConfig" Type="System.DateTime" Scope="Application">
+      <Value Profile="(Default)">2010-10-11</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

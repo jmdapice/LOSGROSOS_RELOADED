@@ -32,5 +32,14 @@ namespace GrouponDesktop.Properties {
                 return ((string)(this["conStr"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2010-10-11")]
+        public global::System.DateTime fechaConfig {
+            get {
+                return ((global::System.DateTime)(this["fechaConfig"]));
+            }
+        }
     }
 }

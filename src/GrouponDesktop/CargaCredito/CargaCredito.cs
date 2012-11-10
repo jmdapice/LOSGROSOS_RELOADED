@@ -94,7 +94,7 @@ namespace GrouponDesktop.CargaCredito
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             string strError="";
-            DateTime fechaHoy = DateTime.Now;
+            DateTime fechaHoy = Support.fechaConfig(); //DateTime.Now;
             bool No_hay_datos_incompletos = true; //Es una negrada.... ya lo voy a corregir
 
             String str_seleccionado = cb_medioPago.SelectedValue.ToString();
@@ -228,7 +228,7 @@ namespace GrouponDesktop.CargaCredito
         private bool tarjetaNoVencida()
         {
             bool noEstaVencida = true;
-            DateTime fechaHoy = DateTime.Now; //Cambiar por fecha arch. config
+            DateTime fechaHoy = Support.fechaConfig(); //Cambiar por fecha arch. config
 
             if (txtFechaVenc.Text != "")
             {

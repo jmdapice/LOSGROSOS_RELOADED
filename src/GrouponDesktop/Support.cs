@@ -53,11 +53,106 @@ namespace GrouponDesktop
             return (fecha.Year * 10000 + fecha.Month * 100 + fecha.Day);
         }
 
-        public void dgvClientes_CellDoubleClick2(object sender, DataGridViewCellEventArgs e)
+        public static DateTime fechaConfig()
         {
-            mostrarInfo("hola");
+            return Convert.ToDateTime(GrouponDesktop.Properties.Settings.Default["fechaConfig"]);
         }
 
+        public static bool verificarCliente()
+        {
+            int idUsuario = 0;
+            int idCli = 0;
+
+            try
+            {
+                SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
+                dbcon.Open();
+                SqlCommand cmd = new SqlCommand(@"SELECT idUsuario
+                                                  FROM LOSGROSOS_RELOADED.Usuario
+                                                  WHERE  nombreUsuario = @nombreUsuario", dbcon);
+
+                cmd.Parameters.Add("@nombreUsuario", SqlDbType.NVarChar, 100);
+                cmd.Parameters["@nombreUsuario"].Value = Support.nombreUsuario;
+
+
+
+                idUsuario = Convert.ToInt32(cmd.ExecuteScalar());
+
+                cmd.CommandText = @"SELECT idCli
+                                    FROM LOSGROSOS_RELOADED.Clientes
+                                    WHERE idUsuario = @idUsuario";
+
+                cmd.Parameters.Add("@idUsuario", SqlDbType.Int, 18);
+                cmd.Parameters["@idUsuario"].Value = idUsuario;
+
+                idCli = Convert.ToInt32(cmd.ExecuteScalar());
+
+                dbcon.Close();
+
+                if (idCli == 0)
+                {
+                    Support.mostrarError("El usuario no pertenece a un cliente");
+                    return false;
+                }
+                else
+                {
+
+                    if(Support.clienteInhabilitado(idCli))
+                    {
+                        Support.mostrarError("El cliente esta inhabilitado");
+                        return false;                
+                    }
+                    
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Support.mostrarError(ex.Message.ToString());
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool clienteInhabilitado(int idCli)
+        {
+
+            string inhabilitado = "";
+
+            try
+            {
+
+                SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
+                dbcon.Open();
+
+                SqlCommand cmd = new SqlCommand(@"SELECT inhabilitado
+                                                  FROM LOSGROSOS_RELOADED.Clientes
+                                                  WHERE idCli = @idCli", dbcon);
+
+                cmd.Parameters.Add("@idCli", SqlDbType.Int, 18);
+                cmd.Parameters["@idCli"].Value = idCli;
+
+                inhabilitado = Convert.ToString(cmd.ExecuteScalar());
+
+                dbcon.Close();
+
+                if (inhabilitado.Equals("1"))
+                {
+                    return true;
+                }
+
+
+            }
+            catch (Exception ex) 
+            {
+                Support.mostrarError(ex.Message.ToString());
+                return true;
+            }
+
+            return false;
+
+        }
 
     }
 }
