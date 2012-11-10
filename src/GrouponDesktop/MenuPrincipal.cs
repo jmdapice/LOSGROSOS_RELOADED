@@ -226,6 +226,12 @@ namespace GrouponDesktop
                 ComprarGiftCard.Giftcard frm = new ComprarGiftCard.Giftcard();
                 frm.ShowDialog();
             }
+
+            private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+            }
+           
+
         }
     }
 

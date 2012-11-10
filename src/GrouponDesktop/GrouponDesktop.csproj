@@ -108,6 +108,12 @@
     <Compile Include="ComprarGiftCard\Giftcard.Designer.cs">
       <DependentUpon>Giftcard.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComprarGiftCard\GiftCard_BuscarCli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComprarGiftCard\GiftCard_BuscarCli.Designer.cs">
+      <DependentUpon>GiftCard_BuscarCli.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ComprarGiftCard\Giftcard.resx">
       <DependentUpon>Giftcard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComprarGiftCard\GiftCard_BuscarCli.resx">
+      <DependentUpon>GiftCard_BuscarCli.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

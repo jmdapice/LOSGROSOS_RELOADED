@@ -93,23 +93,13 @@ namespace GrouponDesktop.AbmCliente
             }
 
             dgvClientes.DataSource = dt;
-         // dgvClientes.AutoResizeColumns();
 
             dgvClientes.Columns[10].Visible = false;
-            //para que pones el boton si no lo usas?
-
-            
-            //DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
-            //buttonColumn.Name = "btnSeleccionar";
-            //buttonColumn.HeaderText = "Seleccionar";
-            //buttonColumn.Text = " ";
-            //dgvClientes.Columns["Ciudad"].Width = 95;
-            //dgvClientes.Columns.Insert(10, buttonColumn);
-
+           
         }
 
 
-        private void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        public virtual void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             
             AbmCliente.ModCli frmModCli = new AbmCliente.ModCli(this);

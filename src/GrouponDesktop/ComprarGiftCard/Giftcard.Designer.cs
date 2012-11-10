@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.numMonto = new System.Windows.Forms.NumericUpDown();
             this.lblMonto = new System.Windows.Forms.Label();
             this.txtDestino = new System.Windows.Forms.TextBox();
             this.lblDestino = new System.Windows.Forms.Label();
@@ -36,14 +37,15 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblRangoSaldo = new System.Windows.Forms.Label();
-            this.numMonto = new System.Windows.Forms.NumericUpDown();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMonto)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnBuscar);
             this.groupBox1.Controls.Add(this.numMonto);
             this.groupBox1.Controls.Add(this.lblMonto);
             this.groupBox1.Controls.Add(this.txtDestino);
@@ -54,6 +56,19 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información";
+            // 
+            // numMonto
+            // 
+            this.numMonto.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numMonto.Location = new System.Drawing.Point(9, 106);
+            this.numMonto.Name = "numMonto";
+            this.numMonto.ReadOnly = true;
+            this.numMonto.Size = new System.Drawing.Size(157, 20);
+            this.numMonto.TabIndex = 5;
             // 
             // lblMonto
             // 
@@ -120,19 +135,6 @@
             this.lblRangoSaldo.TabIndex = 8;
             this.lblRangoSaldo.Text = "(aca hay texto sobre rango de saldos)";
             // 
-            // numMonto
-            // 
-            this.numMonto.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numMonto.Location = new System.Drawing.Point(9, 106);
-            this.numMonto.Name = "numMonto";
-            this.numMonto.ReadOnly = true;
-            this.numMonto.Size = new System.Drawing.Size(157, 20);
-            this.numMonto.TabIndex = 5;
-            // 
             // btnLimpiar
             // 
             this.btnLimpiar.Location = new System.Drawing.Point(118, 172);
@@ -142,6 +144,16 @@
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Location = new System.Drawing.Point(172, 51);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(100, 23);
+            this.btnBuscar.TabIndex = 10;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // Giftcard
             // 
@@ -172,7 +184,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtDestino;
         private System.Windows.Forms.Label lblDestino;
         private System.Windows.Forms.Label lblMonto;
         private System.Windows.Forms.Button btnAceptar;
@@ -181,5 +192,7 @@
         private System.Windows.Forms.Label lblRangoSaldo;
         private System.Windows.Forms.NumericUpDown numMonto;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnBuscar;
+        public System.Windows.Forms.TextBox txtDestino;
     }
 }

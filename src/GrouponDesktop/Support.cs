@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Security.Cryptography;
-
 using System.ComponentModel;
 using System.Data.SqlClient;
-using System.Data.Sql;
+using System.Data;
 using GrouponDesktop.Properties;
 using System.Configuration;
 
@@ -38,6 +37,7 @@ namespace GrouponDesktop
                 output.Append(inputArray[i].ToString("X2"));
             }
             return output.ToString();
+         
         }
 
         public static string GenerarSha256(string phrase)
@@ -52,6 +52,12 @@ namespace GrouponDesktop
         {
             return (fecha.Year * 10000 + fecha.Month * 100 + fecha.Day);
         }
+
+        public void dgvClientes_CellDoubleClick2(object sender, DataGridViewCellEventArgs e)
+        {
+            mostrarInfo("hola");
+        }
+
 
     }
 }

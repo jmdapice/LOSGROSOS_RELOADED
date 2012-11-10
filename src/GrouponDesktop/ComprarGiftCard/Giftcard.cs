@@ -297,5 +297,11 @@ namespace GrouponDesktop.ComprarGiftCard
             this.txtDestino.Clear();
             this.numMonto.Value = numMonto.Minimum;
         }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            frmBuscarCli frm = new frmBuscarCli(this);
+            frm.ShowDialog();
+        }
     }
 }

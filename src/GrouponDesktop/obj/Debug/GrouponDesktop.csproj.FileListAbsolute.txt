@@ -27,3 +27,26 @@ C:\Users\Pablo\Desktop\Tp gestion\GrouponDesktop\obj\Debug\GrouponDesktop.UserCo
 C:\Users\Pablo\Desktop\Tp gestion\GrouponDesktop\obj\Debug\GrouponDesktop.csproj.GenerateResource.Cache
 C:\Users\Pablo\Desktop\Tp gestion\GrouponDesktop\bin\Debug\GrouponDesktop.exe
 C:\Users\Pablo\Desktop\Tp gestion\GrouponDesktop\bin\Debug\GrouponDesktop.pdb
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\bin\Debug\GrouponDesktop.exe.config
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\bin\Debug\GrouponDesktop.exe
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\bin\Debug\GrouponDesktop.pdb
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmCliente.AltaCliente.resources
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmCliente.BajaCliente.resources
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmCliente.ModCli.resources
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmCliente.ModCliente.resources
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmProveedor.AbmProveedor.resources
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmRoles.ElimRol.resources
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmRoles.ModRol.resources
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmRoles.ModRol2.resources
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.CargaCredito.CargaCredito.resources
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.ComprarGiftCard.Giftcard.resources
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.Login.resources
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.MenuPrincipal.resources
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.Properties.Resources.resources
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.RegistroUsuario.resources
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.AltaRol.resources
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.csproj.GenerateResource.Cache
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.exe
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.pdb
+C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.ComprarGiftCard.frmBuscarCli.resources
