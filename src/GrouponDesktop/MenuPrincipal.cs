@@ -235,7 +235,7 @@ namespace GrouponDesktop
 
             private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                //juanca23424asdasd
+                //juanca23424asdasd234234
             }
            
 
