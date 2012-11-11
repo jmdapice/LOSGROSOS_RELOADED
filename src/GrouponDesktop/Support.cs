@@ -212,6 +212,52 @@ namespace GrouponDesktop
 
             return idCliente;
         }
+        
+        public static bool esNumerico(string str)
+        {            
+            double Num;
+            return double.TryParse(str.Trim(), out Num);
+        }
+        public static int agregarUsuario(SqlConnection dbcon,int idRol,string password,string username)
+        {
+            SqlCommand cmd = new SqlCommand(@"insert into LOSGROSOS_RELOADED.Usuario 
+                                            (nombreUsuario,contrasena,idRol)
+                                            values (@nombre,@pass,@idRol)", dbcon);
 
+            string pass = Support.GenerarSha256(password);
+            cmd.Parameters.Add("@nombre", SqlDbType.VarChar, 100);
+            cmd.Parameters["@nombre"].Value = username;
+            cmd.Parameters.Add("@pass", SqlDbType.Char, 64);
+            cmd.Parameters["@pass"].Value = pass;
+            cmd.Parameters.Add("@idRol", SqlDbType.Int, 18);
+            cmd.Parameters["@idRol"].Value = idRol;
+
+            int idNuevoUser = 0;
+            try
+            {
+
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                Support.mostrarError(ex.Message);
+            }
+
+            cmd.CommandText = @"select idUsuario from LOSGROSOS_RELOADED.Usuario
+                                    where nombreUsuario=@nombre";
+
+            try
+            {
+
+                idNuevoUser = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                Support.mostrarError(ex.Message);
+            }
+
+            return idNuevoUser;
+        }
     }
 }

@@ -258,6 +258,13 @@ namespace GrouponDesktop
                 frmAlta.ShowDialog();
                 
             }
+
+            private void modificarProvToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                AbmProveedor.BuscaProv frm = new AbmProveedor.BuscaProv();
+                frm.ShowDialog();
+
+            }
            
 
         }

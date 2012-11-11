@@ -104,7 +104,7 @@
             this.dgvRoles.AllowUserToDeleteRows = false;
             this.dgvRoles.AllowUserToResizeColumns = false;
             this.dgvRoles.AllowUserToResizeRows = false;
-            this.dgvRoles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvRoles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRoles.Location = new System.Drawing.Point(7, 20);
             this.dgvRoles.MultiSelect = false;

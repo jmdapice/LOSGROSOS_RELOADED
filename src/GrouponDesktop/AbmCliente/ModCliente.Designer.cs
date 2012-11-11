@@ -61,6 +61,7 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Buscar Por";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // lblMail
             // 
@@ -165,6 +166,7 @@
             this.dgvClientes.Size = new System.Drawing.Size(867, 232);
             this.dgvClientes.TabIndex = 6;
             this.dgvClientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellDoubleClick);
+            this.dgvClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentClick);
             // 
             // ModCliente
             // 

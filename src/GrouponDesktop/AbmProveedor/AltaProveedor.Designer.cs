@@ -41,7 +41,6 @@
             this.lblMail = new System.Windows.Forms.Label();
             this.lblRazSoc = new System.Windows.Forms.Label();
             this.txtNombreContacto = new System.Windows.Forms.TextBox();
-            this.txtCuit = new System.Windows.Forms.TextBox();
             this.txtCodPos = new System.Windows.Forms.TextBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.txtTel = new System.Windows.Forms.TextBox();
@@ -50,11 +49,13 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.txtCuit = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtCuit);
             this.groupBox1.Controls.Add(this.cmbRubro);
             this.groupBox1.Controls.Add(this.cmbCiudad);
             this.groupBox1.Controls.Add(this.lblContacto);
@@ -67,7 +68,6 @@
             this.groupBox1.Controls.Add(this.lblMail);
             this.groupBox1.Controls.Add(this.lblRazSoc);
             this.groupBox1.Controls.Add(this.txtNombreContacto);
-            this.groupBox1.Controls.Add(this.txtCuit);
             this.groupBox1.Controls.Add(this.txtCodPos);
             this.groupBox1.Controls.Add(this.txtDireccion);
             this.groupBox1.Controls.Add(this.txtTel);
@@ -195,13 +195,6 @@
             this.txtNombreContacto.Size = new System.Drawing.Size(286, 20);
             this.txtNombreContacto.TabIndex = 8;
             // 
-            // txtCuit
-            // 
-            this.txtCuit.Location = new System.Drawing.Point(341, 112);
-            this.txtCuit.Name = "txtCuit";
-            this.txtCuit.Size = new System.Drawing.Size(286, 20);
-            this.txtCuit.TabIndex = 6;
-            // 
             // txtCodPos
             // 
             this.txtCodPos.Location = new System.Drawing.Point(30, 283);
@@ -265,6 +258,15 @@
             this.btnLimpiar.TabIndex = 3;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // txtCuit
+            // 
+            this.txtCuit.Location = new System.Drawing.Point(341, 111);
+            this.txtCuit.Mask = "00-00000000-0";
+            this.txtCuit.Name = "txtCuit";
+            this.txtCuit.Size = new System.Drawing.Size(286, 20);
+            this.txtCuit.TabIndex = 20;
             // 
             // AltaProveedor
             // 
@@ -275,7 +277,11 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AltaProveedor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Alta Proveedor";
             this.Load += new System.EventHandler(this.AltaProveedor_Load);
             this.groupBox1.ResumeLayout(false);
@@ -297,7 +303,6 @@
         private System.Windows.Forms.Label lblMail;
         private System.Windows.Forms.Label lblRazSoc;
         private System.Windows.Forms.TextBox txtNombreContacto;
-        private System.Windows.Forms.TextBox txtCuit;
         private System.Windows.Forms.TextBox txtCodPos;
         private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.TextBox txtTel;
@@ -308,5 +313,6 @@
         private System.Windows.Forms.ComboBox cmbRubro;
         private System.Windows.Forms.ComboBox cmbCiudad;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.MaskedTextBox txtCuit;
     }
 }

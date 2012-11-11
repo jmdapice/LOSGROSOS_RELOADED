@@ -25,21 +25,24 @@ namespace GrouponDesktop
 
             if (e.CloseReason == CloseReason.WindowsShutDown) return;
 
-            // Confirm user wants to close
-            switch (MessageBox.Show(this, "Cancelar Registro?", "Cancelar", MessageBoxButtons.YesNo))
+            if (frmPadre.Name.Equals("Login"))
             {
-                case DialogResult.No:
-                    e.Cancel = true;
-                    break;
-                case DialogResult.Yes:
-                    this.btnCancelar_Click(this, e);
-                    break;
-                default:
-                    break;
+                // Confirm user wants to close
+                switch (MessageBox.Show(this, "Cancelar Registro?", "Cancelar", MessageBoxButtons.YesNo))
+                {
+                    case DialogResult.No:
+                        e.Cancel = true;
+                        break;
+                    case DialogResult.Yes:
+                        this.btnCancelar_Click(this, e);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
-        
-        
+
+
         private void RegistroUsuario_Load(object sender, EventArgs e)
         {
             //cmbRol.SelectedItem = "CLIENTE";
@@ -47,11 +50,11 @@ namespace GrouponDesktop
 
         public void btnCancelar_Click(object sender, EventArgs e)
         {
-            
-            this.DestroyHandle();
+
+            this.Dispose();
             frmPadre.Show();
-            
-     
+
+
         }
 
         private void btnSiguiente_Click(object sender, EventArgs e)
@@ -61,7 +64,7 @@ namespace GrouponDesktop
             label2.ForeColor = System.Drawing.Color.Black;
             label3.ForeColor = System.Drawing.Color.Black;
             label4.ForeColor = System.Drawing.Color.Black;
-            
+
             if (validarRegistro())
             {
                 if (!nombreDuplicado(txtUser.Text.ToString()))
@@ -77,7 +80,7 @@ namespace GrouponDesktop
                         frmalta.ShowDialog();
                     }
                 }
-                else 
+                else
                 {
                     string strError = "El nombre de usuario elegido ya existe, elija otro";
                     Support.mostrarError(strError);
@@ -89,18 +92,18 @@ namespace GrouponDesktop
         private bool validarRegistro()
         {
             bool validado = true;
-            string strError="";
-            if (txtUser.Text.Length > 100 || txtUser.Text=="")
+            string strError = "";
+            if (txtUser.Text.Length > 100 || txtUser.Text == "")
             {
                 lblNomUsuario.ForeColor = System.Drawing.Color.Red;
                 strError += "- La longitud del nombre de usuario es incorrecta\n";
                 validado = false;
             }
-            if (txtPass1.Text.Length < 8 || txtPass1.Text=="") 
+            if (txtPass1.Text.Length < 8 || txtPass1.Text == "")
             {
                 label2.ForeColor = System.Drawing.Color.Red;
                 strError += "- La contraseña debe ser mayor a 8 caracteres\n";
-                validado = false;              
+                validado = false;
             }
             if (txtPass1.Text != txtPass2.Text)
             {
@@ -117,8 +120,8 @@ namespace GrouponDesktop
 
             if (!validado) Support.mostrarError(strError);
             return validado;
-        
-		}
+
+        }
         private bool nombreDuplicado(string nombreUsuario)
         {
             bool duplicado = false;
@@ -141,13 +144,13 @@ namespace GrouponDesktop
             {
                 Support.mostrarError(ex.Message);
             }
-			if (dt.Rows.Count > 0) duplicado = true;
+            if (dt.Rows.Count > 0) duplicado = true;
             dbcon.Close();
             return duplicado;
-            
-    
+
+
         }
-        private bool validarRol(string rol) 
+        private bool validarRol(string rol)
         {
             bool validado = true;
             SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
@@ -175,6 +178,6 @@ namespace GrouponDesktop
             return validado;
         }
 
-       
+
     }
 }

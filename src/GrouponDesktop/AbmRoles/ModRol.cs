@@ -26,7 +26,7 @@ namespace GrouponDesktop.AbmRoles
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
-            SqlCommand cmd = new SqlCommand(@"Select descripcion as 'Nombre Rol' from LOSGROSOS_RELOADED.Rol
+            SqlCommand cmd = new SqlCommand(@"Select descripcion as 'Nombre Rol',idRol from LOSGROSOS_RELOADED.Rol
                                             where descripcion like '%'+@criterio+'%'", dbcon);
             cmd.Parameters.Add("@criterio", SqlDbType.VarChar, 100);
             cmd.Parameters["@criterio"].Value = txtNomRol.Text.ToString();
@@ -44,6 +44,7 @@ namespace GrouponDesktop.AbmRoles
             }
 
             dgvRoles.DataSource = dt;
+            dgvRoles.Columns["idRol"].Visible = false;
             dgvRoles.AutoResizeColumns();
 
         }

@@ -34,6 +34,8 @@ namespace GrouponDesktop.AbmCliente
 
             SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
             SqlCommand cmd;
+           
+
 
             if (this.txtDni.Text == "")
             {
@@ -105,6 +107,16 @@ namespace GrouponDesktop.AbmCliente
             
             AbmCliente.ModCli frmModCli = new AbmCliente.ModCli(this);
             frmModCli.ShowDialog();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
 

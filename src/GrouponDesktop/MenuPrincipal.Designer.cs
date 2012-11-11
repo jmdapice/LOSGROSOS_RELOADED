@@ -242,6 +242,7 @@
             this.modificarProvToolStripMenuItem.Name = "modificarProvToolStripMenuItem";
             this.modificarProvToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.modificarProvToolStripMenuItem.Text = "Modificar Datos";
+            this.modificarProvToolStripMenuItem.Click += new System.EventHandler(this.modificarProvToolStripMenuItem_Click);
             // 
             // cuponProvToolStripMenuItem
             // 

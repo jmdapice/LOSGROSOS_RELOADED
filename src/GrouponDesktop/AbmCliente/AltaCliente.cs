@@ -96,11 +96,12 @@ namespace GrouponDesktop.AbmCliente
                 {
                     Support.mostrarError(ex.Message);
                 }
-                int idNuevoUser = agregarUsuario(dbcon);
+                int idNuevoUser = Support.agregarUsuario(dbcon,1,frmPaso1.txtPass1.Text,frmPaso1.txtUser.Text);
                 guardarNuevoCliente(dbcon, idNuevoUser);
                 MessageBox.Show("Su registro finalizo con exito ");
-                frmPaso1.btnCancelar_Click(this,e);
+              
                 dbcon.Close();
+                frmPaso1.Close();
                 this.Close();
        
             }
@@ -219,47 +220,7 @@ namespace GrouponDesktop.AbmCliente
             lblTel.ForeColor = System.Drawing.Color.Black;
         }
 
-        private int agregarUsuario(SqlConnection dbcon)
-        {
-            SqlCommand cmd = new SqlCommand(@"insert into LOSGROSOS_RELOADED.Usuario 
-                                            (nombreUsuario,contrasena,idRol)
-                                            values (@nombre,@pass,@idRol)", dbcon);
-
-            string pass = Support.GenerarSha256(this.frmPaso1.txtPass1.Text.ToString());
-            cmd.Parameters.Add("@nombre", SqlDbType.VarChar, 100);
-            cmd.Parameters["@nombre"].Value = this.frmPaso1.txtUser.Text.ToString();
-            cmd.Parameters.Add("@pass",SqlDbType.Char, 64);
-            cmd.Parameters["@pass"].Value = pass;
-            cmd.Parameters.Add("@idRol", SqlDbType.Int, 18);
-            cmd.Parameters["@idRol"].Value = 1;
-
-            int idNuevoUser = 0;
-            try
-            {
-
-                cmd.ExecuteNonQuery();
-
-            }
-            catch (Exception ex)
-            {
-                Support.mostrarError(ex.Message);
-            }
-
-            cmd.CommandText = @"select idUsuario from LOSGROSOS_RELOADED.Usuario
-                                    where nombreUsuario=@nombre";
-
-            try
-            {
-
-                idNuevoUser = Convert.ToInt32(cmd.ExecuteScalar());
-            }
-            catch (Exception ex)
-            {
-                Support.mostrarError(ex.Message);
-            }
-
-            return idNuevoUser;
-        }
+        
 
         private void guardarNuevoCliente(SqlConnection dbcon, int idNuevoUser)
         {

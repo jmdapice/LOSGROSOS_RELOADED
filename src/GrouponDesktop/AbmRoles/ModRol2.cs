@@ -264,10 +264,13 @@ namespace GrouponDesktop.AbmRoles
             SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
             SqlCommand cmd = new SqlCommand(@"Select  *
 											from LOSGROSOS_RELOADED.Rol
-											where descripcion=@nomRol", dbcon);
+											where descripcion=@nomRol
+                                            and idRol!=@idRol", dbcon);
 
             cmd.Parameters.Add("@nomRol", SqlDbType.VarChar, 100);
             cmd.Parameters["@nomRol"].Value = nomRol;
+            cmd.Parameters.Add("@idRol", SqlDbType.Int, 18);
+            cmd.Parameters["@idRol"].Value = Convert.ToInt32(frmPadre.dgvRoles.CurrentRow.Cells["idRol"].Value);
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
 

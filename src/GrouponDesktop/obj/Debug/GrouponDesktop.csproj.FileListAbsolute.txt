@@ -99,3 +99,4 @@ C:\Users\Caster\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\bin\Debug
 C:\Users\Caster\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\bin\Debug\GrouponDesktop.pdb
 C:\Users\Caster\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.exe
 C:\Users\Caster\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.pdb
+C:\Users\Caster\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.AbmProveedor.BuscaProv.resources
