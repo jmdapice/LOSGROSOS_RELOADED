@@ -63,7 +63,16 @@ namespace GrouponDesktop.CargaCredito
             idCli = Support.obtenerIdCliente(Support.traerIdUsuario(Support.nombreUsuario));
             if (idCli != 0)
             {
-                nombreUsuario = Support.nombreUsuario;
+                if (Support.clienteInhabilitado(idCli))
+                {
+                    Support.mostrarError("Usted se encuentra inhabilitado");
+                    this.Close();
+                }
+                else
+                {
+                    nombreUsuario = Support.nombreUsuario;
+                }
+                
             }
             else
             {

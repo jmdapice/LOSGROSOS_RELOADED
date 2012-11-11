@@ -33,6 +33,11 @@ namespace GrouponDesktop.PedirDevolucion
                 frmBuscarCli.ShowDialog();
                 if (idCli == 0) this.Close();
             }
+            else if (Support.clienteInhabilitado(idCli))
+            {
+                Support.mostrarError("Usted se encuentra inhabilitado");
+                this.Close();
+            }
 
             cargarListado();
             cargarSaldo();

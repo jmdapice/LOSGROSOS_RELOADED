@@ -30,6 +30,10 @@ namespace GrouponDesktop.HistorialCupones
                 frmBuscarCli = new historialCompra_BuscarCli(this);
                 frmBuscarCli.ShowDialog();
                 if (idCli == 0) this.Close();
+            }else if(Support.clienteInhabilitado(idCli))
+            {
+                Support.mostrarError("Usted se encuentra inhabilitado");
+                this.Close();
             }
 
             txtFechaHasta.Text = "";

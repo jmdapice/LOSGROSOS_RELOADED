@@ -54,6 +54,11 @@ namespace GrouponDesktop.ComprarGiftCard
                 frmBuscar.ShowDialog(this);
                 if (idCliOrigen == 0) this.Close();
             }
+            else if(Support.clienteInhabilitado(idCliOrigen))
+            {
+                Support.mostrarError("Usted se encuentra inhabilitado");
+                this.Close();
+            }
 
             idUserOrigen = Support.traerIdUsuario(Support.nombreUsuario);
 
