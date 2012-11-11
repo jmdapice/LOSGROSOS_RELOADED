@@ -72,11 +72,13 @@
     <Compile Include="AbmCliente\ModCliente.Designer.cs">
       <DependentUpon>ModCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmProveedor\AbmProveedor.cs">
+    <Compile Include="AbmProveedor\AltaProveedor.cs">
       <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="AbmProveedor\Form1.Designer.cs">
-      <DependentUpon>AbmProveedor.cs</DependentUpon>
+    <Compile Include="AbmProveedor\AltaProveedor.Designer.cs">
+      <DependentUpon>AltaProveedor.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="AbmRoles\ElimRol.cs">
       <SubType>Form</SubType>
@@ -152,8 +154,9 @@
     <EmbeddedResource Include="AbmCliente\ModCliente.resx">
       <DependentUpon>ModCliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmProveedor\AbmProveedor.resx">
-      <DependentUpon>AbmProveedor.cs</DependentUpon>
+    <EmbeddedResource Include="AbmProveedor\AltaProveedor.resx">
+      <DependentUpon>AltaProveedor.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRoles\ElimRol.resx">
       <DependentUpon>ElimRol.cs</DependentUpon>

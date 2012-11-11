@@ -159,6 +159,7 @@ namespace GrouponDesktop
         {
             RegistroUsuario frmRegistro = new RegistroUsuario(this);
             this.Hide();
+            frmRegistro.cmbRol.SelectedItem = "CLIENTE";
             frmRegistro.Show();
         }
     }

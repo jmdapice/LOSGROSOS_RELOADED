@@ -206,6 +206,7 @@ namespace GrouponDesktop
                 frmAlta.Text = "Alta Cliente";
                 frmAlta.cmbRol.Visible = false;
                 frmAlta.label4.Visible = false;
+                frmAlta.cmbRol.SelectedItem = "CLIENTE";
                 frmAlta.ShowDialog();
             }
 
@@ -245,6 +246,17 @@ namespace GrouponDesktop
                     ComprarCupon.ComprarCupon frm = new ComprarCupon.ComprarCupon();
                     frm.ShowDialog();
                 }
+            }
+
+            private void agregarProvToolStripMenuItem1_Click(object sender, EventArgs e)
+            {
+                RegistroUsuario frmAlta = new RegistroUsuario(this);
+                frmAlta.Text = "Alta Proveedor";
+                frmAlta.cmbRol.Visible = false;
+                frmAlta.label4.Visible = false;
+                frmAlta.cmbRol.SelectedItem = "PROVEEDOR";
+                frmAlta.ShowDialog();
+                
             }
            
 

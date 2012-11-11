@@ -42,7 +42,7 @@ namespace GrouponDesktop
         
         private void RegistroUsuario_Load(object sender, EventArgs e)
         {
-            cmbRol.SelectedItem = "CLIENTE";
+            //cmbRol.SelectedItem = "CLIENTE";
         }
 
         public void btnCancelar_Click(object sender, EventArgs e)
@@ -73,7 +73,8 @@ namespace GrouponDesktop
                     }
                     else
                     {
-                        //formaltaprovee
+                        AbmProveedor.AltaProveedor frmalta = new AbmProveedor.AltaProveedor(this);
+                        frmalta.ShowDialog();
                     }
                 }
                 else 

@@ -229,6 +229,7 @@
             this.agregarProvToolStripMenuItem1.Name = "agregarProvToolStripMenuItem1";
             this.agregarProvToolStripMenuItem1.Size = new System.Drawing.Size(158, 22);
             this.agregarProvToolStripMenuItem1.Text = "Agregar";
+            this.agregarProvToolStripMenuItem1.Click += new System.EventHandler(this.agregarProvToolStripMenuItem1_Click);
             // 
             // eliminarProvToolStripMenuItem
             // 
