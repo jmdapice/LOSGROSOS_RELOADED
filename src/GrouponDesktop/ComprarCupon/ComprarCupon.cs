@@ -27,7 +27,7 @@ namespace GrouponDesktop.ComprarCupon
             dgvCupones.Columns.Clear();
             SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
             SqlCommand cmd;
-            cmd = new SqlCommand(@"select distinct cupon.codigoCupon, cupon.descripcion as 'Descripcion',cupon.precio as 'Precio Especial Cuponete',cupon.precioFicticio as 'Precio Anterior'
+            cmd = new SqlCommand(@"select distinct cupon.codigoCupon, cupon.descripcion as 'Descripcion',cupon.precio as 'Precio Cuponete',cupon.precioFicticio as 'Precio Anterior'
                                    from LOSGROSOS_RELOADED.Cupon cupon, LOSGROSOS_RELOADED.CuponCiudad ciudad
                                    where cupon.stock > 0
                                    and cupon.cantMaxima > (  SELECT COUNT(*) 
@@ -63,6 +63,7 @@ namespace GrouponDesktop.ComprarCupon
 
             dgvCupones.DataSource = dt;
             dgvCupones.Columns[0].Visible = false;
+            dgvCupones.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
            
            

@@ -71,3 +71,4 @@ C:\Users\CasterX\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debu
 C:\Users\CasterX\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.AltaRol.resources
 C:\Users\CasterX\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.csproj.GenerateResource.Cache
 C:\Users\Pablo\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.ComprarCupon.ComprarCupon.resources
+C:\Users\CasterX\Documents\GitHub\LOSGROSOS_RELOADED\src\GrouponDesktop\obj\Debug\GrouponDesktop.ComprarCupon.ComprarCupon.resources
