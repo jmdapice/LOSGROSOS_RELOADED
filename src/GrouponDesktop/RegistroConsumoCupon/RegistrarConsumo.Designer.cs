@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gbFiltro = new System.Windows.Forms.GroupBox();
+            this.btn_B = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
@@ -44,6 +45,7 @@
             // 
             // gbFiltro
             // 
+            this.gbFiltro.Controls.Add(this.btn_B);
             this.gbFiltro.Controls.Add(this.btnLimpiar);
             this.gbFiltro.Controls.Add(this.btnCancelar);
             this.gbFiltro.Controls.Add(this.btnAceptar);
@@ -56,9 +58,19 @@
             this.gbFiltro.TabStop = false;
             this.gbFiltro.Text = "Filtro";
             // 
+            // btn_B
+            // 
+            this.btn_B.Location = new System.Drawing.Point(206, 34);
+            this.btn_B.Name = "btn_B";
+            this.btn_B.Size = new System.Drawing.Size(100, 23);
+            this.btn_B.TabIndex = 22;
+            this.btn_B.Text = "Buscar";
+            this.btn_B.UseVisualStyleBackColor = true;
+            this.btn_B.Click += new System.EventHandler(this.btn_B_Click);
+            // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(504, 37);
+            this.btnLimpiar.Location = new System.Drawing.Point(555, 34);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(100, 23);
             this.btnLimpiar.TabIndex = 21;
@@ -68,7 +80,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(634, 37);
+            this.btnCancelar.Location = new System.Drawing.Point(684, 34);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 23);
             this.btnCancelar.TabIndex = 20;
@@ -78,11 +90,11 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(376, 37);
+            this.btnAceptar.Location = new System.Drawing.Point(426, 34);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(100, 23);
             this.btnAceptar.TabIndex = 19;
-            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.Text = "Acpetar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             // 
             // txtCliente
@@ -119,14 +131,14 @@
             this.dgvCupones.AllowUserToDeleteRows = false;
             this.dgvCupones.AllowUserToResizeRows = false;
             this.dgvCupones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCupones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCupones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvCupones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCupones.Location = new System.Drawing.Point(6, 19);
             this.dgvCupones.MultiSelect = false;
@@ -150,6 +162,7 @@
             this.Name = "RegistrarConsumo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Registrar consumo";
+            this.Load += new System.EventHandler(this.RegistrarConsumo_Load);
             this.gbFiltro.ResumeLayout(false);
             this.gbFiltro.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -164,9 +177,10 @@
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.TextBox txtCliente;
         private System.Windows.Forms.Label lblCliente;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvCupones;
+        private System.Windows.Forms.Button btn_B;
+        public System.Windows.Forms.TextBox txtCliente;
     }
 }

@@ -267,7 +267,7 @@ namespace GrouponDesktop
         }
 
 
-        public static int obtenerIdProveedor(string idUser)
+        public static int obtenerIdProveedor(int idUser)
         {
             int idProveedor = 0;
 

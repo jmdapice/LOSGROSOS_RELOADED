@@ -188,6 +188,18 @@
     <Compile Include="PedirDevolucion\MotivoDevolucion.Designer.cs">
       <DependentUpon>MotivoDevolucion.cs</DependentUpon>
     </Compile>
+    <Compile Include="RegistroConsumoCupon\Consumo_BuscarCli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistroConsumoCupon\Consumo_BuscarCli.Designer.cs">
+      <DependentUpon>Consumo_BuscarCli.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroConsumoCupon\Consumo_BuscarProv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistroConsumoCupon\Consumo_BuscarProv.Designer.cs">
+      <DependentUpon>Consumo_BuscarProv.cs</DependentUpon>
+    </Compile>
     <Compile Include="RegistroConsumoCupon\RegistrarConsumo.cs">
       <SubType>Form</SubType>
     </Compile>
