@@ -13,6 +13,7 @@ namespace GrouponDesktop.ComprarCupon
     public partial class ComprarCupon : Form
     {
         public static int idCli;
+        private static int saldo = 0;
 
         public ComprarCupon()
         {
@@ -42,7 +43,8 @@ namespace GrouponDesktop.ComprarCupon
                 cmd.Parameters.Add("@idCli", SqlDbType.NVarChar, 100);
                 cmd.Parameters["@idCli"].Value = idCli;
 
-                txtSaldo.Text = Convert.ToString(cmd.ExecuteScalar());
+                saldo = Convert.ToInt32(cmd.ExecuteScalar());
+                txtSaldo.Text = Convert.ToString(saldo);
 
             }
             catch (Exception ex)
@@ -102,8 +104,72 @@ namespace GrouponDesktop.ComprarCupon
         private void dgvCupones_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
+            string mensaje = "";
+            string descripcion = "";
+            string precio = "";
 
+            descripcion = dgvCupones.CurrentRow.Cells["Descripcion"].Value.ToString();
+            precio = dgvCupones.CurrentRow.Cells["Precio Cuponete"].Value.ToString();
+
+            mensaje += "¿Desea comprar el cupón:\n " + descripcion + "?\n\n Precio del cupon: $" + precio;
+            
+            if(Support.mostrarPregunta(mensaje,"Comprar cupon"))
+            {
+                comprarCupon();
+            }
 
         }
+
+        private void comprarCupon()
+        {
+
+            if (leAlcanzaElSaldo())
+            {
+
+                try
+                {
+                    SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
+                    dbcon.Open();
+                    SqlCommand cmd = new SqlCommand(@"INSERT INTO LOSGROSOS_RELOADED.CuponComprado 
+                                                 (codigoCupon, idCli, fechaCompra)
+                                                 VALUES (@codigoCupon,@idCli,@fechaCompra)", dbcon);
+
+
+                    cmd.Parameters.Add("@codigoCupon", SqlDbType.NVarChar, 50);
+                    cmd.Parameters["@codigoCupon"].Value = dgvCupones.CurrentRow.Cells["codigoCupon"].Value.ToString();
+
+                    cmd.Parameters.Add("@idCli", SqlDbType.Int, 18);
+                    cmd.Parameters["@idCli"].Value = idCli;
+
+                    cmd.Parameters.Add("@fechaCompra", SqlDbType.DateTime);
+                    cmd.Parameters["@fechaCompra"].Value = Support.fechaConfig();
+
+                    cmd.ExecuteNonQuery();
+
+                    Support.mostrarInfo("Se ha generado la compra con éxito");
+
+                }
+                catch (Exception ex)
+                {
+                    Support.mostrarError(ex.Message.ToString());
+                    this.Close();
+                }
+
+                cargarListado();
+                cargarSaldo();
+            }
+            else 
+            {
+                Support.mostrarError("No tiene el saldo suficiente para comprar el cupón.");
+            }
+
+        }
+
+        private bool leAlcanzaElSaldo()
+        {
+            int precioCupon = Convert.ToInt32(dgvCupones.CurrentRow.Cells["Precio Cuponete"].Value);
+            return (saldo >= precioCupon );
+        }
+
     }
 }

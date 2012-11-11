@@ -29,6 +29,11 @@ namespace GrouponDesktop
             MessageBox.Show(str, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        public static bool mostrarPregunta(string pregunta, string titulo)
+        {
+            return (MessageBox.Show(pregunta, titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK);
+        }
+
         public static string byteArrayToString(byte[] inputArray)
         {
             StringBuilder output = new StringBuilder("");
