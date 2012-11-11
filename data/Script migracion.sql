@@ -988,15 +988,19 @@ CREATE FUNCTION [LOSGROSOS_RELOADED].[F_idCiudad]
 (	
    @nombre nvarchar(255) = null
 )
-RETURNS TABLE 
-AS
-RETURN 
-(
-	-- Add the SELECT statement with parameter references here
-	SELECT idCiudad 
+RETURNS numeric(18,0)
+BEGIN
+DECLARE 
+ @idCiudad numeric(18,0);
+
+	SET @idCiudad = 
+	(SELECT idCiudad 
 	FROM LOSGROSOS_RELOADED.Ciudad
-	WHERE nombre = @nombre
-)
+	WHERE nombre = @nombre)
+	
+RETURN @idCiudad
+
+END
 
 GO
 
