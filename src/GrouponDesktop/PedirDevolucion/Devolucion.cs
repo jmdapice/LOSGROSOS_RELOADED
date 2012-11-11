@@ -8,36 +8,39 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace GrouponDesktop.ComprarCupon
+namespace GrouponDesktop.PedirDevolucion
 {
-    public partial class ComprarCupon : Form
+    public partial class Devolucion : Form
     {
-        public int idCli=0;
+        public int idCli = 0;
         private static int saldo = 0;
+        public string motivoDevolucion = "";
 
-        public ComprarCupon()
+        public Devolucion()
         {
             InitializeComponent();
         }
 
-        private void ComprarCupon_Load(object sender, EventArgs e)
+        private void Devolucion_Load(object sender, EventArgs e)
         {
-            ComprarCupon_BuscarCli frmBuscarCli;
-            
+            Devolucion_BuscarCli frmBuscarCli;
+
             idCli = Support.obtenerIdCliente(Support.traerIdUsuario(Support.nombreUsuario));
 
             if (idCli == 0)
             {
-                frmBuscarCli = new ComprarCupon_BuscarCli(this);
+                frmBuscarCli = new Devolucion_BuscarCli(this);
                 frmBuscarCli.ShowDialog();
                 if (idCli == 0) this.Close();
             }
-            
+
             cargarListado();
             cargarSaldo();
+
+
         }
 
-        private void cargarSaldo() 
+        private void cargarSaldo()
         {
             txtSaldo.Text = "";
 
@@ -61,33 +64,33 @@ namespace GrouponDesktop.ComprarCupon
                 Support.mostrarError(ex.Message.ToString());
                 this.Close();
             }
+
         }
 
         private void cargarListado()
         {
+
             dgvCupones.Columns.Clear();
             SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
             SqlCommand cmd;
-            cmd = new SqlCommand(@"select distinct cupon.codigoCupon, cupon.descripcion as 'Descripcion',cupon.precio as 'Precio Cuponete',cupon.precioFicticio as 'Precio Anterior'
-                                   from LOSGROSOS_RELOADED.Cupon cupon, LOSGROSOS_RELOADED.CuponCiudad ciudad
-                                   where cupon.stock > 0
-                                   and cupon.cantMaxima > (  SELECT COUNT(*) 
-							                                 FROM LOSGROSOS_RELOADED.CuponComprado 
-							                                 WHERE idCli = @idCli
-							                                 and codigoCupon = cupon.codigoCupon)
-                                   and ciudad.idCiudad IN (SELECT idCiudad 
-                                                           FROM LOSGROSOS_RELOADED.CiudadesPreferidas
-                                                           WHERE idCli = @idCli )
-                                   and cupon.publicado='1'
-                                   and fechaVencOferta>=@fechaConf
-                                   and fechaPubli <= @fechaConf", dbcon);
-                     
-            cmd.Parameters.Add("@idCli", SqlDbType.Int,18);
-            cmd.Parameters["@idCli"].Value = idCli; //Support.obtenerIdCliente(Support.traerIdUsuario(Support.nombreUsuario));
+            cmd = new SqlCommand(@"SELECT comp.idCompra, 
+                                          cupon.descripcion as 'Descripcion', 
+                                          cupon.precio as 'Precio Cuponete', 
+                                          cupon.precioFicticio as 'Precio Anterior',
+                                          comp.fechaCompra as 'Fecha de compra',
+                                          cupon.fechaVencOferta as 'Fecha Venc. Oferta'
+                                   FROM LOSGROSOS_RELOADED.CuponComprado comp, LOSGROSOS_RELOADED.Cupon cupon
+                                   WHERE comp.idCli = @idCli
+                                     AND comp.codigoCupon = cupon.codigoCupon
+                                     AND cupon.fechaVencOferta >= @fechaConf
+                                     AND comp.fechaDevolucion is null", dbcon);
+
+            cmd.Parameters.Add("@idCli", SqlDbType.Int, 18);
+            cmd.Parameters["@idCli"].Value = idCli;
 
             cmd.Parameters.Add("@fechaConf", SqlDbType.DateTime);
             cmd.Parameters["@fechaConf"].Value = Support.fechaConfig();
-            
+
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
 
@@ -106,12 +109,12 @@ namespace GrouponDesktop.ComprarCupon
             dgvCupones.Columns[0].Visible = false;
             dgvCupones.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-           
-           
         }
 
         private void dgvCupones_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+
+            MotivoDevolucion frmMotivo = new MotivoDevolucion(this);
 
             string mensaje = "";
             string descripcion = "";
@@ -120,42 +123,50 @@ namespace GrouponDesktop.ComprarCupon
             descripcion = dgvCupones.CurrentRow.Cells["Descripcion"].Value.ToString();
             precio = dgvCupones.CurrentRow.Cells["Precio Cuponete"].Value.ToString();
 
-            mensaje += "¿Desea comprar el cupón:\n " + descripcion + "?\n\n Precio del cupon: $" + precio;
-            
-            if(Support.mostrarPregunta(mensaje,"Comprar cupon"))
+            mensaje += "¿Desea devolver el cupón:\n " + descripcion + "?\n\n (Se le acreditará al saldo: $" + precio + ")";
+
+            if (Support.mostrarPregunta(mensaje, "Comprar cupon"))
             {
-                comprarCupon();
-            }
+                frmMotivo.ShowDialog();
+                if (motivoDevolucion == "")
+                {
+                    Support.mostrarAdvertencia("Se ha cancelado la devolución");
+                }
+                else
+                {
+                    devolverCupon();
+                }
+            }            
 
         }
 
-        private void comprarCupon()
+        private void devolverCupon()
         {
-
-            if (leAlcanzaElSaldo())
-            {
-
+            
                 try
                 {
                     SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
                     dbcon.Open();
-                    SqlCommand cmd = new SqlCommand(@"INSERT INTO LOSGROSOS_RELOADED.CuponComprado 
-                                                 (codigoCupon, idCli, fechaCompra)
-                                                 VALUES (@codigoCupon,@idCli,@fechaCompra)", dbcon);
+                    SqlCommand cmd = new SqlCommand(@"UPDATE LOSGROSOS_RELOADED.CuponComprado 
+                                                         SET fechaDevolucion = @fechaConfig, 
+                                                             motivoDevol = @motivo 
+                                                       WHERE idCompra = @idCompra", dbcon);
 
 
-                    cmd.Parameters.Add("@codigoCupon", SqlDbType.NVarChar, 50);
-                    cmd.Parameters["@codigoCupon"].Value = dgvCupones.CurrentRow.Cells["codigoCupon"].Value.ToString();
+                    cmd.Parameters.Add("@fechaConfig", SqlDbType.DateTime);
+                    cmd.Parameters["@fechaConfig"].Value = Support.fechaConfig();
 
-                    cmd.Parameters.Add("@idCli", SqlDbType.Int, 18);
-                    cmd.Parameters["@idCli"].Value = idCli;
+                    cmd.Parameters.Add("@motivo", SqlDbType.NVarChar, 255);
+                    cmd.Parameters["@motivo"].Value = motivoDevolucion;
 
-                    cmd.Parameters.Add("@fechaCompra", SqlDbType.DateTime);
-                    cmd.Parameters["@fechaCompra"].Value = Support.fechaConfig();
+                    cmd.Parameters.Add("@idCompra", SqlDbType.Int, 18);
+                    cmd.Parameters["@idCompra"].Value = Convert.ToInt16(dgvCupones.CurrentRow.Cells["idCompra"].Value);
 
                     cmd.ExecuteNonQuery();
 
-                    Support.mostrarInfo("Se ha generado la compra con éxito");
+                    Support.mostrarInfo("Se ha generado la devolución con éxito");
+                    
+                    motivoDevolucion = "";
 
                 }
                 catch (Exception ex)
@@ -166,19 +177,8 @@ namespace GrouponDesktop.ComprarCupon
 
                 cargarListado();
                 cargarSaldo();
-            }
-            else 
-            {
-                Support.mostrarError("No tiene el saldo suficiente para comprar el cupón.");
-            }
+           }
 
-        }
-
-        private bool leAlcanzaElSaldo()
-        {
-            int precioCupon = Convert.ToInt32(dgvCupones.CurrentRow.Cells["Precio Cuponete"].Value);
-            return (saldo >= precioCupon );
         }
 
     }
-}

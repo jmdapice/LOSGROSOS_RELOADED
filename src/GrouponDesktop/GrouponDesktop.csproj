@@ -110,11 +110,23 @@
     <Compile Include="CargaCredito\CargaCredito.Designer.cs">
       <DependentUpon>CargaCredito.cs</DependentUpon>
     </Compile>
+    <Compile Include="CargaCredito\Carga_BuscarCli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CargaCredito\Carga_BuscarCli.Designer.cs">
+      <DependentUpon>Carga_BuscarCli.cs</DependentUpon>
+    </Compile>
     <Compile Include="ComprarCupon\ComprarCupon.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ComprarCupon\ComprarCupon.Designer.cs">
       <DependentUpon>ComprarCupon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComprarCupon\ComprarCupon_BuscarCli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComprarCupon\ComprarCupon_BuscarCli.Designer.cs">
+      <DependentUpon>ComprarCupon_BuscarCli.cs</DependentUpon>
     </Compile>
     <Compile Include="ComprarGiftCard\Giftcard.cs">
       <SubType>Form</SubType>
@@ -128,11 +140,47 @@
     <Compile Include="ComprarGiftCard\GiftCard_BuscarCli.Designer.cs">
       <DependentUpon>GiftCard_BuscarCli.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComprarGiftCard\GiftCard_BuscarCliAdmincs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComprarGiftCard\GiftCard_BuscarCliAdmincs.Designer.cs">
+      <DependentUpon>GiftCard_BuscarCliAdmincs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistorialCupones\historialCompras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistorialCupones\historialCompras.Designer.cs">
+      <DependentUpon>historialCompras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistorialCupones\historialCompra_BuscarCli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistorialCupones\historialCompra_BuscarCli.Designer.cs">
+      <DependentUpon>historialCompra_BuscarCli.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MenuPrincipal.Designer.cs">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PedirDevolucion\Devolucion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PedirDevolucion\Devolucion.Designer.cs">
+      <DependentUpon>Devolucion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PedirDevolucion\Devolucion_BuscarCli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PedirDevolucion\Devolucion_BuscarCli.Designer.cs">
+      <DependentUpon>Devolucion_BuscarCli.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PedirDevolucion\MotivoDevolucion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PedirDevolucion\MotivoDevolucion.Designer.cs">
+      <DependentUpon>MotivoDevolucion.cs</DependentUpon>
     </Compile>
     <Compile Include="RegistroUsuario.cs">
       <SubType>Form</SubType>
@@ -188,11 +236,20 @@
     <EmbeddedResource Include="ComprarGiftCard\GiftCard_BuscarCli.resx">
       <DependentUpon>GiftCard_BuscarCli.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HistorialCupones\historialCompras.resx">
+      <DependentUpon>historialCompras.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PedirDevolucion\Devolucion.resx">
+      <DependentUpon>Devolucion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PedirDevolucion\MotivoDevolucion.resx">
+      <DependentUpon>MotivoDevolucion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -230,9 +287,7 @@
   <ItemGroup>
     <Folder Include="ArmarCupon\" />
     <Folder Include="FacturarProveedor\" />
-    <Folder Include="HistorialCupones\" />
     <Folder Include="ListadoEstadistico\" />
-    <Folder Include="PedirDevolucion\" />
     <Folder Include="PublicarCupon\" />
     <Folder Include="RegistroConsumoCupon\" />
   </ItemGroup>

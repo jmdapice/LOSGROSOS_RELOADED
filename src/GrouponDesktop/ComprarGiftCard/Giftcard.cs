@@ -19,6 +19,8 @@ namespace GrouponDesktop.ComprarGiftCard
         private static int regaloMaximo;
         private static int idUserDestino;
         private static int idUserOrigen;
+        private static int idCliDestino;
+        public int idCliOrigen = 0;
 
         public Giftcard()
         {
@@ -28,7 +30,8 @@ namespace GrouponDesktop.ComprarGiftCard
         private void Giftcard_Load(object sender, EventArgs e)
         {
 
-            //verificarCliente();
+            GiftCard_BuscarCliAdmincs frmBuscar;
+
             
             lblDestino.ForeColor = System.Drawing.Color.Black;
             lblMonto.ForeColor = System.Drawing.Color.Black;
@@ -44,7 +47,15 @@ namespace GrouponDesktop.ComprarGiftCard
                                  Convert.ToString(regaloMinimo)
                                  + " y " + Convert.ToString(regaloMaximo) + ".";
 
-            idUserOrigen = traerIdUsuario(Support.nombreUsuario);
+            idCliOrigen = Support.obtenerIdCliente(Support.traerIdUsuario(Support.nombreUsuario));
+            if (idCliOrigen == 0)
+            {
+                frmBuscar = new GiftCard_BuscarCliAdmincs(this);
+                frmBuscar.ShowDialog(this);
+                if (idCliOrigen == 0) this.Close();
+            }
+
+            idUserOrigen = Support.traerIdUsuario(Support.nombreUsuario);
 
         }
 
@@ -56,15 +67,13 @@ namespace GrouponDesktop.ComprarGiftCard
         private void btnAceptar_Click(object sender, EventArgs e)
         {
 
-            int idCliOrigen, idCliDestino;
+            idCliDestino = Support.obtenerIdCliente(Support.traerIdUsuario(txtDestino.Text));
 
             if (!existenErrores()) 
             {
 
                 try
                 {
-                    idCliDestino = obtenerIdCliente(idUserDestino);
-                    idCliOrigen = obtenerIdCliente(idUserOrigen);
 
                     if (validarCompraGiftCard(idCliOrigen, idCliDestino))
                     {
@@ -140,34 +149,7 @@ namespace GrouponDesktop.ComprarGiftCard
             return datosValidos;
         }
 
-        private int obtenerIdCliente(int idUser) 
-        {
 
-            int idCliente = 0;
-            try
-            {
-                SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
-                dbcon.Open();
-                SqlCommand cmd = new SqlCommand(@"SELECT idCli
-                                                  FROM LOSGROSOS_RELOADED.Clientes
-                                                  WHERE idUsuario = @idUser", dbcon);
-
-                cmd.Parameters.Add("@idUser", SqlDbType.NVarChar, 20);
-                cmd.Parameters["@idUser"].Value = idUser;
-
-
-
-                idCliente = Convert.ToInt16(cmd.ExecuteScalar());
-
-            }
-            catch (Exception ex)
-            {
-                Support.mostrarError(ex.Message.ToString());
-                this.Close();
-            }
-
-            return idCliente;
-        }
 
         private bool existenErrores()
         {
@@ -176,14 +158,15 @@ namespace GrouponDesktop.ComprarGiftCard
 
             string strError = "Se han producido los siguientes errores: \n";
 
-            idUserDestino = traerIdUsuario(txtDestino.Text);
+            idUserDestino = Support.traerIdUsuario(txtDestino.Text);
+
             if (idUserDestino == 0)
             {
                 strError += "-El usuario no es valido. \n";
                 lblDestino.ForeColor = System.Drawing.Color.Red;
                 hay_errores = true;
             }
-            else if (Support.nombreUsuario == txtDestino.Text)
+            else if ( idCliOrigen == idCliDestino)
             {
                 strError += "-No te podes autoregalar una Gift Card. \n";
                 lblDestino.ForeColor = System.Drawing.Color.Red;
@@ -247,33 +230,6 @@ namespace GrouponDesktop.ComprarGiftCard
                 e.Handled = true;
 
             }
-        }
-
-        private int traerIdUsuario(string nombreUsuario)
-        {
-            int idUser = 0;
-
-            try
-            {
-                SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
-                dbcon.Open();
-                SqlCommand cmd = new SqlCommand(@"SELECT idUsuario
-                                                  FROM LOSGROSOS_RELOADED.Usuario
-                                                  WHERE  nombreUsuario = @nombreUsuario", dbcon);
-
-                cmd.Parameters.Add("@nombreUsuario", SqlDbType.NVarChar, 100);
-                cmd.Parameters["@nombreUsuario"].Value = nombreUsuario;
-
-                idUser = Convert.ToInt32(cmd.ExecuteScalar());
-
-            }
-            catch (Exception ex)
-            {
-                Support.mostrarError(ex.Message.ToString());
-                this.Close();
-            }
-
-            return idUser;
         }
 
         private void verificarCliente()

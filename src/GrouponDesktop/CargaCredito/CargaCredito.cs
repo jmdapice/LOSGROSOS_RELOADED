@@ -15,6 +15,8 @@ namespace GrouponDesktop.CargaCredito
 {
     public partial class CargaCredito : Form
     {
+        public string nombreUsuario = "";
+
         public CargaCredito()
         {
             InitializeComponent();
@@ -24,14 +26,14 @@ namespace GrouponDesktop.CargaCredito
         private void CargaCredito_Load(object sender, EventArgs e)
         {
 
+            int idCli = 0;
+            Carga_BuscarCli frmBuscar;
+
 //Inicialización grupo pantallas
             //gb_tarjeta.Visible = false;
             txtTarjeta.Enabled = true;
             txtTitular.Enabled = true;
             btnSeleccion.Enabled = true;
-
-//Verifico que el que ejecuta esta funcionalidad tiene un cliente asociado
-            verificarCliente();
 
 //Carga de combobox
             try
@@ -55,7 +57,21 @@ namespace GrouponDesktop.CargaCredito
 
                 Support.mostrarError(ex.Message);
 
-            }           
+            }
+
+
+            idCli = Support.obtenerIdCliente(Support.traerIdUsuario(Support.nombreUsuario));
+            if (idCli != 0)
+            {
+                nombreUsuario = Support.nombreUsuario;
+            }
+            else
+            {
+                frmBuscar = new Carga_BuscarCli(this);
+                frmBuscar.ShowDialog();
+                if (nombreUsuario == "") this.Close();
+            }
+
 
         }
 
@@ -142,9 +158,9 @@ namespace GrouponDesktop.CargaCredito
                     cmd.Parameters.Add("@fecha", SqlDbType.DateTime);
                     cmd.Parameters.Add("@idTipoPago", SqlDbType.Int, 18);
  
-                    cmd.Parameters["@usuario"].Value = Support.nombreUsuario;
+                    cmd.Parameters["@usuario"].Value = nombreUsuario;
                     cmd.Parameters["@monto"].Value = txtCarga.Text;
-                    cmd.Parameters["@fecha"].Value = Convert.ToDateTime(fechaHoy); //Cambiar por fecha archivo config
+                    cmd.Parameters["@fecha"].Value = Convert.ToDateTime(fechaHoy);
                     cmd.Parameters["@idTipoPago"].Value = str_seleccionado;
 
                     if (cb_medioPago.SelectedValue.ToString() == "1")
@@ -175,17 +191,6 @@ namespace GrouponDesktop.CargaCredito
 
                     Support.mostrarInfo("Se ha realizado la carga con éxito");
                     borrar_pantalla();
-
-
-
-                    //DataSet dt = new DataSet();
-                    //SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    //da.Fill(dt);
-
-                    //cb_medioPago.DataSource = dt.Tables[0];
-                    //cb_medioPago.DisplayMember = "nombre";
-                    //cb_medioPago.ValueMember = "idTipoPago";
-
 
                     dbcon.Close();
                 }//End try
@@ -241,50 +246,6 @@ namespace GrouponDesktop.CargaCredito
             return noEstaVencida;
         }
 
-
-
-        private void verificarCliente()
-        {
-            int idUsuario = 0;
-            int idCli = 0;
-
-            try
-            {
-                SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
-                dbcon.Open();
-                SqlCommand cmd = new SqlCommand(@"SELECT idUsuario
-                                                  FROM LOSGROSOS_RELOADED.Usuario
-                                                  WHERE  nombreUsuario = @nombreUsuario", dbcon);
-
-                cmd.Parameters.Add("@nombreUsuario", SqlDbType.NVarChar, 100);
-                cmd.Parameters["@nombreUsuario"].Value = Support.nombreUsuario;
-
-
-
-                idUsuario = Convert.ToInt32(cmd.ExecuteScalar());
-
-                cmd.CommandText = @"SELECT idCli
-                                    FROM LOSGROSOS_RELOADED.Clientes
-                                    WHERE idUsuario = @idUsuario";
-
-                cmd.Parameters.Add("@idUsuario", SqlDbType.Int, 18);
-                cmd.Parameters["@idUsuario"].Value = idUsuario;
-
-                idCli = Convert.ToInt32(cmd.ExecuteScalar());
-
-                if (idCli == 0)
-                {
-                    Support.mostrarError("El usuario no pertenece a un cliente");
-                    this.Close();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Support.mostrarError(ex.Message.ToString());
-                this.Close();
-            }
-        }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {

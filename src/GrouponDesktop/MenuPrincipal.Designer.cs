@@ -206,12 +206,14 @@
             this.devolverToolStripMenuItem1.Name = "devolverToolStripMenuItem1";
             this.devolverToolStripMenuItem1.Size = new System.Drawing.Size(214, 22);
             this.devolverToolStripMenuItem1.Text = "Devolver...";
+            this.devolverToolStripMenuItem1.Click += new System.EventHandler(this.devolverToolStripMenuItem1_Click);
             // 
             // verHistorialDeComprasToolStripMenuItem
             // 
             this.verHistorialDeComprasToolStripMenuItem.Name = "verHistorialDeComprasToolStripMenuItem";
             this.verHistorialDeComprasToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.verHistorialDeComprasToolStripMenuItem.Text = "Ver Historial de Compras...";
+            this.verHistorialDeComprasToolStripMenuItem.Click += new System.EventHandler(this.verHistorialDeComprasToolStripMenuItem_Click);
             // 
             // proveedorToolStripMenuItem
             // 

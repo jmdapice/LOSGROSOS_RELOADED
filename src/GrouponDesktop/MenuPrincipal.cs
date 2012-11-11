@@ -218,20 +218,14 @@ namespace GrouponDesktop
 
             private void cargarCreditoToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                if (Support.verificarCliente())
-                {
-                    CargaCredito.CargaCredito frm = new CargaCredito.CargaCredito();
-                    frm.ShowDialog();
-                }
+                CargaCredito.CargaCredito frm = new CargaCredito.CargaCredito();
+                frm.ShowDialog();
             }
 
             private void comprarGiftCardToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                if (Support.verificarCliente())
-                {
-                    ComprarGiftCard.Giftcard frm = new ComprarGiftCard.Giftcard();
-                    frm.ShowDialog();
-                }
+               ComprarGiftCard.Giftcard frm = new ComprarGiftCard.Giftcard();
+               frm.ShowDialog();
             }
 
             private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -241,11 +235,21 @@ namespace GrouponDesktop
 
             private void comprarToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                if (Support.verificarCliente())
-                {
-                    ComprarCupon.ComprarCupon frm = new ComprarCupon.ComprarCupon();
-                    frm.ShowDialog();
-                }
+
+                ComprarCupon.ComprarCupon frm = new ComprarCupon.ComprarCupon();
+                frm.ShowDialog();
+            }
+
+            private void devolverToolStripMenuItem1_Click(object sender, EventArgs e)
+            {
+                PedirDevolucion.Devolucion frm = new PedirDevolucion.Devolucion();
+                frm.ShowDialog();
+            }
+
+            private void verHistorialDeComprasToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                HistorialCupones.historialCompras frm = new GrouponDesktop.HistorialCupones.historialCompras();
+                frm.ShowDialog();
             }
 
             private void agregarProvToolStripMenuItem1_Click(object sender, EventArgs e)

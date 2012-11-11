@@ -7,20 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace GrouponDesktop.ComprarGiftCard
+namespace GrouponDesktop.ComprarCupon
 {
-    public partial class frmBuscarCli : GrouponDesktop.AbmCliente.ModCliente
+    public partial class ComprarCupon_BuscarCli : GrouponDesktop.AbmCliente.ModCliente
     {
-        Giftcard frmPadre = null;
-        public frmBuscarCli(Giftcard frm)
+        ComprarCupon frmPadre = null;
+        public ComprarCupon_BuscarCli(ComprarCupon frm)
         {
             frmPadre = frm;
             InitializeComponent();
-        }
-
-        private void GiftCard_BuscarCli_Load(object sender, EventArgs e)
-        {
-
         }
 
         public override void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -29,14 +24,14 @@ namespace GrouponDesktop.ComprarGiftCard
 
             if (!Support.clienteInhabilitado(idCli))
             {
-                frmPadre.txtDestino.Text = dgvClientes.CurrentRow.Cells["Usuario"].Value.ToString();
+                frmPadre.idCli = idCli;
                 this.Close();
             }
             else
             {
                 Support.mostrarError("El cliente esta inhabilitado. Elija otro");
             }
-            
+
         }
     }
 }

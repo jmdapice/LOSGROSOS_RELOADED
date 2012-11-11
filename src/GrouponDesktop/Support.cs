@@ -34,6 +34,11 @@ namespace GrouponDesktop
             return (MessageBox.Show(pregunta, titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK);
         }
 
+        public static void mostrarAdvertencia(string str)
+        {
+            MessageBox.Show(str, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
         public static string byteArrayToString(byte[] inputArray)
         {
             StringBuilder output = new StringBuilder("");
@@ -244,6 +249,7 @@ namespace GrouponDesktop
                 Support.mostrarError(ex.Message);
             }
 
+
             cmd.CommandText = @"select idUsuario from LOSGROSOS_RELOADED.Usuario
                                     where nombreUsuario=@nombre";
 
@@ -259,5 +265,37 @@ namespace GrouponDesktop
 
             return idNuevoUser;
         }
+
+
+        public static int obtenerIdProveedor(string idUser)
+        {
+            int idProveedor = 0;
+
+            try
+            {
+                SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
+                dbcon.Open();
+                SqlCommand cmd = new SqlCommand(@"SELECT idProveedor
+                                                  FROM LOSGROSOS_RELOADED.Proveedor
+                                                  WHERE idUsuario = @idUser", dbcon);
+
+                cmd.Parameters.Add("@idUser", SqlDbType.NVarChar, 20);
+                cmd.Parameters["@idUser"].Value = idUser;
+
+
+
+                idProveedor = Convert.ToInt16(cmd.ExecuteScalar());
+
+            }
+            catch (Exception ex)
+            {
+                Support.mostrarError(ex.Message.ToString());
+            }
+
+            return idProveedor;
+
+        }
+
+
     }
 }
