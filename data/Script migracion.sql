@@ -600,9 +600,9 @@ WHERE a.Provee_Ciudad = b.nombre
 /*                             CARGA TABLA CUPON                                    */
 /************************************************************************************/ 
 
-INSERT INTO LOSGROSOS_RELOADED.Cupon(codigoCupon,precio,precioFicticio,descripcion,idProveedor,
+INSERT INTO LOSGROSOS_RELOADED.Cupon(codigoCupon,precio,precioFicticio,descripcion,idProveedor,cantMaxima,
                                      fechaPubli,fechaVencOferta,stock)
-SELECT DISTINCT a.Groupon_Codigo,a.Groupon_Precio,a.Groupon_Precio_Ficticio,a.Groupon_Descripcion,b.idProveedor,
+SELECT DISTINCT a.Groupon_Codigo,a.Groupon_Precio,a.Groupon_Precio_Ficticio,a.Groupon_Descripcion,b.idProveedor,5,
        a.Groupon_Fecha, a.Groupon_Fecha_Venc,a.Groupon_Cantidad
 FROM gd_esquema.Maestra a, LOSGROSOS_RELOADED.Proveedor b
 WHERE a.Provee_CUIT = b.cuit 
@@ -783,15 +783,15 @@ IF  EXISTS (SELECT *
 			FROM sys.objects 
 			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.F_idCiudad') 
 				AND type in (N'FN')) 
-DROP fUNCTION LOSGROSOS_RELOADED.F_idCiudad;
+DROP FUNCTION LOSGROSOS_RELOADED.F_idCiudad;
 
 IF  EXISTS (SELECT * 
 			FROM sys.objects 
 			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.F_idUsuario') 
 				AND type in (N'FN')) 
-DROP fUNCTION LOSGROSOS_RELOADED.F_idUsuario;
+DROP FUNCTION LOSGROSOS_RELOADED.F_idUsuario;
 
-
+GO
 
 CREATE PROCEDURE [LOSGROSOS_RELOADED].[P_Alta_Proveedor]
 	@razonSocial nvarchar(100) = null,
@@ -941,8 +941,7 @@ BEGIN
 END
 GO
 
-DROP PROCEDURE LOSGROSOS_RELOADED.P_Insertar_Carga
-GO
+
 
 CREATE PROCEDURE [LOSGROSOS_RELOADED].[P_Insertar_Carga]
 	@nombreUsuario nvarchar(100),
