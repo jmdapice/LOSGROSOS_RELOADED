@@ -13,6 +13,9 @@ namespace GrouponDesktop.AbmProveedor
     public partial class AltaProveedor : Form
     {
         RegistroUsuario frmPaso1 = null;
+
+        public AltaProveedor() { }
+        
         public AltaProveedor(RegistroUsuario frmRegistro)
         {
             frmPaso1 = frmRegistro;

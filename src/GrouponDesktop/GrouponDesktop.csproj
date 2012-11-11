@@ -86,6 +86,12 @@
     <Compile Include="AbmProveedor\BuscaProv.Designer.cs">
       <DependentUpon>BuscaProv.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmProveedor\ModProv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmProveedor\ModProv.Designer.cs">
+      <DependentUpon>ModProv.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmRoles\ElimRol.cs">
       <SubType>Form</SubType>
     </Compile>

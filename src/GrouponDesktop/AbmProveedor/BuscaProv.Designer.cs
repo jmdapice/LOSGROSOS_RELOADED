@@ -32,12 +32,12 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtCuit = new System.Windows.Forms.TextBox();
             this.lblDni = new System.Windows.Forms.Label();
             this.lblApe = new System.Windows.Forms.Label();
             this.txtMail = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
             this.txtRazSoc = new System.Windows.Forms.TextBox();
-            this.txtCuit = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProv)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +56,7 @@
             this.dgvProv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProv.Size = new System.Drawing.Size(867, 232);
             this.dgvProv.TabIndex = 10;
+            this.dgvProv.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProv_CellContentDoubleClick);
             // 
             // btnBuscar
             // 
@@ -92,6 +93,13 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Buscar Por";
+            // 
+            // txtCuit
+            // 
+            this.txtCuit.Location = new System.Drawing.Point(341, 58);
+            this.txtCuit.Name = "txtCuit";
+            this.txtCuit.Size = new System.Drawing.Size(200, 20);
+            this.txtCuit.TabIndex = 9;
             // 
             // lblDni
             // 
@@ -136,13 +144,6 @@
             this.txtRazSoc.Name = "txtRazSoc";
             this.txtRazSoc.Size = new System.Drawing.Size(200, 20);
             this.txtRazSoc.TabIndex = 0;
-            // 
-            // txtCuit
-            // 
-            this.txtCuit.Location = new System.Drawing.Point(341, 58);
-            this.txtCuit.Name = "txtCuit";
-            this.txtCuit.Size = new System.Drawing.Size(200, 20);
-            this.txtCuit.TabIndex = 9;
             // 
             // BuscaProv
             // 

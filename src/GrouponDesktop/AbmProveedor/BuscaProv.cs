@@ -84,6 +84,12 @@ namespace GrouponDesktop.AbmProveedor
             dgvProv.Columns["Domicilio"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
            
         }
+
+        private void dgvProv_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //.ModCli frmModCli = new AbmCliente.ModCli(this);
+            //frmModCli.ShowDialog();
+        }
         
     }
 }
