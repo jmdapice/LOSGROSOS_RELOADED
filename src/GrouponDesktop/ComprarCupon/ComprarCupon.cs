@@ -12,6 +12,8 @@ namespace GrouponDesktop.ComprarCupon
 {
     public partial class ComprarCupon : Form
     {
+        public static int idCli;
+
         public ComprarCupon()
         {
             InitializeComponent();
@@ -19,9 +21,37 @@ namespace GrouponDesktop.ComprarCupon
 
         private void ComprarCupon_Load(object sender, EventArgs e)
         {
+            if (idCli == 0)
+                idCli = Support.obtenerIdCliente(Support.traerIdUsuario(Support.nombreUsuario));
             cargarListado();
-            //cargarSaldo();
+            cargarSaldo();
         }
+
+        private void cargarSaldo() 
+        {
+            txtSaldo.Text = "";
+
+            try
+            {
+                SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
+                dbcon.Open();
+                SqlCommand cmd = new SqlCommand(@"SELECT saldo
+                                                  FROM LOSGROSOS_RELOADED.Clientes
+                                                  WHERE  idCli = @idCli", dbcon);
+
+                cmd.Parameters.Add("@idCli", SqlDbType.NVarChar, 100);
+                cmd.Parameters["@idCli"].Value = idCli;
+
+                txtSaldo.Text = Convert.ToString(cmd.ExecuteScalar());
+
+            }
+            catch (Exception ex)
+            {
+                Support.mostrarError(ex.Message.ToString());
+                this.Close();
+            }
+        }
+
         private void cargarListado()
         {
             dgvCupones.Columns.Clear();
@@ -42,7 +72,7 @@ namespace GrouponDesktop.ComprarCupon
                                    and fechaPubli <= @fechaConf", dbcon);
                      
             cmd.Parameters.Add("@idCli", SqlDbType.Int,18);
-            cmd.Parameters["@idCli"].Value = Support.obtenerIdCliente(Support.traerIdUsuario(Support.nombreUsuario));
+            cmd.Parameters["@idCli"].Value = idCli; //Support.obtenerIdCliente(Support.traerIdUsuario(Support.nombreUsuario));
 
             cmd.Parameters.Add("@fechaConf", SqlDbType.DateTime);
             cmd.Parameters["@fechaConf"].Value = Support.fechaConfig();
@@ -67,6 +97,13 @@ namespace GrouponDesktop.ComprarCupon
 
            
            
+        }
+
+        private void dgvCupones_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+
         }
     }
 }

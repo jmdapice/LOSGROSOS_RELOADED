@@ -999,8 +999,7 @@ RETURN
 )
 
 GO
-DROP FUNCTION [LOSGROSOS_RELOADED].[F_idUsuario] 
-GO
+
 CREATE FUNCTION [LOSGROSOS_RELOADED].[F_idUsuario] 
 (	
    @nombreUsuario nvarchar(100)
