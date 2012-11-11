@@ -35,7 +35,7 @@ namespace GrouponDesktop.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2010-10-11")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2009-01-01")]
         public global::System.DateTime fechaConfig {
             get {
                 return ((global::System.DateTime)(this["fechaConfig"]));

@@ -237,6 +237,15 @@ namespace GrouponDesktop
             {
                 //juanca23424asdasd234234
             }
+
+            private void comprarToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                if (Support.verificarCliente())
+                {
+                    ComprarCupon.ComprarCupon frm = new ComprarCupon.ComprarCupon();
+                    frm.ShowDialog();
+                }
+            }
            
 
         }

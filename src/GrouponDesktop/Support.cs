@@ -154,5 +154,59 @@ namespace GrouponDesktop
 
         }
 
+        public static int traerIdUsuario(string nombreUsuario)
+        {
+            int idUser = 0;
+
+            try
+            {
+                SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
+                dbcon.Open();
+                SqlCommand cmd = new SqlCommand(@"SELECT idUsuario
+                                                  FROM LOSGROSOS_RELOADED.Usuario
+                                                  WHERE  nombreUsuario = @nombreUsuario", dbcon);
+
+                cmd.Parameters.Add("@nombreUsuario", SqlDbType.NVarChar, 100);
+                cmd.Parameters["@nombreUsuario"].Value = nombreUsuario;
+
+                idUser = Convert.ToInt32(cmd.ExecuteScalar());
+
+            }
+            catch (Exception ex)
+            {
+                Support.mostrarError(ex.Message.ToString());
+            }
+
+            return idUser;
+        }
+
+        public static int obtenerIdCliente(int idUser)
+        {
+
+            int idCliente = 0;
+            try
+            {
+                SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
+                dbcon.Open();
+                SqlCommand cmd = new SqlCommand(@"SELECT idCli
+                                                  FROM LOSGROSOS_RELOADED.Clientes
+                                                  WHERE idUsuario = @idUser", dbcon);
+
+                cmd.Parameters.Add("@idUser", SqlDbType.NVarChar, 20);
+                cmd.Parameters["@idUser"].Value = idUser;
+
+
+
+                idCliente = Convert.ToInt16(cmd.ExecuteScalar());
+
+            }
+            catch (Exception ex)
+            {
+                Support.mostrarError(ex.Message.ToString());
+            }
+
+            return idCliente;
+        }
+
     }
 }

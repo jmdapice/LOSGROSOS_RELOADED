@@ -199,6 +199,7 @@
             this.comprarToolStripMenuItem.Name = "comprarToolStripMenuItem";
             this.comprarToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.comprarToolStripMenuItem.Text = "Comprar...";
+            this.comprarToolStripMenuItem.Click += new System.EventHandler(this.comprarToolStripMenuItem_Click);
             // 
             // devolverToolStripMenuItem1
             // 
