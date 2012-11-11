@@ -734,6 +734,65 @@ GO
 /************************************************************************************/
 /*                             CREAR STORES PROCEDURES                              */
 /************************************************************************************/
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.P_Alta_Proveedor') 
+				AND type in (N'P')) 
+DROP PROCEDURE LOSGROSOS_RELOADED.P_Alta_Proveedor;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.P_Modificar_Proveedor') 
+				AND type in (N'P')) 
+DROP PROCEDURE LOSGROSOS_RELOADED.P_Modificar_Proveedor;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.P_HabilitacionProveedor') 
+				AND type in (N'P')) 
+DROP PROCEDURE LOSGROSOS_RELOADED.P_HabilitacionProveedor;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.P_Alta_Cliente') 
+				AND type in (N'P')) 
+DROP PROCEDURE LOSGROSOS_RELOADED.P_Alta_Cliente;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.P_Modificar_Cliente') 
+				AND type in (N'P')) 
+DROP PROCEDURE LOSGROSOS_RELOADED.P_Modificar_Cliente;
+
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.P_HabilitacionCliente') 
+				AND type in (N'P')) 
+DROP PROCEDURE LOSGROSOS_RELOADED.P_HabilitacionCliente;
+
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.P_Insertar_Carga') 
+				AND type in (N'P')) 
+DROP PROCEDURE LOSGROSOS_RELOADED.P_Insertar_Carga;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.F_idCiudad') 
+				AND type in (N'FN')) 
+DROP fUNCTION LOSGROSOS_RELOADED.F_idCiudad;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.F_idUsuario') 
+				AND type in (N'FN')) 
+DROP fUNCTION LOSGROSOS_RELOADED.F_idUsuario;
+
+
+
 CREATE PROCEDURE [LOSGROSOS_RELOADED].[P_Alta_Proveedor]
 	@razonSocial nvarchar(100) = null,
 	@domicilio nvarchar(100) = null,
@@ -772,8 +831,7 @@ CREATE PROCEDURE [LOSGROSOS_RELOADED].[P_Modificar_Proveedor]
 	@idRubro numeric(18,0) = null,
 	@mail nvarchar(255) = null,
 	@codPostal numeric(18,0) = null,
-	@nombContacto nvarchar(255) = null,
-	@idUsuario numeric(18,0) = null
+	@nombContacto nvarchar(255) = null
 	
 AS
 BEGIN
@@ -787,8 +845,7 @@ BEGIN
 			idRubro = @idRubro,
 			mail = @mail,
 			codPostal = @codPostal,
-			nombContacto = @nombContacto,
-			idUsuario = @idUsuario
+			nombContacto = @nombContacto
 		where idProveedor = @idProveedor
 	
 	
