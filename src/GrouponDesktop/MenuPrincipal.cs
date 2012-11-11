@@ -235,6 +235,7 @@ namespace GrouponDesktop
 
             private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
             {
+                //juanca
             }
            
 
