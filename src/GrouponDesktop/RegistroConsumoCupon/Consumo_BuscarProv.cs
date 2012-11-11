@@ -18,5 +18,20 @@ namespace GrouponDesktop.RegistroConsumoCupon
             InitializeComponent();
         }
 
+        public override void dgvProv_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int idProv = Support.obtenerIdProveedor(Support.traerIdUsuario(dgvProv.CurrentRow.Cells["Usuario"].Value.ToString()));
+
+            if (Support.proveedorInhabilitado(idProv))
+            {
+                Support.mostrarError("El proveedor esta inhabilitado. Elija otro.");
+            }
+            else
+            {
+                frmPadre.idProv = idProv;
+                this.Close();
+            }
+        }
+
     }
 }

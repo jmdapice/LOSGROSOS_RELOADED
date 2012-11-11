@@ -296,6 +296,45 @@ namespace GrouponDesktop
 
         }
 
+        public static bool proveedorInhabilitado(int idProv)
+        {
+
+            string inhabilitado = "";
+
+            try
+            {
+
+                SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
+                dbcon.Open();
+
+                SqlCommand cmd = new SqlCommand(@"SELECT inhabilitado
+                                                  FROM LOSGROSOS_RELOADED.Proveedor
+                                                  WHERE idProveedor = @idProv", dbcon);
+
+                cmd.Parameters.Add("@idProv", SqlDbType.Int, 18);
+                cmd.Parameters["@idProv"].Value = idProv;
+
+                inhabilitado = Convert.ToString(cmd.ExecuteScalar());
+
+                dbcon.Close();
+
+                if (inhabilitado.Equals("1"))
+                {
+                    return true;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Support.mostrarError(ex.Message.ToString());
+                return true;
+            }
+
+            return false;
+
+        }
+
 
     }
 }

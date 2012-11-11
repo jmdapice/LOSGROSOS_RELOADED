@@ -30,7 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gbFiltro = new System.Windows.Forms.GroupBox();
-            this.btn_B = new System.Windows.Forms.Button();
+            this.btn_Buscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
@@ -45,7 +45,7 @@
             // 
             // gbFiltro
             // 
-            this.gbFiltro.Controls.Add(this.btn_B);
+            this.gbFiltro.Controls.Add(this.btn_Buscar);
             this.gbFiltro.Controls.Add(this.btnLimpiar);
             this.gbFiltro.Controls.Add(this.btnCancelar);
             this.gbFiltro.Controls.Add(this.btnAceptar);
@@ -58,15 +58,15 @@
             this.gbFiltro.TabStop = false;
             this.gbFiltro.Text = "Filtro";
             // 
-            // btn_B
+            // btn_Buscar
             // 
-            this.btn_B.Location = new System.Drawing.Point(206, 34);
-            this.btn_B.Name = "btn_B";
-            this.btn_B.Size = new System.Drawing.Size(100, 23);
-            this.btn_B.TabIndex = 22;
-            this.btn_B.Text = "Buscar";
-            this.btn_B.UseVisualStyleBackColor = true;
-            this.btn_B.Click += new System.EventHandler(this.btn_B_Click);
+            this.btn_Buscar.Location = new System.Drawing.Point(206, 34);
+            this.btn_Buscar.Name = "btn_Buscar";
+            this.btn_Buscar.Size = new System.Drawing.Size(100, 23);
+            this.btn_Buscar.TabIndex = 22;
+            this.btn_Buscar.Text = "Buscar";
+            this.btn_Buscar.UseVisualStyleBackColor = true;
+            this.btn_Buscar.Click += new System.EventHandler(this.btn_B_Click);
             // 
             // btnLimpiar
             // 
@@ -96,6 +96,7 @@
             this.btnAceptar.TabIndex = 19;
             this.btnAceptar.Text = "Acpetar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // txtCliente
             // 
@@ -149,6 +150,7 @@
             this.dgvCupones.ShowEditingIcon = false;
             this.dgvCupones.Size = new System.Drawing.Size(811, 306);
             this.dgvCupones.TabIndex = 0;
+            this.dgvCupones.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCupones_CellContentDoubleClick);
             // 
             // RegistrarConsumo
             // 
@@ -180,7 +182,7 @@
         private System.Windows.Forms.Label lblCliente;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvCupones;
-        private System.Windows.Forms.Button btn_B;
+        private System.Windows.Forms.Button btn_Buscar;
         public System.Windows.Forms.TextBox txtCliente;
     }
 }

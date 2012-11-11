@@ -269,6 +269,14 @@ namespace GrouponDesktop
                 frm.ShowDialog();
 
             }
+
+            private void registrarConsumoToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+
+                RegistroConsumoCupon.RegistrarConsumo frm = new GrouponDesktop.RegistroConsumoCupon.RegistrarConsumo();
+                frm.ShowDialog();
+
+            }
            
 
         }

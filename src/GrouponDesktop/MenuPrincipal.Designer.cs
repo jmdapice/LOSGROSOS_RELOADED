@@ -266,6 +266,7 @@
             this.registrarConsumoToolStripMenuItem.Name = "registrarConsumoToolStripMenuItem";
             this.registrarConsumoToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.registrarConsumoToolStripMenuItem.Text = "Registrar Consumo...";
+            this.registrarConsumoToolStripMenuItem.Click += new System.EventHandler(this.registrarConsumoToolStripMenuItem_Click);
             // 
             // adminToolStripMenuItem
             // 
