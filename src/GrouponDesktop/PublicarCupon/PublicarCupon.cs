@@ -41,13 +41,17 @@ namespace GrouponDesktop.PublicarCupon
                                     FROM LOSGROSOS_RELOADED.Cupon cupon, LOSGROSOS_RELOADED.Proveedor prov
                                     WHERE publicado = '0'
                                       AND prov.idProveedor = @idProv
-                                      AND cupon.idProveedor = prov.idProveedor ", dbcon);
+                                      AND cupon.idProveedor = prov.idProveedor
+                                      AND cupon.fechaVencOferta >= @fechaConfig", dbcon);
 
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
 
             cmd.Parameters.Add("@idProv", SqlDbType.Int, 18);
             cmd.Parameters["@idProv"].Value = Support.obtenerIdProveedor(Support.traerIdUsuario(txtProveedor.Text));
+
+            cmd.Parameters.Add("@fechaConfig", SqlDbType.DateTime);
+            cmd.Parameters["@fechaConfig"].Value = Support.fechaConfig();
 
             try
             {
@@ -80,7 +84,11 @@ namespace GrouponDesktop.PublicarCupon
                                            cupon.stock AS 'Stock'
                                     FROM LOSGROSOS_RELOADED.Cupon cupon, LOSGROSOS_RELOADED.Proveedor prov
                                     WHERE publicado = '0'
-                                      AND cupon.idProveedor = prov.idProveedor", dbcon);
+                                      AND cupon.idProveedor = prov.idProveedor
+                                      AND cupon.fechaVencOferta >= @fechaConfig", dbcon);
+
+            cmd.Parameters.Add("@fechaConfig", SqlDbType.DateTime);
+            cmd.Parameters["@fechaConfig"].Value = Support.fechaConfig();
 
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(cmd);

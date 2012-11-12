@@ -25,20 +25,20 @@ namespace GrouponDesktop.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\SQLSERVER2008;Initial Catalog=GD2C2012;Persist Security Inf" +
-            "o=True;User ID=gd;Password=gd2012")]
-        public string conStr {
+        [global::System.Configuration.DefaultSettingValueAttribute("2009-01-01")]
+        public global::System.DateTime fechaConfig {
             get {
-                return ((string)(this["conStr"]));
+                return ((global::System.DateTime)(this["fechaConfig"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2009-01-01")]
-        public global::System.DateTime fechaConfig {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\SQLSERVER2008;Initial Catalog=GD2C2012;Persist Security Inf" +
+            "o=True;User ID=gd;Password=gd2012")]
+        public string conStr {
             get {
-                return ((global::System.DateTime)(this["fechaConfig"]));
+                return ((string)(this["conStr"]));
             }
         }
     }

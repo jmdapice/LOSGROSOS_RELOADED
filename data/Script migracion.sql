@@ -601,9 +601,9 @@ WHERE a.Provee_Ciudad = b.nombre
 /************************************************************************************/ 
 
 INSERT INTO LOSGROSOS_RELOADED.Cupon(codigoCupon,precio,precioFicticio,descripcion,idProveedor,cantMaxima,
-                                     fechaPubli,fechaVencOferta,stock)
+                                     fechaPubli,fechaVencOferta,stock,publicado)
 SELECT DISTINCT a.Groupon_Codigo,a.Groupon_Precio,a.Groupon_Precio_Ficticio,a.Groupon_Descripcion,b.idProveedor,5,
-       a.Groupon_Fecha, a.Groupon_Fecha_Venc,a.Groupon_Cantidad
+       a.Groupon_Fecha, a.Groupon_Fecha_Venc,a.Groupon_Cantidad, '1'
 FROM gd_esquema.Maestra a, LOSGROSOS_RELOADED.Proveedor b
 WHERE a.Provee_CUIT = b.cuit 
 
