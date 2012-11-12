@@ -293,6 +293,12 @@ namespace GrouponDesktop
                 AbmProveedor.BajaProv frm = new AbmProveedor.BajaProv();
                 frm.ShowDialog();
             }
+
+            private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                ArmarCupon.ArmarCupon frm = new ArmarCupon.ArmarCupon();
+                frm.ShowDialog();
+            }
            
 
         }

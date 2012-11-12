@@ -116,6 +116,12 @@
     <Compile Include="AbmRoles\ModRol2.Designer.cs">
       <DependentUpon>ModRol2.cs</DependentUpon>
     </Compile>
+    <Compile Include="ArmarCupon\ArmarCupon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ArmarCupon\ArmarCupon.Designer.cs">
+      <DependentUpon>ArmarCupon.cs</DependentUpon>
+    </Compile>
     <Compile Include="CargaCredito\CargaCredito.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +278,9 @@
     <EmbeddedResource Include="AbmRoles\ModRol2.resx">
       <DependentUpon>ModRol2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ArmarCupon\ArmarCupon.resx">
+      <DependentUpon>ArmarCupon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CargaCredito\CargaCredito.resx">
       <DependentUpon>CargaCredito.cs</DependentUpon>
     </EmbeddedResource>
@@ -339,7 +348,6 @@
     <Compile Include="Support.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ArmarCupon\" />
     <Folder Include="FacturarProveedor\" />
     <Folder Include="ListadoEstadistico\" />
   </ItemGroup>

@@ -176,6 +176,11 @@ namespace GrouponDesktop.AbmProveedor
                     strError += "- El telefono solo admite valores numericos\n";
                     valid = false;
                 }
+                else
+                {
+                    txtTel.Text = txtTel.Text.Replace(".", "");
+                    txtTel.Text = txtTel.Text.Replace(",", "");
+                }
             }
             if (this.txtDireccion.Text.Length > 255)
             {
