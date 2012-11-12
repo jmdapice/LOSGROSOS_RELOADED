@@ -230,7 +230,9 @@ namespace GrouponDesktop
 
             private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                //juanca23424asdasd234234
+                Login frm = new Login();
+                frm.Show();
+                this.Dispose();
             }
 
             private void comprarToolStripMenuItem_Click(object sender, EventArgs e)
