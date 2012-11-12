@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtCuit = new System.Windows.Forms.MaskedTextBox();
             this.cmbRubro = new System.Windows.Forms.ComboBox();
             this.cmbCiudad = new System.Windows.Forms.ComboBox();
             this.lblContacto = new System.Windows.Forms.Label();
@@ -49,7 +50,6 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
-            this.txtCuit = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,6 +79,14 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Paso 2";
+            // 
+            // txtCuit
+            // 
+            this.txtCuit.Location = new System.Drawing.Point(341, 111);
+            this.txtCuit.Mask = "00-00000000-0";
+            this.txtCuit.Name = "txtCuit";
+            this.txtCuit.Size = new System.Drawing.Size(286, 20);
+            this.txtCuit.TabIndex = 20;
             // 
             // cmbRubro
             // 
@@ -212,6 +220,7 @@
             // txtTel
             // 
             this.txtTel.Location = new System.Drawing.Point(30, 169);
+            this.txtTel.MaxLength = 18;
             this.txtTel.Name = "txtTel";
             this.txtTel.Size = new System.Drawing.Size(286, 20);
             this.txtTel.TabIndex = 2;
@@ -259,14 +268,6 @@
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
-            // 
-            // txtCuit
-            // 
-            this.txtCuit.Location = new System.Drawing.Point(341, 111);
-            this.txtCuit.Mask = "00-00000000-0";
-            this.txtCuit.Name = "txtCuit";
-            this.txtCuit.Size = new System.Drawing.Size(286, 20);
-            this.txtCuit.TabIndex = 20;
             // 
             // AltaProveedor
             // 

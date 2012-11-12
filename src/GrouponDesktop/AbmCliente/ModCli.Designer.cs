@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.masktxtTel = new System.Windows.Forms.MaskedTextBox();
             this.txtDni = new System.Windows.Forms.MaskedTextBox();
             this.masktxtNombre = new System.Windows.Forms.MaskedTextBox();
             this.masktxtCodPos = new System.Windows.Forms.MaskedTextBox();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.lstCiudadesElegidas = new System.Windows.Forms.CheckedListBox();
             this.cmbCiudades = new System.Windows.Forms.ComboBox();
             this.txtFecNac = new System.Windows.Forms.TextBox();
@@ -55,7 +56,6 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,6 +92,27 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del Cliente";
             // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.FirstDayOfWeek = System.Windows.Forms.Day.Thursday;
+            this.monthCalendar1.Location = new System.Drawing.Point(400, 169);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.ShowTodayCircle = false;
+            this.monthCalendar1.ShowWeekNumbers = true;
+            this.monthCalendar1.TabIndex = 0;
+            this.monthCalendar1.Visible = false;
+            this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(560, 198);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(73, 17);
+            this.checkBox1.TabIndex = 22;
+            this.checkBox1.Text = "Habilitado";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // masktxtTel
             // 
             this.masktxtTel.AsciiOnly = true;
@@ -106,7 +127,7 @@
             // 
             this.txtDni.AsciiOnly = true;
             this.txtDni.Location = new System.Drawing.Point(341, 43);
-            this.txtDni.Mask = "999999999999999999";
+            this.txtDni.Mask = "999999999";
             this.txtDni.Name = "txtDni";
             this.txtDni.PromptChar = ' ';
             this.txtDni.Size = new System.Drawing.Size(286, 20);
@@ -130,17 +151,6 @@
             this.masktxtCodPos.PromptChar = ' ';
             this.masktxtCodPos.Size = new System.Drawing.Size(286, 20);
             this.masktxtCodPos.TabIndex = 4;
-            // 
-            // monthCalendar1
-            // 
-            this.monthCalendar1.FirstDayOfWeek = System.Windows.Forms.Day.Thursday;
-            this.monthCalendar1.Location = new System.Drawing.Point(400, 169);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.ShowTodayCircle = false;
-            this.monthCalendar1.ShowWeekNumbers = true;
-            this.monthCalendar1.TabIndex = 0;
-            this.monthCalendar1.Visible = false;
-            this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
             // 
             // lstCiudadesElegidas
             // 
@@ -339,16 +349,6 @@
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(560, 198);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(73, 17);
-            this.checkBox1.TabIndex = 22;
-            this.checkBox1.Text = "Habilitado";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // ModCli
             // 

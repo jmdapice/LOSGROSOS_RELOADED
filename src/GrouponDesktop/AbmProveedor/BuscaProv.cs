@@ -17,7 +17,7 @@ namespace GrouponDesktop.AbmProveedor
             InitializeComponent();
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        public void btnLimpiar_Click(object sender, EventArgs e)
         { 
             this.txtMail.Clear();
             this.txtRazSoc.Clear();
@@ -26,7 +26,7 @@ namespace GrouponDesktop.AbmProveedor
             dgvProv.Columns.Clear();
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        public void btnBuscar_Click(object sender, EventArgs e)
         {
             dgvProv.Columns.Clear();
 
@@ -87,8 +87,8 @@ namespace GrouponDesktop.AbmProveedor
 
         public virtual void dgvProv_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //.ModCli frmModCli = new AbmCliente.ModCli(this);
-            //frmModCli.ShowDialog();
+            ModProv frm = new ModProv(this);
+            frm.ShowDialog();
         }
         
     }

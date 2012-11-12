@@ -251,6 +251,9 @@
     <EmbeddedResource Include="AbmProveedor\BuscaProv.resx">
       <DependentUpon>BuscaProv.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmProveedor\ModProv.resx">
+      <DependentUpon>ModProv.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmRoles\ElimRol.resx">
       <DependentUpon>ElimRol.cs</DependentUpon>
     </EmbeddedResource>

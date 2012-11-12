@@ -14,12 +14,15 @@ namespace GrouponDesktop.AbmProveedor
     {
         RegistroUsuario frmPaso1 = null;
 
-        public AltaProveedor() { }
+        public AltaProveedor()
+        { 
+            InitializeComponent(); 
+        }
         
-        public AltaProveedor(RegistroUsuario frmRegistro)
+        public AltaProveedor(RegistroUsuario frmRegistro):this()
         {
             frmPaso1 = frmRegistro;
-            InitializeComponent();
+            
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -289,7 +292,7 @@ namespace GrouponDesktop.AbmProveedor
             cmd.Parameters.Add("@razonSocial", SqlDbType.VarChar, 100);
             cmd.Parameters.Add("@domicilio", SqlDbType.VarChar, 100);
             cmd.Parameters.Add("@idCiudad", SqlDbType.Int, 18);
-            cmd.Parameters.Add("@tel", SqlDbType.Int, 18);
+            cmd.Parameters.Add("@tel", SqlDbType.BigInt, 18);
             cmd.Parameters.Add("@cuit", SqlDbType.VarChar,20);
             cmd.Parameters.Add("@idRubro", SqlDbType.Int, 18);
             cmd.Parameters.Add("@mail", SqlDbType.VarChar, 255);
@@ -299,7 +302,7 @@ namespace GrouponDesktop.AbmProveedor
 
             cmd.Parameters["@razonSocial"].Value = this.txtRazonSocial.Text;
             cmd.Parameters["@idCiudad"].Value = idCiudad;
-            cmd.Parameters["@tel"].Value = Convert.ToInt32(this.txtTel.Text);
+            cmd.Parameters["@tel"].Value = Convert.ToInt64(this.txtTel.Text);
             cmd.Parameters["@cuit"].Value = this.txtCuit.Text;
             cmd.Parameters["@idRubro"].Value = idRubro;
             cmd.Parameters["@mail"].Value = this.txtMail.Text;

@@ -35,7 +35,7 @@ namespace GrouponDesktop.AbmCliente
             this.masktxtCodPos.Text = frmPadre.dgvClientes.CurrentRow.Cells["CP"].Value.ToString();
 
             SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
-            SqlCommand cmd = new SqlCommand(@"Select nombre, idCiudad 
+            SqlCommand cmd = new SqlCommand(@"Select RTRIM(nombre) as nombre, idCiudad 
                                             from LOSGROSOS_RELOADED.Ciudad", dbcon);
             DataTable dt = new DataTable();
             DataTable dt2 = new DataTable();
@@ -249,7 +249,7 @@ namespace GrouponDesktop.AbmCliente
             }
             else
             {
-                if (!validarTelUnico(Convert.ToInt32(this.masktxtTel.Text)))
+                if (!validarTelUnico(Convert.ToInt64(this.masktxtTel.Text)))
                 {
                     lblTel.ForeColor = System.Drawing.Color.Red;
                     strError += "- Ya hay registrado un cliente con este telefono\n";
@@ -281,7 +281,7 @@ namespace GrouponDesktop.AbmCliente
         }
 
 
-        private bool validarTelUnico(Int32 tel)
+        private bool validarTelUnico(Int64 tel)
         {
             bool telUnico = false;
             int idCliente = Convert.ToInt32(frmPadre.dgvClientes.CurrentRow.Cells["id"].Value);
@@ -291,7 +291,7 @@ namespace GrouponDesktop.AbmCliente
 											where tel=@tel
                                             and idCli != @idCli", dbcon);
 
-            cmd.Parameters.Add("@tel", SqlDbType.Int, 18);
+            cmd.Parameters.Add("@tel", SqlDbType.BigInt, 18);
             cmd.Parameters.Add("@idCli", SqlDbType.Int, 18);
             cmd.Parameters["@tel"].Value = tel;
             cmd.Parameters["@idCli"].Value = idCliente;
@@ -337,7 +337,7 @@ namespace GrouponDesktop.AbmCliente
             cmd.Parameters.Add("@apellido", SqlDbType.VarChar, 255);
             cmd.Parameters.Add("@dni", SqlDbType.Int, 18);
             cmd.Parameters.Add("@direccion", SqlDbType.VarChar, 255);
-            cmd.Parameters.Add("@tel", SqlDbType.Int, 18);
+            cmd.Parameters.Add("@tel", SqlDbType.BigInt, 18);
             cmd.Parameters.Add("@mail", SqlDbType.VarChar, 255);
             cmd.Parameters.Add("@fechaNac", SqlDbType.DateTime);
             cmd.Parameters.Add("@idCiudad", SqlDbType.Int, 18);
@@ -348,7 +348,7 @@ namespace GrouponDesktop.AbmCliente
             cmd.Parameters["@apellido"].Value = this.txtApellido.Text;
             cmd.Parameters["@dni"].Value = Convert.ToInt32(this.txtDni.Text);
             cmd.Parameters["@direccion"].Value = this.txtDireccion.Text;
-            cmd.Parameters["@tel"].Value = Convert.ToInt32(this.masktxtTel.Text);
+            cmd.Parameters["@tel"].Value = Convert.ToInt64(this.masktxtTel.Text);
             cmd.Parameters["@mail"].Value = this.txtMail.Text;
             cmd.Parameters["@idCiudad"].Value = idCiudad;
 
