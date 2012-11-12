@@ -141,5 +141,73 @@ namespace GrouponDesktop.PublicarCupon
             txtProveedor.Text = "";
             traerSinFiltro();
         }
+
+        private void dgvCupones_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            string mensaje = "";
+            string codCupon = "";
+            string descripcion = "";
+
+            codCupon = dgvCupones.CurrentRow.Cells["Cod. Cupón"].Value.ToString();
+            descripcion = dgvCupones.CurrentRow.Cells["Descripción"].Value.ToString();
+
+            mensaje = "¿Está seguro que desea publicar el cupón " + codCupon + " ?\n" + descripcion;
+
+            if (Support.mostrarPregunta(mensaje, "Publicar cupón"))
+            {
+
+                registrarPublicacion();
+
+                if (btnAplicar.Enabled) //Codigo cabeza 2.0
+                {
+                    traerSinFiltro();
+                }
+                else
+                {
+                    traerConFiltro();
+                }
+
+
+            }
+            else
+            {
+                Support.mostrarAdvertencia("No se ha registrado el consumo del cupón");
+            }
+
+        }
+
+        private void registrarPublicacion()
+        {
+
+            string codCupon = dgvCupones.CurrentRow.Cells["Cod. Cupón"].Value.ToString();
+
+            try
+            {
+                SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
+                dbcon.Open();
+                SqlCommand cmd = new SqlCommand(@"UPDATE LOSGROSOS_RELOADED.Cupon 
+                                                     SET fechaPubli = @fechaConfig,
+                                                         publicado = '1'
+                                                   WHERE codigoCupon = @cod", dbcon);
+
+                cmd.Parameters.Add("@cod", SqlDbType.VarChar, 50);
+                cmd.Parameters["@cod"].Value = codCupon;
+
+                cmd.Parameters.Add("@fechaConfig", SqlDbType.DateTime);
+                cmd.Parameters["@fechaConfig"].Value = Support.fechaConfig();
+
+                cmd.ExecuteNonQuery();
+
+                Support.mostrarInfo("Se ha registrado la publicación con éxito");
+
+            }
+            catch (Exception ex)
+            {
+                Support.mostrarError(ex.Message.ToString());
+                this.Close();
+            }
+
+        }
     }
 }
