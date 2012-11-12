@@ -277,6 +277,14 @@ namespace GrouponDesktop
                 frm.ShowDialog();
 
             }
+
+            private void publicarToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+
+                PublicarCupon.PublicarCupon frm = new GrouponDesktop.PublicarCupon.PublicarCupon();
+                frm.ShowDialog();
+
+            }
            
 
         }

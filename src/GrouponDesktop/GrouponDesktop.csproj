@@ -188,6 +188,18 @@
     <Compile Include="PedirDevolucion\MotivoDevolucion.Designer.cs">
       <DependentUpon>MotivoDevolucion.cs</DependentUpon>
     </Compile>
+    <Compile Include="PublicarCupon\PublicarCupon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PublicarCupon\PublicarCupon.Designer.cs">
+      <DependentUpon>PublicarCupon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PublicarCupon\Publicar_BuscarProv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PublicarCupon\Publicar_BuscarProv.Designer.cs">
+      <DependentUpon>Publicar_BuscarProv.cs</DependentUpon>
+    </Compile>
     <Compile Include="RegistroConsumoCupon\Consumo_BuscarCli.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,6 +292,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="PublicarCupon\PublicarCupon.resx">
+      <DependentUpon>PublicarCupon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RegistroConsumoCupon\RegistrarConsumo.resx">
       <DependentUpon>RegistrarConsumo.cs</DependentUpon>
     </EmbeddedResource>
@@ -315,7 +330,6 @@
     <Folder Include="ArmarCupon\" />
     <Folder Include="FacturarProveedor\" />
     <Folder Include="ListadoEstadistico\" />
-    <Folder Include="PublicarCupon\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

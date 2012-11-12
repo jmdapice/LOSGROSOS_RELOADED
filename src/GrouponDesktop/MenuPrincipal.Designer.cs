@@ -283,6 +283,7 @@
             this.publicarToolStripMenuItem.Name = "publicarToolStripMenuItem";
             this.publicarToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.publicarToolStripMenuItem.Text = "Publicar...";
+            this.publicarToolStripMenuItem.Click += new System.EventHandler(this.publicarToolStripMenuItem_Click);
             // 
             // facturarToolStripMenuItem
             // 

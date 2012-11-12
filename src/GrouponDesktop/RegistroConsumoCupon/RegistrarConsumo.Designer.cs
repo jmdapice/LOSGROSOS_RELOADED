@@ -53,7 +53,7 @@
             this.gbFiltro.Controls.Add(this.lblCliente);
             this.gbFiltro.Location = new System.Drawing.Point(12, 15);
             this.gbFiltro.Name = "gbFiltro";
-            this.gbFiltro.Size = new System.Drawing.Size(814, 77);
+            this.gbFiltro.Size = new System.Drawing.Size(869, 77);
             this.gbFiltro.TabIndex = 4;
             this.gbFiltro.TabStop = false;
             this.gbFiltro.Text = "Filtro";
@@ -121,7 +121,7 @@
             this.groupBox1.Controls.Add(this.dgvCupones);
             this.groupBox1.Location = new System.Drawing.Point(9, 98);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(823, 331);
+            this.groupBox1.Size = new System.Drawing.Size(872, 331);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cupones comprados";
@@ -148,7 +148,7 @@
             this.dgvCupones.RowHeadersVisible = false;
             this.dgvCupones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCupones.ShowEditingIcon = false;
-            this.dgvCupones.Size = new System.Drawing.Size(811, 306);
+            this.dgvCupones.Size = new System.Drawing.Size(860, 306);
             this.dgvCupones.TabIndex = 0;
             this.dgvCupones.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCupones_CellContentDoubleClick);
             // 
@@ -156,7 +156,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(840, 444);
+            this.ClientSize = new System.Drawing.Size(893, 444);
             this.Controls.Add(this.gbFiltro);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
