@@ -12,8 +12,11 @@ namespace GrouponDesktop.AbmProveedor
 {
     public partial class BuscaProv : Form
     {
+        public bool ocultarInhab;
+        
         public BuscaProv()
         {
+            ocultarInhab = false;
             InitializeComponent();
         }
 
@@ -37,7 +40,7 @@ namespace GrouponDesktop.AbmProveedor
                                              RTRIM(c.nombre) as 'Ciudad', p.tel as 'Telefono', p.cuit as 'CUIT',
                                              r.descripcion as 'Rubro',p.mail as 'Mail',p.codPostal as 'CP',
                                              p.nombContacto as 'Contacto',u.nombreUsuario as 'Usuario',
-                                             p.idProveedor as 'id', p.inhabilitado                    
+                                             p.idProveedor as 'id', p.inhabilitado as 'inhab'                   
                                              from LOSGROSOS_RELOADED.Proveedor p, LOSGROSOS_RELOADED.Ciudad c,
                                              LOSGROSOS_RELOADED.Usuario u,LOSGROSOS_RELOADED.Rubro r
                                              where p.idCiudad = c.idCiudad
@@ -64,6 +67,12 @@ namespace GrouponDesktop.AbmProveedor
                 cmd.Parameters["@criterio3"].Value = this.txtCuit.Text;
 
             }
+            if (ocultarInhab)
+            {
+                cmd.CommandText += "and p.inhabilitado !='1' ";
+ 
+            }
+
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
 
@@ -80,7 +89,7 @@ namespace GrouponDesktop.AbmProveedor
             this.dgvProv.DataSource = dt;
 
             dgvProv.Columns["id"].Visible = false;
-            dgvProv.Columns["inhabilitado"].Visible = false;
+            dgvProv.Columns["inhab"].Visible = false;
             dgvProv.Columns["Domicilio"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
            
         }
@@ -89,6 +98,11 @@ namespace GrouponDesktop.AbmProveedor
         {
             ModProv frm = new ModProv(this);
             frm.ShowDialog();
+        }
+
+        public virtual void dgvProv_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+
         }
         
     }

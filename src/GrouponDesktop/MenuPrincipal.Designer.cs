@@ -238,6 +238,7 @@
             this.eliminarProvToolStripMenuItem.Name = "eliminarProvToolStripMenuItem";
             this.eliminarProvToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.eliminarProvToolStripMenuItem.Text = "Eliminar";
+            this.eliminarProvToolStripMenuItem.Click += new System.EventHandler(this.eliminarProvToolStripMenuItem_Click);
             // 
             // modificarProvToolStripMenuItem
             // 

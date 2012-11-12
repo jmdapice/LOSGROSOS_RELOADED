@@ -12,6 +12,7 @@ namespace GrouponDesktop.AbmProveedor
 {
     public partial class ModProv : Form
     {
+        bool habPresionado = false;
         BuscaProv frmPadre;
         public ModProv(BuscaProv frm)
         {
@@ -23,7 +24,11 @@ namespace GrouponDesktop.AbmProveedor
         {
             cargarCombos();
             cargarTextos();
-
+            if (frmPadre.dgvProv.CurrentRow.Cells["inhab"].Value.ToString().Equals("1"))
+            {
+                btnHabilitar.Enabled = true;
+                btnHabilitar.Text = "Habilitar";
+            }
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -97,6 +102,7 @@ namespace GrouponDesktop.AbmProveedor
             this.txtNombreContacto.Text = frmPadre.dgvProv.CurrentRow.Cells["Contacto"].Value.ToString();
             this.txtRazonSocial.Text = frmPadre.dgvProv.CurrentRow.Cells["Razon Social"].Value.ToString();
             this.txtTel.Text = frmPadre.dgvProv.CurrentRow.Cells["Telefono"].Value.ToString();
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -119,10 +125,10 @@ namespace GrouponDesktop.AbmProveedor
                     Support.mostrarError(ex.Message);
                 }
                 
-                //if (!(habilitado && this.checkBox1.Checked))
-                //{
-                //    actualizarHabilitado(dbcon);
-                //}
+                if (habPresionado)
+                {
+                    actualizarHabilitado(dbcon);
+                }
                 
                 guardarModProv(dbcon);
                 Support.mostrarInfo("Los cambios han sido guardados");
@@ -386,6 +392,36 @@ namespace GrouponDesktop.AbmProveedor
 
 
 
+        }
+
+        private void btnHabilitar_Click(object sender, EventArgs e)
+        {
+
+            habPresionado = true;    
+            btnHabilitar.Enabled = false;
+            btnHabilitar.Text = "Habilitado";
+           
+        
+        }
+        private void actualizarHabilitado(SqlConnection dbcon)
+        {
+            
+            SqlCommand cmd = new SqlCommand(@"EXEC LOSGROSOS_RELOADED.P_HabilitacionProveedor 
+                                            @idProv,'0'",dbcon);
+
+
+            cmd.Parameters.Add("@idProv", SqlDbType.Int, 18); 
+            cmd.Parameters["@idProv"].Value = Convert.ToInt32(frmPadre.dgvProv.CurrentRow.Cells["id"].Value);
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Support.mostrarError(ex.Message);
+            }
+
+        
         }
     }
 }

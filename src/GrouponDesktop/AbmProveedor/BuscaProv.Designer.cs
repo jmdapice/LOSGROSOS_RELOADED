@@ -57,6 +57,7 @@
             this.dgvProv.Size = new System.Drawing.Size(867, 232);
             this.dgvProv.TabIndex = 10;
             this.dgvProv.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProv_CellContentDoubleClick);
+            this.dgvProv.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvProv_RowsAdded);
             // 
             // btnBuscar
             // 

@@ -285,6 +285,12 @@ namespace GrouponDesktop
                 frm.ShowDialog();
 
             }
+
+            private void eliminarProvToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                AbmProveedor.BajaProv frm = new AbmProveedor.BajaProv();
+                frm.ShowDialog();
+            }
            
 
         }
