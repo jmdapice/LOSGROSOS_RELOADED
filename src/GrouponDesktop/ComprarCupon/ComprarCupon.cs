@@ -74,16 +74,18 @@ namespace GrouponDesktop.ComprarCupon
             dgvCupones.Columns.Clear();
             SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
             SqlCommand cmd;
-            cmd = new SqlCommand(@"select distinct cupon.codigoCupon, cupon.descripcion as 'Descripcion',cupon.precio as 'Precio Cuponete',cupon.precioFicticio as 'Precio Anterior'
-                                   from LOSGROSOS_RELOADED.Cupon cupon, LOSGROSOS_RELOADED.CuponCiudad ciudad
+            cmd = new SqlCommand(@"select distinct cupon.codigoCupon, cupon.descripcion as 'Descripcion',
+                                   cupon.precio as 'Precio Cuponete',cupon.precioFicticio as 'Precio Anterior'
+                                   from LOSGROSOS_RELOADED.Cupon cupon, LOSGROSOS_RELOADED.CuponCiudad ciudad,
+                                   LOSGROSOS_RELOADED.CiudadesPreferidas ciudpref
                                    where cupon.stock > 0
-                                   and cupon.cantMaxima > (  SELECT COUNT(*) 
-							                                 FROM LOSGROSOS_RELOADED.CuponComprado 
-							                                 WHERE idCli = @idCli
-							                                 and codigoCupon = cupon.codigoCupon)
-                                   and ciudad.idCiudad IN (SELECT idCiudad 
-                                                           FROM LOSGROSOS_RELOADED.CiudadesPreferidas
-                                                           WHERE idCli = @idCli )
+                                   and cupon.cantMaxima > ( SELECT COUNT(*)
+                                   FROM LOSGROSOS_RELOADED.CuponComprado
+                                   WHERE idCli = @idCli
+                                   and codigoCupon = cupon.codigoCupon)
+                                   and ciudad.idCiudad = ciudpref.idCiudad
+                                   and ciudpref.idCli = @idCli
+                                   and ciudad.codigoCupon = cupon.codigoCupon
                                    and cupon.publicado='1'
                                    and fechaVencOferta>=@fechaConf
                                    and fechaPubli <= @fechaConf", dbcon);

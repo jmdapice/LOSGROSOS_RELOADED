@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.calendHasta = new System.Windows.Forms.MonthCalendar();
+            this.calendDesde = new System.Windows.Forms.MonthCalendar();
             this.dgvCupones = new System.Windows.Forms.DataGridView();
             this.gbFiltro = new System.Windows.Forms.GroupBox();
             this.btnLimpiar = new System.Windows.Forms.Button();
@@ -41,8 +43,6 @@
             this.txtFechaDesde = new System.Windows.Forms.TextBox();
             this.btnSelecDesde = new System.Windows.Forms.Button();
             this.lblFechaDesde = new System.Windows.Forms.Label();
-            this.calendDesde = new System.Windows.Forms.MonthCalendar();
-            this.calendHasta = new System.Windows.Forms.MonthCalendar();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCupones)).BeginInit();
             this.gbFiltro.SuspendLayout();
@@ -53,12 +53,28 @@
             this.groupBox1.Controls.Add(this.calendHasta);
             this.groupBox1.Controls.Add(this.calendDesde);
             this.groupBox1.Controls.Add(this.dgvCupones);
-            this.groupBox1.Location = new System.Drawing.Point(9, 115);
+            this.groupBox1.Location = new System.Drawing.Point(9, 101);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(823, 311);
+            this.groupBox1.Size = new System.Drawing.Size(823, 277);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Historial de compras";
+            // 
+            // calendHasta
+            // 
+            this.calendHasta.Location = new System.Drawing.Point(414, 19);
+            this.calendHasta.Name = "calendHasta";
+            this.calendHasta.TabIndex = 15;
+            this.calendHasta.Visible = false;
+            this.calendHasta.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.calendHasta_DateChanged);
+            // 
+            // calendDesde
+            // 
+            this.calendDesde.Location = new System.Drawing.Point(12, 19);
+            this.calendDesde.Name = "calendDesde";
+            this.calendDesde.TabIndex = 14;
+            this.calendDesde.Visible = false;
+            this.calendDesde.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.calendDesde_DateSelected);
             // 
             // dgvCupones
             // 
@@ -66,14 +82,14 @@
             this.dgvCupones.AllowUserToDeleteRows = false;
             this.dgvCupones.AllowUserToResizeRows = false;
             this.dgvCupones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCupones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCupones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvCupones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCupones.Location = new System.Drawing.Point(6, 19);
             this.dgvCupones.MultiSelect = false;
@@ -82,14 +98,11 @@
             this.dgvCupones.RowHeadersVisible = false;
             this.dgvCupones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCupones.ShowEditingIcon = false;
-            this.dgvCupones.Size = new System.Drawing.Size(811, 286);
+            this.dgvCupones.Size = new System.Drawing.Size(811, 252);
             this.dgvCupones.TabIndex = 0;
             // 
             // gbFiltro
             // 
-            this.gbFiltro.Controls.Add(this.btnLimpiar);
-            this.gbFiltro.Controls.Add(this.btnCancelar);
-            this.gbFiltro.Controls.Add(this.btnAceptar);
             this.gbFiltro.Controls.Add(this.btnSelecHasta);
             this.gbFiltro.Controls.Add(this.txtFechaHasta);
             this.gbFiltro.Controls.Add(this.lblFechaHasta);
@@ -98,14 +111,14 @@
             this.gbFiltro.Controls.Add(this.lblFechaDesde);
             this.gbFiltro.Location = new System.Drawing.Point(12, 12);
             this.gbFiltro.Name = "gbFiltro";
-            this.gbFiltro.Size = new System.Drawing.Size(814, 97);
+            this.gbFiltro.Size = new System.Drawing.Size(814, 83);
             this.gbFiltro.TabIndex = 2;
             this.gbFiltro.TabStop = false;
             this.gbFiltro.Text = "Filtro";
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(357, 74);
+            this.btnLimpiar.Location = new System.Drawing.Point(370, 384);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(100, 23);
             this.btnLimpiar.TabIndex = 21;
@@ -115,7 +128,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(463, 74);
+            this.btnCancelar.Location = new System.Drawing.Point(476, 384);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 23);
             this.btnCancelar.TabIndex = 20;
@@ -125,7 +138,7 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(251, 74);
+            this.btnAceptar.Location = new System.Drawing.Point(264, 384);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(100, 23);
             this.btnAceptar.TabIndex = 19;
@@ -189,29 +202,19 @@
             this.lblFechaDesde.TabIndex = 2;
             this.lblFechaDesde.Text = "Fecha de compra desde";
             // 
-            // calendDesde
-            // 
-            this.calendDesde.Location = new System.Drawing.Point(12, 19);
-            this.calendDesde.Name = "calendDesde";
-            this.calendDesde.TabIndex = 14;
-            this.calendDesde.Visible = false;
-            this.calendDesde.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.calendDesde_DateSelected);
-            // 
-            // calendHasta
-            // 
-            this.calendHasta.Location = new System.Drawing.Point(414, 19);
-            this.calendHasta.Name = "calendHasta";
-            this.calendHasta.TabIndex = 15;
-            this.calendHasta.Visible = false;
-            this.calendHasta.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.calendHasta_DateChanged);
-            // 
             // historialCompras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(840, 430);
+            this.ClientSize = new System.Drawing.Size(840, 422);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.gbFiltro);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnAceptar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "historialCompras";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Historial de compras";

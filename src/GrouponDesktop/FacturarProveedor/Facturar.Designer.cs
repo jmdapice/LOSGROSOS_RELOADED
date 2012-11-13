@@ -166,7 +166,7 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(118, 419);
+            this.btnLimpiar.Location = new System.Drawing.Point(284, 419);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(100, 23);
             this.btnLimpiar.TabIndex = 30;
@@ -176,7 +176,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(654, 419);
+            this.btnCancelar.Location = new System.Drawing.Point(496, 419);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 23);
             this.btnCancelar.TabIndex = 29;
@@ -186,7 +186,7 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(387, 419);
+            this.btnAceptar.Location = new System.Drawing.Point(390, 419);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(100, 23);
             this.btnAceptar.TabIndex = 28;
@@ -249,6 +249,7 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAceptar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Facturar";

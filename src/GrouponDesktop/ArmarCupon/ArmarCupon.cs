@@ -112,17 +112,14 @@ namespace GrouponDesktop.ArmarCupon
             }
             else
             {
-                if (!Support.esNumerico(this.txtCantDisp.Text))
+                if (!Support.esNumerico(this.txtCantDisp.Text) || this.txtCantMax.Text.Contains('.')
+                    || this.txtCantMax.Text.Contains(','))
                 {
                     this.lblCantDisp.ForeColor = System.Drawing.Color.Red;
-                    strError += "- Debe ingresar valores numericos en Cantidad Disponible\n";
+                    strError += "- Debe ingresar valores numericos enteros en Cantidad Disponible\n";
                     valid = false;
                 }
-                else
-                {
-                    this.txtCantDisp.Text = this.txtCantDisp.Text.Replace(",", "");
-                    this.txtCantDisp.Text = this.txtCantDisp.Text.Replace(".", "");
-                }
+              
             }
             if (this.txtCantMax.Text == "")
             {
@@ -132,17 +129,14 @@ namespace GrouponDesktop.ArmarCupon
             }
             else
             {
-                if (!Support.esNumerico(this.txtCantMax.Text))
+                if (!Support.esNumerico(this.txtCantMax.Text)|| this.txtCantMax.Text.Contains('.')
+                    || this.txtCantMax.Text.Contains(','))
                 {
                     this.lblCantMax.ForeColor = System.Drawing.Color.Red;
-                    strError += "- Debe ingresar valores numericos en Cantidad Maxima de Compra\n";
+                    strError += "- Debe ingresar valores numericos enteros en Cantidad Maxima de Compra\n";
                     valid = false;
                 }
-                else
-                {
-                    this.txtCantMax.Text = this.txtCantMax.Text.Replace(",", "");
-                    this.txtCantMax.Text = this.txtCantMax.Text.Replace(".", "");
-                }
+               
             }
             if (this.txtVencCanje.Text == "")
             {
@@ -265,8 +259,8 @@ namespace GrouponDesktop.ArmarCupon
                                               @idProveedor, @cantMaxima, @fechaPubli, @fechaVencOferta,
                                               @stock, @fechaVencCanje", dbcon);
 
-            cmd.Parameters.Add("@precio", SqlDbType.Decimal, 18);
-            cmd.Parameters.Add("@precioFicticio", SqlDbType.Decimal, 18);
+            cmd.Parameters.Add("@precio", SqlDbType.Float, 18);
+            cmd.Parameters.Add("@precioFicticio", SqlDbType.Float, 18);
             cmd.Parameters.Add("@descripcion", SqlDbType.VarChar, 255);
             cmd.Parameters.Add("@idProveedor", SqlDbType.Int, 18);
             cmd.Parameters.Add("@cantMaxima", SqlDbType.Int, 18);
@@ -274,9 +268,9 @@ namespace GrouponDesktop.ArmarCupon
             cmd.Parameters.Add("@fechaVencOferta", SqlDbType.DateTime);
             cmd.Parameters.Add("@stock", SqlDbType.Int, 18);
             cmd.Parameters.Add("@fechaVencCanje", SqlDbType.DateTime);
-            
-            cmd.Parameters["@precio"].Value = this.txtPrecioReal.Text;
-            cmd.Parameters["@precioFicticio"].Value = this.txtPrecioFict.Text;
+
+            cmd.Parameters["@precio"].Value = Convert.ToDouble(this.txtPrecioReal.Text);
+            cmd.Parameters["@precioFicticio"].Value = Convert.ToDouble(this.txtPrecioFict.Text);
             cmd.Parameters["@descripcion"].Value = this.txtDescripcion.Text;
             cmd.Parameters["@idProveedor"].Value = idProv;
             cmd.Parameters["@cantMaxima"].Value = Convert.ToDecimal(this.txtCantMax.Text);

@@ -50,10 +50,10 @@ namespace GrouponDesktop.RegistroConsumoCupon
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            if (Support.mostrarPregunta("¿Desea salir?", "Salir"))
-            {
+            
+            
                 this.Close();
-            }
+            
         }
 
         private void btn_B_Click(object sender, EventArgs e)
@@ -151,7 +151,7 @@ namespace GrouponDesktop.RegistroConsumoCupon
 
             mensaje = "¿Está seguro que desea registrar el cupón " + codCupon + " ?\n" + descripcion;
 
-            if (Support.mostrarPregunta(mensaje, "Comprar cupón"))
+            if (Support.mostrarPregunta(mensaje, "Registrar Consumo"))
             {
 
                 registrarConsumo();

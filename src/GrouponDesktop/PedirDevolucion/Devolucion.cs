@@ -88,6 +88,7 @@ namespace GrouponDesktop.PedirDevolucion
                                    WHERE comp.idCli = @idCli
                                      AND comp.codigoCupon = cupon.codigoCupon
                                      AND cupon.fechaVencOferta >= @fechaConf
+                                     AND comp.fechaCanje is null               
                                      AND comp.fechaDevolucion is null", dbcon);
 
             cmd.Parameters.Add("@idCli", SqlDbType.Int, 18);
@@ -165,7 +166,7 @@ namespace GrouponDesktop.PedirDevolucion
                     cmd.Parameters["@motivo"].Value = motivoDevolucion;
 
                     cmd.Parameters.Add("@idCompra", SqlDbType.Int, 18);
-                    cmd.Parameters["@idCompra"].Value = Convert.ToInt16(dgvCupones.CurrentRow.Cells["idCompra"].Value);
+                    cmd.Parameters["@idCompra"].Value = Convert.ToInt32(dgvCupones.CurrentRow.Cells["idCompra"].Value);
 
                     cmd.ExecuteNonQuery();
 

@@ -128,7 +128,8 @@ namespace GrouponDesktop.ListadoEstadistico
                 SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
                 SqlCommand cmd;
                 cmd = new SqlCommand(@"SELECT TOP 5  u.nombreUsuario as 'Nombre de Usuario',
-                                  count(g.idGiftCard) as 'Cantidad de GiftCards Recibidas'
+                                  count(g.idGiftCard) as 'Cantidad de GiftCards Recibidas',
+                                  sum(g.monto) as 'Monto Total'  
                                   FROM LOSGROSOS_RELOADED.GiftCard g, LOSGROSOS_RELOADED.Clientes c,
                                   LOSGROSOS_RELOADED.Usuario u
                                   where g.idCliDestino = c.idCli

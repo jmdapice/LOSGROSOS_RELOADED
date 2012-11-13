@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.numMonto = new System.Windows.Forms.NumericUpDown();
             this.lblMonto = new System.Windows.Forms.Label();
             this.txtDestino = new System.Windows.Forms.TextBox();
@@ -38,7 +39,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblRangoSaldo = new System.Windows.Forms.Label();
             this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMonto)).BeginInit();
             this.SuspendLayout();
@@ -56,6 +56,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información";
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Location = new System.Drawing.Point(172, 51);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(100, 23);
+            this.btnBuscar.TabIndex = 10;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // numMonto
             // 
@@ -76,9 +86,9 @@
             this.lblMonto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.lblMonto.Location = new System.Drawing.Point(6, 85);
             this.lblMonto.Name = "lblMonto";
-            this.lblMonto.Size = new System.Drawing.Size(128, 18);
+            this.lblMonto.Size = new System.Drawing.Size(122, 18);
             this.lblMonto.TabIndex = 3;
-            this.lblMonto.Text = "Monto a regalar(*)";
+            this.lblMonto.Text = "Monto a regalar *";
             // 
             // txtDestino
             // 
@@ -93,9 +103,9 @@
             this.lblDestino.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.lblDestino.Location = new System.Drawing.Point(6, 30);
             this.lblDestino.Name = "lblDestino";
-            this.lblDestino.Size = new System.Drawing.Size(132, 18);
+            this.lblDestino.Size = new System.Drawing.Size(122, 18);
             this.lblDestino.TabIndex = 2;
-            this.lblDestino.Text = "Usuario destino (*)";
+            this.lblDestino.Text = "Usuario destino *";
             // 
             // btnAceptar
             // 
@@ -144,16 +154,6 @@
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Location = new System.Drawing.Point(172, 51);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(100, 23);
-            this.btnBuscar.TabIndex = 10;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // Giftcard
             // 

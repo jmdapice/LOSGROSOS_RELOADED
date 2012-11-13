@@ -23,7 +23,7 @@ namespace GrouponDesktop.PublicarCupon
             traerSinFiltro();
             btnSacarFiltro.Enabled = false;
             btnAplicar.Enabled = true;
-            gbDatos.Text += Convert.ToString(Support.fechaConfig());
+            gbDatos.Text += Support.fechaConfig().ToShortDateString();
         }
 
         private void traerConFiltro()
@@ -118,10 +118,10 @@ namespace GrouponDesktop.PublicarCupon
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            if (Support.mostrarPregunta("¿Desea salir?", "Salir"))
-            {
+           
+            
                 this.Close();
-            }
+            
         }
 
         private void btnAplicar_Click(object sender, EventArgs e)

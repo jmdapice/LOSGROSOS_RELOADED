@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gbFiltro = new System.Windows.Forms.GroupBox();
             this.btnSacarFiltro = new System.Windows.Forms.Button();
             this.btn_Buscar = new System.Windows.Forms.Button();
@@ -45,10 +45,7 @@
             // 
             // gbFiltro
             // 
-            this.gbFiltro.Controls.Add(this.btnSacarFiltro);
             this.gbFiltro.Controls.Add(this.btn_Buscar);
-            this.gbFiltro.Controls.Add(this.btnCancelar);
-            this.gbFiltro.Controls.Add(this.btnAplicar);
             this.gbFiltro.Controls.Add(this.txtProveedor);
             this.gbFiltro.Controls.Add(this.lblProveedor);
             this.gbFiltro.Location = new System.Drawing.Point(12, 15);
@@ -60,7 +57,7 @@
             // 
             // btnSacarFiltro
             // 
-            this.btnSacarFiltro.Location = new System.Drawing.Point(584, 34);
+            this.btnSacarFiltro.Location = new System.Drawing.Point(398, 400);
             this.btnSacarFiltro.Name = "btnSacarFiltro";
             this.btnSacarFiltro.Size = new System.Drawing.Size(100, 23);
             this.btnSacarFiltro.TabIndex = 23;
@@ -80,17 +77,17 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(714, 34);
+            this.btnCancelar.Location = new System.Drawing.Point(504, 400);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 23);
             this.btnCancelar.TabIndex = 20;
-            this.btnCancelar.Text = "Salir";
+            this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAplicar
             // 
-            this.btnAplicar.Location = new System.Drawing.Point(454, 34);
+            this.btnAplicar.Location = new System.Drawing.Point(292, 400);
             this.btnAplicar.Name = "btnAplicar";
             this.btnAplicar.Size = new System.Drawing.Size(100, 23);
             this.btnAplicar.TabIndex = 19;
@@ -121,7 +118,7 @@
             this.gbDatos.Controls.Add(this.dgvCupones);
             this.gbDatos.Location = new System.Drawing.Point(9, 98);
             this.gbDatos.Name = "gbDatos";
-            this.gbDatos.Size = new System.Drawing.Size(875, 331);
+            this.gbDatos.Size = new System.Drawing.Size(875, 286);
             this.gbDatos.TabIndex = 5;
             this.gbDatos.TabStop = false;
             this.gbDatos.Text = "Cupones disponibles para publicar - Fecha: ";
@@ -132,14 +129,14 @@
             this.dgvCupones.AllowUserToDeleteRows = false;
             this.dgvCupones.AllowUserToResizeRows = false;
             this.dgvCupones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCupones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCupones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvCupones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCupones.Location = new System.Drawing.Point(6, 19);
             this.dgvCupones.MultiSelect = false;
@@ -148,7 +145,7 @@
             this.dgvCupones.RowHeadersVisible = false;
             this.dgvCupones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCupones.ShowEditingIcon = false;
-            this.dgvCupones.Size = new System.Drawing.Size(863, 306);
+            this.dgvCupones.Size = new System.Drawing.Size(863, 261);
             this.dgvCupones.TabIndex = 0;
             this.dgvCupones.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCupones_CellContentDoubleClick);
             // 
@@ -157,8 +154,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(896, 444);
+            this.Controls.Add(this.btnSacarFiltro);
             this.Controls.Add(this.gbFiltro);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.gbDatos);
+            this.Controls.Add(this.btnAplicar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PublicarCupon";

@@ -163,12 +163,23 @@ namespace GrouponDesktop.AbmCliente
                 strError += "- Debe completar el campo Direccion, ya que es obligatorio\n";
                 validado = false;
             }
+        
             if (this.txtDni.Text == "")
             {
                 lblDNI.ForeColor = System.Drawing.Color.Red;
                 strError += "- Debe completar el campo DNI, ya que es obligatorio\n";
                 validado = false;
             }
+            else
+            {
+                if (!validarDniUnico(Convert.ToInt64(this.txtDni.Text)))
+                {
+                    lblDNI.ForeColor = System.Drawing.Color.Red;
+                    strError += "- Ya hay registrado un cliente con este dni\n";
+                    validado = false;
+                }
+            }
+
             if (this.txtMail.Text == "")
             {
                 lblMail.ForeColor = System.Drawing.Color.Red;
@@ -207,6 +218,34 @@ namespace GrouponDesktop.AbmCliente
             if (dt.Rows.Count == 0) telUnico = true;
             dbcon.Close();
             return telUnico;
+
+        }
+
+        private bool validarDniUnico(Int64 dni)
+        {
+            bool dniUnico = false;
+            SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
+            SqlCommand cmd = new SqlCommand(@"Select  *
+											from LOSGROSOS_RELOADED.Clientes
+											where dni=@dni", dbcon);
+
+            cmd.Parameters.Add("@dni", SqlDbType.BigInt, 18);
+            cmd.Parameters["@dni"].Value = dni;
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            try
+            {
+                dbcon.Open();
+                da.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                Support.mostrarError(ex.Message);
+            }
+            if (dt.Rows.Count == 0) dniUnico = true;
+            dbcon.Close();
+            return dniUnico;
 
         }
 

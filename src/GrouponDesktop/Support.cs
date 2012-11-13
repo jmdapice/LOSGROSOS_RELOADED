@@ -208,7 +208,7 @@ namespace GrouponDesktop
 
 
 
-                idCliente = Convert.ToInt16(cmd.ExecuteScalar());
+                idCliente = Convert.ToInt32(cmd.ExecuteScalar());
 
             }
             catch (Exception ex)
@@ -285,7 +285,7 @@ namespace GrouponDesktop
 
 
 
-                idProveedor = Convert.ToInt16(cmd.ExecuteScalar());
+                idProveedor = Convert.ToInt32(cmd.ExecuteScalar());
 
             }
             catch (Exception ex)

@@ -128,6 +128,12 @@
     <Compile Include="ArmarCupon\ArmarCupon_BuscarProv.Designer.cs">
       <DependentUpon>ArmarCupon_BuscarProv.cs</DependentUpon>
     </Compile>
+    <Compile Include="CambiarPass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CambiarPass.Designer.cs">
+      <DependentUpon>CambiarPass.cs</DependentUpon>
+    </Compile>
     <Compile Include="CargaCredito\CargaCredito.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +187,30 @@
     </Compile>
     <Compile Include="FacturarProveedor\BuscarProv_Facturar.Designer.cs">
       <DependentUpon>BuscarProv_Facturar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionUsuarios\AltaUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionUsuarios\AltaUsuario.Designer.cs">
+      <DependentUpon>AltaUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionUsuarios\BuscUsuario_Mod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionUsuarios\BuscUsuario_Mod.Designer.cs">
+      <DependentUpon>BuscUsuario_Mod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionUsuarios\ElimUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionUsuarios\ElimUser.Designer.cs">
+      <DependentUpon>ElimUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionUsuarios\ModUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionUsuarios\ModUser.Designer.cs">
+      <DependentUpon>ModUser.cs</DependentUpon>
     </Compile>
     <Compile Include="HistorialCupones\historialCompras.cs">
       <SubType>Form</SubType>
@@ -322,6 +352,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FacturarProveedor\Facturar.resx">
       <DependentUpon>Facturar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionUsuarios\AltaUsuario.resx">
+      <DependentUpon>AltaUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionUsuarios\BuscUsuario_Mod.resx">
+      <DependentUpon>BuscUsuario_Mod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionUsuarios\ModUser.resx">
+      <DependentUpon>ModUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HistorialCupones\historialCompras.resx">
       <DependentUpon>historialCompras.cs</DependentUpon>

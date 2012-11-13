@@ -215,7 +215,7 @@ namespace GrouponDesktop.ComprarGiftCard
 
 
 
-                saldo = Convert.ToInt16(cmd.ExecuteScalar());
+                saldo = Convert.ToInt32(cmd.ExecuteScalar());
                
             }
             catch (Exception ex)

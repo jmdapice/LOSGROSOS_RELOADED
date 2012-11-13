@@ -19,6 +19,7 @@ namespace GrouponDesktop
 
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
+            statusStrip1.Items[0].Text = "Fecha Actual: "+Support.fechaConfig().ToShortDateString();
             apagarMenues();
             SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
             SqlCommand cmd = new SqlCommand(@"Select idPermiso 
@@ -311,8 +312,38 @@ namespace GrouponDesktop
                 ListadoEstadistico.Listado frm = new ListadoEstadistico.Listado();
                 frm.ShowDialog();
             }
-           
 
+            private void gestionarUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+
+            }
+
+            private void cambiarContraseñaToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+
+                GestionUsuarios.BuscUsuario_Mod frm = new GestionUsuarios.BuscUsuario_Mod();
+                frm.ShowDialog();
+            }
+
+            private void cambiarContraseñaToolStripMenuItem1_Click(object sender, EventArgs e)
+            {
+                GestionUsuarios.CambiarPass frm = new GestionUsuarios.CambiarPass();
+                frm.ShowDialog();
+            }
+
+            private void nuevoToolStripMenuItem1_Click(object sender, EventArgs e)
+            {
+                GestionUsuarios.AltaUsuario frm = new GestionUsuarios.AltaUsuario();
+                frm.ShowDialog();
+
+            }
+
+            private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                GestionUsuarios.ElimUser frm = new GestionUsuarios.ElimUser();
+                frm.ShowDialog();
+            }
+       
         }
     }
 
