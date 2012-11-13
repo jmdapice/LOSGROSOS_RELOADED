@@ -122,6 +122,12 @@
     <Compile Include="ArmarCupon\ArmarCupon.Designer.cs">
       <DependentUpon>ArmarCupon.cs</DependentUpon>
     </Compile>
+    <Compile Include="ArmarCupon\ArmarCupon_BuscarProv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ArmarCupon\ArmarCupon_BuscarProv.Designer.cs">
+      <DependentUpon>ArmarCupon_BuscarProv.cs</DependentUpon>
+    </Compile>
     <Compile Include="CargaCredito\CargaCredito.cs">
       <SubType>Form</SubType>
     </Compile>

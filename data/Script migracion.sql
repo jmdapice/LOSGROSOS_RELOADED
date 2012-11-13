@@ -785,6 +785,12 @@ DROP PROCEDURE LOSGROSOS_RELOADED.P_Insertar_Carga;
 
 IF  EXISTS (SELECT * 
 			FROM sys.objects 
+			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.P_Alta_Cupon') 
+				AND type in (N'P')) 
+DROP PROCEDURE LOSGROSOS_RELOADED.P_Insertar_Carga;
+
+IF  EXISTS (SELECT * 
+			FROM sys.objects 
 			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.F_idCiudad') 
 				AND type in (N'FN')) 
 DROP FUNCTION LOSGROSOS_RELOADED.F_idCiudad;

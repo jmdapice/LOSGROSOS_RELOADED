@@ -12,6 +12,8 @@ namespace GrouponDesktop.ArmarCupon
 {
     public partial class ArmarCupon : Form
     {
+        public int idProv = 0;
+        
         public ArmarCupon()
         {
             InitializeComponent();
@@ -183,6 +185,23 @@ namespace GrouponDesktop.ArmarCupon
 
         private void ArmarCupon_Load(object sender, EventArgs e)
         {
+            idProv = Support.obtenerIdProveedor(Support.traerIdUsuario(Support.nombreUsuario));
+            if (idProv == 0)
+            {
+                ArmarCupon_BuscarProv frmBuscarProv = new ArmarCupon_BuscarProv(this);
+                frmBuscarProv.ShowDialog();
+                if (idProv == 0) this.Close();
+            }
+            else
+            {
+                if (Support.proveedorInhabilitado(idProv))
+                {
+                    Support.mostrarError("Usted se encuentra inhabilitado");
+                    this.Close();
+                }
+            }
+            
+            
             SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
             SqlCommand cmd = new SqlCommand(@"Select nombre, idCiudad 
                                             from LOSGROSOS_RELOADED.Ciudad", dbcon);
@@ -239,7 +258,7 @@ namespace GrouponDesktop.ArmarCupon
         private void guardarCupon(SqlConnection dbcon)
         {
             int idNuevoCupon = 0;
-            int idProveedor = Support.obtenerIdProveedor(Support.traerIdUsuario(Support.nombreUsuario));
+         
 
             SqlCommand cmd = new SqlCommand(@"EXEC LOSGROSOS_RELOADED.P_Alta_Cupon 
                                               @precio, @precioFicticio, @descripcion, 
@@ -259,7 +278,7 @@ namespace GrouponDesktop.ArmarCupon
             cmd.Parameters["@precio"].Value = this.txtPrecioReal.Text;
             cmd.Parameters["@precioFicticio"].Value = this.txtPrecioFict.Text;
             cmd.Parameters["@descripcion"].Value = this.txtDescripcion.Text;
-            cmd.Parameters["@idProveedor"].Value = idProveedor;
+            cmd.Parameters["@idProveedor"].Value = idProv;
             cmd.Parameters["@cantMaxima"].Value = Convert.ToDecimal(this.txtCantMax.Text);
             cmd.Parameters["@fechaPubli"].Value = Convert.ToDateTime(this.txtFechaPub.Text);
             cmd.Parameters["@fechaVencOferta"].Value = Convert.ToDateTime(this.txtVencOferta.Text);
@@ -269,7 +288,7 @@ namespace GrouponDesktop.ArmarCupon
             try
             {
 
-                cmd.ExecuteNonQuery();
+               idNuevoCupon = Convert.ToInt32(cmd.ExecuteScalar());
 
             }
             catch (Exception ex)
@@ -286,8 +305,8 @@ namespace GrouponDesktop.ArmarCupon
             SqlCommand cmd = new SqlCommand(@"insert into LOSGROSOS_RELOADED.CuponCiudad (idCiudad,codigoCupon)
                                             values (@idCiudad,@idCupon)", dbcon);
 
-            cmd.Parameters.Add("@idCupon", SqlDbType.Int, 18);
-            cmd.Parameters["@idCupon"].Value = idCupon;
+            cmd.Parameters.Add("@idCupon", SqlDbType.VarChar, 50);
+            cmd.Parameters["@idCupon"].Value = idCupon.ToString();
             cmd.Parameters.Add("@idCiudad", SqlDbType.Int, 18);
 
             foreach (DataRowView item in lstCiudades.CheckedItems)
