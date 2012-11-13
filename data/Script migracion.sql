@@ -331,7 +331,7 @@ DROP TABLE LOSGROSOS_RELOADED.Parametrizacion;
 
   CREATE TABLE [LOSGROSOS_RELOADED].[Parametrizacion] (
 	codigo nvarchar(20) PRIMARY KEY,
-	valor nvarchar(100) NOT NULL,
+	valor nvarchar(50) NOT NULL,
   )	  
 
 ----------------------FIN CREACION DE TABLAS----------------------------------
@@ -697,6 +697,10 @@ INSERT INTO LOSGROSOS_RELOADED.Parametrizacion(codigo,valor)
 VALUES ('giftcard_min', '20'),
        ('giftcard_max', '100'),
        ('factura_porcen', '0.5')
+       
+INSERT INTO LOSGROSOS_RELOADED.Parametrizacion(codigo,valor)
+SELECT 'ultimo_codigoCupon',CONVERT(NVARCHAR(50),COUNT(*))
+FROM LOSGROSOS_RELOADED.Cupon       
 
 ---------------------------FIN MIGRADO DE DATOS--------------------------------------
 
@@ -972,6 +976,45 @@ BEGIN
 	 VALUES (@idCli, @monto,@fecha,@idTipoPago,@numeroTarj,
 	 @fechaVenc, @nombreTitularTarj);
 
+END
+GO
+
+
+CREATE PROCEDURE [LOSGROSOS_RELOADED].[P_Alta_Cupon]
+	@precio numeric(18,0) = null,
+	@precioFicticio numeric(18,0) = null,
+	@descripcion nvarchar(255) = null,
+	@idProveedor numeric(18,0) = null,
+	@cantMaxima numeric(18,0) = null,
+	@fechaPubli datetime = null,
+	@fechaVencOferta datetime = null,
+	@stock numeric(18,0) = null,
+	@fechaVencCanje datetime = null
+	
+	
+AS
+BEGIN
+DECLARE @codigoCupon as nvarchar(50)	
+	
+	set @codigoCupon = (select CONVERT(NVARCHAR(50),CONVERT(numeric(18,0),valor)+1) 
+						from LOSGROSOS_RELOADED.Parametrizacion
+						where codigo = 'ultimo_codigoCupon')
+	
+	update LOSGROSOS_RELOADED.Parametrizacion
+	set valor = @codigoCupon
+	where codigo = 'ultimo_codigoCupon' 
+	
+	insert into LOSGROSOS_RELOADED.Cupon
+	(codigoCupon, precio, precioFicticio, 
+		descripcion, idProveedor, cantMaxima, fechaPubli, 
+		fechaVencOferta, stock, fechaVencCanje)
+	values
+	(@codigoCupon, @precio, @precioFicticio, 
+		@descripcion, @idProveedor, @cantMaxima, @fechaPubli, 
+		@fechaVencOferta, @stock, @fechaVencCanje)
+		
+	select @codigoCupon --me retorna el codigo
+	
 END
 GO
 
