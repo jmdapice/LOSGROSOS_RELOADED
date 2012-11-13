@@ -299,6 +299,12 @@ namespace GrouponDesktop
                 ArmarCupon.ArmarCupon frm = new ArmarCupon.ArmarCupon();
                 frm.ShowDialog();
             }
+
+            private void facturarToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                FacturarProveedor.Facturar frm = new FacturarProveedor.Facturar();
+                frm.ShowDialog();
+            }
            
 
         }

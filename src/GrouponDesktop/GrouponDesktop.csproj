@@ -164,6 +164,18 @@
     <Compile Include="ComprarGiftCard\GiftCard_BuscarCliAdmincs.Designer.cs">
       <DependentUpon>GiftCard_BuscarCliAdmincs.cs</DependentUpon>
     </Compile>
+    <Compile Include="FacturarProveedor\Facturar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FacturarProveedor\Facturar.Designer.cs">
+      <DependentUpon>Facturar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FacturarProveedor\BuscarProv_Facturar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FacturarProveedor\BuscarProv_Facturar.Designer.cs">
+      <DependentUpon>BuscarProv_Facturar.cs</DependentUpon>
+    </Compile>
     <Compile Include="HistorialCupones\historialCompras.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -293,6 +305,12 @@
     <EmbeddedResource Include="ComprarGiftCard\GiftCard_BuscarCli.resx">
       <DependentUpon>GiftCard_BuscarCli.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FacturarProveedor\BuscarProv_Facturar.resx">
+      <DependentUpon>BuscarProv_Facturar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacturarProveedor\Facturar.resx">
+      <DependentUpon>Facturar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HistorialCupones\historialCompras.resx">
       <DependentUpon>historialCompras.cs</DependentUpon>
     </EmbeddedResource>
@@ -348,7 +366,6 @@
     <Compile Include="Support.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="FacturarProveedor\" />
     <Folder Include="ListadoEstadistico\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

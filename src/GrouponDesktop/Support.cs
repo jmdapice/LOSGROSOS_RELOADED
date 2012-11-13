@@ -18,6 +18,7 @@ namespace GrouponDesktop
 //Aca se definen las variables globales
         public static string nombreUsuario;
         public static int idRol;
+        public static int idProv;
         public static float saldoBienvenida = 10;
         public static void mostrarError(string str)
         {
