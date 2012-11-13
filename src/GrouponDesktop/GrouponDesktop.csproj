@@ -188,6 +188,12 @@
     <Compile Include="HistorialCupones\historialCompra_BuscarCli.Designer.cs">
       <DependentUpon>historialCompra_BuscarCli.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListadoEstadistico\Listado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoEstadistico\Listado.Designer.cs">
+      <DependentUpon>Listado.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -314,6 +320,9 @@
     <EmbeddedResource Include="HistorialCupones\historialCompras.resx">
       <DependentUpon>historialCompras.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ListadoEstadistico\Listado.resx">
+      <DependentUpon>Listado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -364,9 +373,6 @@
       <DependentUpon>AltaRol.cs</DependentUpon>
     </Compile>
     <Compile Include="Support.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ListadoEstadistico\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

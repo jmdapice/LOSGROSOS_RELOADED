@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtBoxCuit = new System.Windows.Forms.TextBox();
             this.btnBuscProv = new System.Windows.Forms.Button();
             this.btnSelecHasta = new System.Windows.Forms.Button();
             this.txtFechaHasta = new System.Windows.Forms.TextBox();
@@ -43,9 +46,6 @@
             this.calendarDesde = new System.Windows.Forms.MonthCalendar();
             this.calendHasta = new System.Windows.Forms.MonthCalendar();
             this.dgvProv = new System.Windows.Forms.DataGridView();
-            this.txtBoxCuit = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProv)).BeginInit();
@@ -69,6 +69,34 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Seleccione el intervalo de fechas para facturar";
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.lblTotal.Location = new System.Drawing.Point(585, 16);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(157, 18);
+            this.lblTotal.TabIndex = 31;
+            this.lblTotal.Text = "Importe Total Factura: ";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label1.Location = new System.Drawing.Point(28, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 18);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "CUIT:";
+            // 
+            // txtBoxCuit
+            // 
+            this.txtBoxCuit.Enabled = false;
+            this.txtBoxCuit.Location = new System.Drawing.Point(31, 49);
+            this.txtBoxCuit.Name = "txtBoxCuit";
+            this.txtBoxCuit.Size = new System.Drawing.Size(178, 20);
+            this.txtBoxCuit.TabIndex = 29;
             // 
             // btnBuscProv
             // 
@@ -181,6 +209,7 @@
             // calendarDesde
             // 
             this.calendarDesde.Location = new System.Drawing.Point(93, 0);
+            this.calendarDesde.MaxSelectionCount = 1;
             this.calendarDesde.Name = "calendarDesde";
             this.calendarDesde.TabIndex = 34;
             this.calendarDesde.Visible = false;
@@ -189,6 +218,7 @@
             // calendHasta
             // 
             this.calendHasta.Location = new System.Drawing.Point(426, 0);
+            this.calendHasta.MaxSelectionCount = 1;
             this.calendHasta.Name = "calendHasta";
             this.calendHasta.TabIndex = 33;
             this.calendHasta.Visible = false;
@@ -208,34 +238,6 @@
             this.dgvProv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProv.Size = new System.Drawing.Size(845, 239);
             this.dgvProv.TabIndex = 32;
-            // 
-            // txtBoxCuit
-            // 
-            this.txtBoxCuit.Enabled = false;
-            this.txtBoxCuit.Location = new System.Drawing.Point(31, 49);
-            this.txtBoxCuit.Name = "txtBoxCuit";
-            this.txtBoxCuit.Size = new System.Drawing.Size(178, 20);
-            this.txtBoxCuit.TabIndex = 29;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.label1.Location = new System.Drawing.Point(28, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 18);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "CUIT:";
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.lblTotal.Location = new System.Drawing.Point(585, 16);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(157, 18);
-            this.lblTotal.TabIndex = 31;
-            this.lblTotal.Text = "Importe Total Factura: ";
             // 
             // Facturar
             // 

@@ -305,6 +305,12 @@ namespace GrouponDesktop
                 FacturarProveedor.Facturar frm = new FacturarProveedor.Facturar();
                 frm.ShowDialog();
             }
+
+            private void listadoEstadisticoToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                ListadoEstadistico.Listado frm = new ListadoEstadistico.Listado();
+                frm.ShowDialog();
+            }
            
 
         }

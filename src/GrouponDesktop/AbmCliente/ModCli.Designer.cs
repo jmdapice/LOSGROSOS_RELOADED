@@ -96,6 +96,7 @@
             // 
             this.monthCalendar1.FirstDayOfWeek = System.Windows.Forms.Day.Thursday;
             this.monthCalendar1.Location = new System.Drawing.Point(394, 169);
+            this.monthCalendar1.MaxSelectionCount = 1;
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.ShowTodayCircle = false;
             this.monthCalendar1.ShowWeekNumbers = true;
