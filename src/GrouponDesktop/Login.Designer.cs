@@ -133,8 +133,11 @@
             this.Controls.Add(this.btnReg);
             this.Controls.Add(this.grpLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Login";
-            this.Text = "CuponGroso 0.1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "CuponGroso";
             this.grpLogin.ResumeLayout(false);
             this.grpLogin.PerformLayout();
             this.ResumeLayout(false);
