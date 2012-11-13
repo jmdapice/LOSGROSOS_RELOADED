@@ -42,7 +42,7 @@ namespace GrouponDesktop.PublicarCupon
                                     WHERE publicado = '0'
                                       AND prov.idProveedor = @idProv
                                       AND cupon.idProveedor = prov.idProveedor
-                                      AND cupon.fechaVencOferta >= @fechaConfig", dbcon);
+                                      AND cupon.fechaPubli = @fechaConfig", dbcon);
 
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -85,7 +85,7 @@ namespace GrouponDesktop.PublicarCupon
                                     FROM LOSGROSOS_RELOADED.Cupon cupon, LOSGROSOS_RELOADED.Proveedor prov
                                     WHERE publicado = '0'
                                       AND cupon.idProveedor = prov.idProveedor
-                                      AND cupon.fechaVencOferta >= @fechaConfig", dbcon);
+                                      AND cupon.fechaPubli = @fechaConfig", dbcon);
 
             cmd.Parameters.Add("@fechaConfig", SqlDbType.DateTime);
             cmd.Parameters["@fechaConfig"].Value = Support.fechaConfig();
@@ -195,15 +195,11 @@ namespace GrouponDesktop.PublicarCupon
                 SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
                 dbcon.Open();
                 SqlCommand cmd = new SqlCommand(@"UPDATE LOSGROSOS_RELOADED.Cupon 
-                                                     SET fechaPubli = @fechaConfig,
-                                                         publicado = '1'
+                                                     SET publicado = '1'
                                                    WHERE codigoCupon = @cod", dbcon);
 
                 cmd.Parameters.Add("@cod", SqlDbType.VarChar, 50);
                 cmd.Parameters["@cod"].Value = codCupon;
-
-                cmd.Parameters.Add("@fechaConfig", SqlDbType.DateTime);
-                cmd.Parameters["@fechaConfig"].Value = Support.fechaConfig();
 
                 cmd.ExecuteNonQuery();
 
