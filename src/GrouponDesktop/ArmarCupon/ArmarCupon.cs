@@ -5,13 +5,17 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
 
 namespace GrouponDesktop.ArmarCupon
 {
+    
+    
     public partial class ArmarCupon : Form
     {
+        private string separadorDecimal = NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator;
         public int idProv = 0;
         
         public ArmarCupon()
@@ -80,7 +84,8 @@ namespace GrouponDesktop.ArmarCupon
                 }
                 else
                 {
-                    this.txtPrecioFict.Text = this.txtPrecioFict.Text.Replace(".", ",");
+                    this.txtPrecioFict.Text = this.txtPrecioFict.Text.Replace(",", separadorDecimal);
+                    this.txtPrecioFict.Text = this.txtPrecioFict.Text.Replace(".", separadorDecimal);
                 }
             }
 
@@ -100,7 +105,8 @@ namespace GrouponDesktop.ArmarCupon
                 }
                 else
                 {
-                    this.txtPrecioReal.Text = this.txtPrecioReal.Text.Replace(".", ",");
+                    this.txtPrecioReal.Text = this.txtPrecioReal.Text.Replace(",", separadorDecimal);
+                    this.txtPrecioReal.Text = this.txtPrecioReal.Text.Replace(".", separadorDecimal);
                 }
             }
             
@@ -321,6 +327,11 @@ namespace GrouponDesktop.ArmarCupon
                     Support.mostrarError(ex.Message);
                 }
             }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
        
 

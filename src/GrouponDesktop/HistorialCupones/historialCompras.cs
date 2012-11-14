@@ -56,10 +56,9 @@ namespace GrouponDesktop.HistorialCupones
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            if (Support.mostrarPregunta("¿Seguro que desea salir?", "Salir"))
-            {
+          
                 this.Close();
-            }
+            
         }
 
         private void btnSelecDesde_Click(object sender, EventArgs e)
