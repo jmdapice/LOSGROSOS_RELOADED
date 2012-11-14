@@ -70,9 +70,9 @@ namespace GrouponDesktop.AbmCliente
             this.txtDni.Clear();
             this.txtFecNac.Clear();
             this.txtMail.Clear();
-            this.masktxtNombre.Clear();
-            this.masktxtCodPos.Clear();
-            this.masktxtTel.Clear();
+            this.txtNombre.Clear();
+            this.txtCP.Clear();
+            this.txtTel.Clear();
             this.cmbCiudades.SelectedIndex = 0;
     
         }
@@ -100,7 +100,7 @@ namespace GrouponDesktop.AbmCliente
                 }
                 int idNuevoUser = Support.agregarUsuario(dbcon,1,frmPaso1.txtPass1.Text,frmPaso1.txtUser.Text);
                 guardarNuevoCliente(dbcon, idNuevoUser);
-                MessageBox.Show("Su registro finalizo con exito ");
+                Support.mostrarInfo("Su registro finalizo con exito ");
               
                 dbcon.Close();
                 frmPaso1.Close();
@@ -113,38 +113,21 @@ namespace GrouponDesktop.AbmCliente
         {
             bool validado = true;
             string strError = "";
-            if (this.masktxtNombre.Text == "")
+            if (this.txtNombre.Text == "")
             {
                 lblNombre.ForeColor = System.Drawing.Color.Red;
                 strError += "- Debe completar el campo Nombre, ya que es obligatorio\n";
                 validado = false;
             }
-            else
-            {
-                if (this.masktxtNombre.Text.Length > 255)
-                {
-                    lblNombre.ForeColor = System.Drawing.Color.Red;
-                    strError += "- La longitud del nombre excede la permitida\n";
-                    validado = false;
-                }
-
-            }
+    
             if (this.txtApellido.Text == "")
             {
                 lblApellido.ForeColor = System.Drawing.Color.Red;
                 strError += "- Debe completar el campo Apellido, ya que es obligatorio\n";
                 validado = false;
             }
-            else
-            {
-                if (this.txtApellido.Text.Length > 255)
-                {
-                    lblApellido.ForeColor = System.Drawing.Color.Red;
-                    strError += "- La longitud del apellido excede la permitida\n";
-                    validado = false;
-                }
-            }
-            if (this.masktxtTel.Text == "")
+
+            if (this.txtTel.Text == "")
             {
                 lblTel.ForeColor = System.Drawing.Color.Red;
                 strError += "- Debe completar el campo Telefono, ya que es obligatorio\n";
@@ -152,12 +135,24 @@ namespace GrouponDesktop.AbmCliente
             }
             else
             {
-                if (!validarTelUnico(Convert.ToInt64(this.masktxtTel.Text)))
+                if (!Support.esNumerico(txtTel.Text))
                 {
                     lblTel.ForeColor = System.Drawing.Color.Red;
-                    strError += "- Ya hay registrado un cliente con este telefono\n";
+                    strError += "- El telefono solo admite valores numericos\n";
                     validado = false;
                 }
+                else
+                {
+                    txtTel.Text = txtTel.Text.Replace(".", "");
+                    txtTel.Text = txtTel.Text.Replace(",", "");
+                    if (!validarTelUnico(Convert.ToInt64(this.txtTel.Text)))
+                    {
+                        lblTel.ForeColor = System.Drawing.Color.Red;
+                        strError += "- Ya hay registrado un cliente con este telefono\n";
+                        validado = false;
+                    }
+                }
+    
             }
             if (this.txtDireccion.Text == "")
             {
@@ -174,12 +169,24 @@ namespace GrouponDesktop.AbmCliente
             }
             else
             {
-                if (!validarDniUnico(Convert.ToInt64(this.txtDni.Text)))
+                if (!Support.esNumerico(txtDni.Text))
                 {
                     lblDNI.ForeColor = System.Drawing.Color.Red;
-                    strError += "- Ya hay registrado un cliente con este dni\n";
+                    strError += "- El DNI solo admite valores numericos\n";
                     validado = false;
                 }
+                else
+                {
+                    txtDni.Text = txtDni.Text.Replace(".", "");
+                    txtDni.Text = txtDni.Text.Replace(",", "");
+                    if (!validarDniUnico(Convert.ToInt64(this.txtDni.Text)))
+                    {
+                        lblDNI.ForeColor = System.Drawing.Color.Red;
+                        strError += "- Ya hay registrado un cliente con este DNI\n";
+                        validado = false;
+                    }
+                }
+   
             }
 
             if (this.txtMail.Text == "")
@@ -187,6 +194,21 @@ namespace GrouponDesktop.AbmCliente
                 lblMail.ForeColor = System.Drawing.Color.Red;
                 strError += "- Debe completar el campo Mail, ya que es obligatorio\n";
                 validado = false;
+            }
+
+            if (this.txtCP.Text != "")
+            {
+                if (!Support.esNumerico(txtCP.Text))
+                {
+                    lblCP.ForeColor = System.Drawing.Color.Red;
+                    strError += "- El Codigo Postal solo admite valores numericos\n";
+                    validado = false;
+                }
+                else
+                {
+                    txtCP.Text = txtCP.Text.Replace(".", "");
+                    txtCP.Text = txtCP.Text.Replace(",", "");
+                }
             }
 
             if (!validado) Support.mostrarError(strError);
@@ -259,6 +281,7 @@ namespace GrouponDesktop.AbmCliente
             lblDNI.ForeColor = System.Drawing.Color.Black;
             lblMail.ForeColor = System.Drawing.Color.Black;
             lblTel.ForeColor = System.Drawing.Color.Black;
+            lblCP.ForeColor = System.Drawing.Color.Black;
         }
 
         
@@ -274,34 +297,35 @@ namespace GrouponDesktop.AbmCliente
 
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar, 255);
             cmd.Parameters.Add("@apellido", SqlDbType.VarChar, 255);
-            cmd.Parameters.Add("@dni", SqlDbType.Int, 18);
+            cmd.Parameters.Add("@dni", SqlDbType.BigInt, 18);
             cmd.Parameters.Add("@direccion", SqlDbType.VarChar, 255);
             cmd.Parameters.Add("@tel", SqlDbType.BigInt, 18);
             cmd.Parameters.Add("@mail", SqlDbType.VarChar, 255);
             cmd.Parameters.Add("@fechaNac", SqlDbType.DateTime);
             cmd.Parameters.Add("@idCiudad", SqlDbType.Int, 18);
-            cmd.Parameters.Add("@codPostal", SqlDbType.Int, 10);
+            cmd.Parameters.Add("@codPostal", SqlDbType.BigInt, 10);
             cmd.Parameters.Add("@saldo", SqlDbType.Float, 18);
             cmd.Parameters.Add("@idUsuario", SqlDbType.Int, 18);
 
-            cmd.Parameters["@nombre"].Value = this.masktxtNombre.Text;
+            cmd.Parameters["@nombre"].Value = this.txtNombre.Text;
             cmd.Parameters["@apellido"].Value = this.txtApellido.Text;
-            cmd.Parameters["@dni"].Value = Convert.ToInt32(this.txtDni.Text);
+            cmd.Parameters["@dni"].Value = Convert.ToInt64(this.txtDni.Text);
             cmd.Parameters["@direccion"].Value = this.txtDireccion.Text;
-            cmd.Parameters["@tel"].Value = Convert.ToInt64(this.masktxtTel.Text);
+            cmd.Parameters["@tel"].Value = Convert.ToInt64(this.txtTel.Text);
             cmd.Parameters["@mail"].Value = this.txtMail.Text;
             cmd.Parameters["@idCiudad"].Value = idCiudad;
             cmd.Parameters["@saldo"].Value = Support.saldoBienvenida;
             cmd.Parameters["@idUsuario"].Value = idNuevoUser;
+
             if(this.txtFecNac.Text != "")
             {
                 cmd.Parameters["@fechaNac"].Value = Convert.ToDateTime(this.txtFecNac.Text);
             }else{
                 cmd.Parameters["@fechaNac"].Value = DBNull.Value;
             }
-            if(this.masktxtCodPos.Text != "")
+            if(this.txtCP.Text != "")
             {
-                cmd.Parameters["@codPostal"].Value = Convert.ToInt32(this.masktxtCodPos.Text);
+                cmd.Parameters["@codPostal"].Value = Convert.ToInt64(this.txtCP.Text);
             }
             else
             {

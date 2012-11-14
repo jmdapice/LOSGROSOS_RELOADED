@@ -17,7 +17,6 @@ namespace GrouponDesktop.AbmCliente
         bool habPresionado = false;
 
         public ModCli(AbmCliente.ModCliente frmMod)
-
         {
             frmPadre = frmMod;
             InitializeComponent();
@@ -25,15 +24,15 @@ namespace GrouponDesktop.AbmCliente
 
         private void ModCli_Load(object sender, EventArgs e)
         {
-            this.masktxtNombre.Text = frmPadre.dgvClientes.CurrentRow.Cells["Nombre"].Value.ToString();
+            this.txtNombre.Text = frmPadre.dgvClientes.CurrentRow.Cells["Nombre"].Value.ToString();
             this.txtApellido.Text = frmPadre.dgvClientes.CurrentRow.Cells["Apellido"].Value.ToString();
             this.txtDni.Text = frmPadre.dgvClientes.CurrentRow.Cells["Dni"].Value.ToString();
             this.txtMail.Text = frmPadre.dgvClientes.CurrentRow.Cells["Email"].Value.ToString();
-            this.masktxtTel.Text = frmPadre.dgvClientes.CurrentRow.Cells["Telefono"].Value.ToString();
+            this.txtTel.Text = frmPadre.dgvClientes.CurrentRow.Cells["Telefono"].Value.ToString();
             this.txtFecNac.Text = frmPadre.dgvClientes.CurrentRow.Cells["Fecha Nacimiento"].Value.ToString();
             this.txtDireccion.Text = frmPadre.dgvClientes.CurrentRow.Cells["Direccion"].Value.ToString();
-            this.masktxtCodPos.Text = frmPadre.dgvClientes.CurrentRow.Cells["CP"].Value.ToString();
-            
+            this.txtCP.Text = frmPadre.dgvClientes.CurrentRow.Cells["CP"].Value.ToString();
+
             DateTime fechaActual = Support.fechaConfig();
             this.monthCalendar1.MaxDate = fechaActual;
             this.monthCalendar1.TodayDate = fechaActual;
@@ -61,30 +60,30 @@ namespace GrouponDesktop.AbmCliente
             this.lstCiudadesElegidas.DataSource = dt;
             this.lstCiudadesElegidas.DisplayMember = "nombre";
             this.lstCiudadesElegidas.ValueMember = "idCiudad";
-            
+
             this.cmbCiudades.DataSource = dt2;
             this.cmbCiudades.DisplayMember = "nombre";
             this.cmbCiudades.ValueMember = "idCiudad";
-          
+
             //carga al combobox la cuidad
             foreach (DataRow r in dt2.Rows)
             {
 
                 if (r["nombre"].ToString().Equals(this.frmPadre.dgvClientes.CurrentRow.Cells["ciudad"].Value.ToString()))
                 {
-                    cmbCiudades.SelectedValue= r["idCiudad"];
+                    cmbCiudades.SelectedValue = r["idCiudad"];
                 }
 
             }
-     
 
-            int idCliente =Convert.ToInt32(frmPadre.dgvClientes.CurrentRow.Cells["id"].Value);   
+
+            int idCliente = Convert.ToInt32(frmPadre.dgvClientes.CurrentRow.Cells["id"].Value);
             cmd.CommandText = @"Select idCiudad 
                                 from LOSGROSOS_RELOADED.CiudadesPreferidas 
                                 where idCli=@idCliente";
             cmd.Parameters.Add("@idCliente", SqlDbType.VarChar, 100);
             cmd.Parameters["@idCliente"].Value = idCliente;
-           
+
             DataTable dt3 = new DataTable();
             SqlDataAdapter da3 = new SqlDataAdapter(cmd);
             try
@@ -95,21 +94,20 @@ namespace GrouponDesktop.AbmCliente
             {
                 Support.mostrarError(ex.Message);
             }
-            
+
             if (frmPadre.dgvClientes.CurrentRow.Cells["inhabilitado"].Value.ToString().Equals("1"))
             {
                 btnHabilitar.Enabled = true;
                 btnHabilitar.Text = "Habilitar";
             }
-            
-           
-            
+
+
+
             foreach (DataRow fila in dt3.Rows)
             {
 
-                for ( int i = 0; i < lstCiudadesElegidas.Items.Count; i++)
+                for (int i = 0; i < lstCiudadesElegidas.Items.Count; i++)
                 {
-                    //Este casteo es muy ninja
                     if (fila["idCiudad"].Equals((lstCiudadesElegidas.Items[i] as DataRowView).Row["idCiudad"]))
                     {//Si la funcionalidad en la dataTable coincide con una de la lista, hay que checkearla
                         lstCiudadesElegidas.SetItemChecked(i, true);
@@ -120,7 +118,7 @@ namespace GrouponDesktop.AbmCliente
             }
             dbcon.Close();
 
-            }
+        }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
@@ -129,9 +127,9 @@ namespace GrouponDesktop.AbmCliente
             this.txtDni.Clear();
             this.txtFecNac.Clear();
             this.txtMail.Clear();
-            this.masktxtNombre.Clear();
-            this.masktxtCodPos.Clear();
-            this.masktxtTel.Clear();
+            this.txtNombre.Clear();
+            this.txtCP.Clear();
+            this.txtTel.Clear();
             this.cmbCiudades.SelectedIndex = 0;
         }
 
@@ -171,24 +169,24 @@ namespace GrouponDesktop.AbmCliente
                     actualizarHabilitado(dbcon);
                 }
                 modificarCliente(dbcon);
-                MessageBox.Show("La modificacion se realizo con exito ");
+                Support.mostrarInfo("La modificacion se realizo con exito ");
                 dbcon.Close();
                 this.Close();
-                frmPadre.btnLimpiar_Click(this,e);
+                frmPadre.btnLimpiar_Click(this, e);
 
             }
 
         }
 
 
-   private void actualizarHabilitado(SqlConnection dbcon)
+        private void actualizarHabilitado(SqlConnection dbcon)
         {
-     
-             SqlCommand cmd = new SqlCommand(@"EXEC LOSGROSOS_RELOADED.P_HabilitacionCliente 
-                                            @idCli,'0'",dbcon);
+
+            SqlCommand cmd = new SqlCommand(@"EXEC LOSGROSOS_RELOADED.P_HabilitacionCliente 
+                                            @idCli,'0'", dbcon);
 
 
-            cmd.Parameters.Add("@idCli", SqlDbType.Int, 18); 
+            cmd.Parameters.Add("@idCli", SqlDbType.Int, 18);
             cmd.Parameters["@idCli"].Value = Convert.ToInt32(frmPadre.dgvClientes.CurrentRow.Cells["id"].Value);
             try
             {
@@ -200,44 +198,27 @@ namespace GrouponDesktop.AbmCliente
             }
 
         }
-        
+
 
         private bool validar()
         {
             bool validado = true;
             string strError = "";
-            if (this.masktxtNombre.Text == "")
+            if (this.txtNombre.Text == "")
             {
                 lblNombre.ForeColor = System.Drawing.Color.Red;
                 strError += "- Debe completar el campo Nombre, ya que es obligatorio\n";
                 validado = false;
             }
-            else
-            {
-                if (this.masktxtNombre.Text.Length > 255)
-                {
-                    lblNombre.ForeColor = System.Drawing.Color.Red;
-                    strError += "- La longitud del nombre excede la permitida\n";
-                    validado = false;
-                }
 
-            }
             if (this.txtApellido.Text == "")
             {
                 lblApellido.ForeColor = System.Drawing.Color.Red;
                 strError += "- Debe completar el campo Apellido, ya que es obligatorio\n";
                 validado = false;
             }
-            else
-            {
-                if (this.txtApellido.Text.Length > 255)
-                {
-                    lblApellido.ForeColor = System.Drawing.Color.Red;
-                    strError += "- La longitud del apellido excede la permitida\n";
-                    validado = false;
-                }
-            }
-            if (this.masktxtTel.Text == "")
+
+            if (this.txtTel.Text == "")
             {
                 lblTel.ForeColor = System.Drawing.Color.Red;
                 strError += "- Debe completar el campo Telefono, ya que es obligatorio\n";
@@ -245,12 +226,24 @@ namespace GrouponDesktop.AbmCliente
             }
             else
             {
-                if (!validarTelUnico(Convert.ToInt64(this.masktxtTel.Text)))
+                if (!Support.esNumerico(txtTel.Text))
                 {
                     lblTel.ForeColor = System.Drawing.Color.Red;
-                    strError += "- Ya hay registrado un cliente con este telefono\n";
+                    strError += "- El telefono solo admite valores numericos\n";
                     validado = false;
                 }
+                else
+                {
+                    txtTel.Text = txtTel.Text.Replace(".", "");
+                    txtTel.Text = txtTel.Text.Replace(",", "");
+                    if (!validarTelUnico(Convert.ToInt64(this.txtTel.Text)))
+                    {
+                        lblTel.ForeColor = System.Drawing.Color.Red;
+                        strError += "- Ya hay registrado un cliente con este telefono\n";
+                        validado = false;
+                    }
+                }
+
             }
             if (this.txtDireccion.Text == "")
             {
@@ -266,18 +259,46 @@ namespace GrouponDesktop.AbmCliente
             }
             else
             {
-                if (!validarDniUnico(Convert.ToInt64(this.txtDni.Text)))
+                if (!Support.esNumerico(txtDni.Text))
                 {
                     lblDNI.ForeColor = System.Drawing.Color.Red;
-                    strError += "- Ya hay registrado un cliente con este dni\n";
+                    strError += "- El DNI solo admite valores numericos\n";
                     validado = false;
                 }
+                else
+                {
+                    txtDni.Text = txtDni.Text.Replace(".", "");
+                    txtDni.Text = txtDni.Text.Replace(",", "");
+                    if (!validarDniUnico(Convert.ToInt64(this.txtDni.Text)))
+                    {
+                        lblDNI.ForeColor = System.Drawing.Color.Red;
+                        strError += "- Ya hay registrado un cliente con este DNI\n";
+                        validado = false;
+                    }
+                }
+
             }
+
             if (this.txtMail.Text == "")
             {
                 lblMail.ForeColor = System.Drawing.Color.Red;
                 strError += "- Debe completar el campo Mail, ya que es obligatorio\n";
                 validado = false;
+            }
+
+            if (this.txtCP.Text != "")
+            {
+                if (!Support.esNumerico(txtCP.Text))
+                {
+                    lblCP.ForeColor = System.Drawing.Color.Red;
+                    strError += "- El Codigo Postal solo admite valores numericos\n";
+                    validado = false;
+                }
+                else
+                {
+                    txtCP.Text = txtCP.Text.Replace(".", "");
+                    txtCP.Text = txtCP.Text.Replace(",", "");
+                }
             }
 
             if (!validado) Support.mostrarError(strError);
@@ -318,7 +339,6 @@ namespace GrouponDesktop.AbmCliente
 
         }
 
-
         private bool validarDniUnico(Int64 dni)
         {
             bool dniUnico = false;
@@ -350,6 +370,7 @@ namespace GrouponDesktop.AbmCliente
             return dniUnico;
 
         }
+
         private void labelsNegras()
         {
             lblNombre.ForeColor = System.Drawing.Color.Black;
@@ -358,12 +379,13 @@ namespace GrouponDesktop.AbmCliente
             lblDNI.ForeColor = System.Drawing.Color.Black;
             lblMail.ForeColor = System.Drawing.Color.Black;
             lblTel.ForeColor = System.Drawing.Color.Black;
+            lblCP.ForeColor = System.Drawing.Color.Black;
         }
 
         private void modificarCliente(SqlConnection dbcon)
         {
             int idCiudad = Convert.ToInt32(cmbCiudades.SelectedValue);
-            int idCliente =Convert.ToInt32(frmPadre.dgvClientes.CurrentRow.Cells["id"].Value);
+            int idCliente = Convert.ToInt32(frmPadre.dgvClientes.CurrentRow.Cells["id"].Value);
             SqlCommand cmd = new SqlCommand(@"EXEC LOSGROSOS_RELOADED.P_Modificar_Cliente 
                                @idCli,@nombre,@apellido,
                                @dni,@direccion, @tel, @mail,@fechaNac, 
@@ -372,20 +394,20 @@ namespace GrouponDesktop.AbmCliente
             cmd.Parameters.Add("@idCli", SqlDbType.Int, 18);
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar, 255);
             cmd.Parameters.Add("@apellido", SqlDbType.VarChar, 255);
-            cmd.Parameters.Add("@dni", SqlDbType.Int, 18);
+            cmd.Parameters.Add("@dni", SqlDbType.BigInt, 18);
             cmd.Parameters.Add("@direccion", SqlDbType.VarChar, 255);
             cmd.Parameters.Add("@tel", SqlDbType.BigInt, 18);
             cmd.Parameters.Add("@mail", SqlDbType.VarChar, 255);
             cmd.Parameters.Add("@fechaNac", SqlDbType.DateTime);
             cmd.Parameters.Add("@idCiudad", SqlDbType.Int, 18);
-            cmd.Parameters.Add("@codPostal", SqlDbType.Int, 10);
+            cmd.Parameters.Add("@codPostal", SqlDbType.BigInt, 10);
 
-            cmd.Parameters["@idCli"].Value = idCliente ;
-            cmd.Parameters["@nombre"].Value = this.masktxtNombre.Text;
+            cmd.Parameters["@idCli"].Value = idCliente;
+            cmd.Parameters["@nombre"].Value = this.txtNombre.Text;
             cmd.Parameters["@apellido"].Value = this.txtApellido.Text;
-            cmd.Parameters["@dni"].Value = Convert.ToInt32(this.txtDni.Text);
+            cmd.Parameters["@dni"].Value = Convert.ToInt64(this.txtDni.Text);
             cmd.Parameters["@direccion"].Value = this.txtDireccion.Text;
-            cmd.Parameters["@tel"].Value = Convert.ToInt64(this.masktxtTel.Text);
+            cmd.Parameters["@tel"].Value = Convert.ToInt64(this.txtTel.Text);
             cmd.Parameters["@mail"].Value = this.txtMail.Text;
             cmd.Parameters["@idCiudad"].Value = idCiudad;
 
@@ -398,9 +420,9 @@ namespace GrouponDesktop.AbmCliente
             {
                 cmd.Parameters["@fechaNac"].Value = DBNull.Value;
             }
-            if (this.masktxtCodPos.Text != "")
+            if (this.txtCP.Text != "")
             {
-                cmd.Parameters["@codPostal"].Value = Convert.ToInt32(this.masktxtCodPos.Text);
+                cmd.Parameters["@codPostal"].Value = Convert.ToInt64(this.txtCP.Text);
             }
             else
             {
@@ -418,21 +440,21 @@ namespace GrouponDesktop.AbmCliente
                 Support.mostrarError(ex.Message);
             }
 
- 
+
             if (listaCambio)
             {
-                modificarCiudadesPreferidas(dbcon, idCliente,lstCiudadesElegidas);
+                modificarCiudadesPreferidas(dbcon, idCliente, lstCiudadesElegidas);
             }
-          
+
         }
 
         private void lstCiudadesElegidas_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             listaCambio = true;
         }
-        private void modificarCiudadesPreferidas(SqlConnection dbcon,int idCli,CheckedListBox lista)
+        private void modificarCiudadesPreferidas(SqlConnection dbcon, int idCli, CheckedListBox lista)
         {
-            
+
             SqlCommand cmd = dbcon.CreateCommand();
             dbcon.Open();
             SqlTransaction trans = dbcon.BeginTransaction("Trans");
@@ -477,7 +499,7 @@ namespace GrouponDesktop.AbmCliente
             }
             dbcon.Close();
 
-       }
+        }
 
         private void btnHabilitar_Click(object sender, EventArgs e)
         {
@@ -486,6 +508,6 @@ namespace GrouponDesktop.AbmCliente
             btnHabilitar.Enabled = false;
         }
 
-        
+
     }
 }

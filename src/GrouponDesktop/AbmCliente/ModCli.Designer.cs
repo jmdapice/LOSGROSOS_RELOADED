@@ -30,10 +30,6 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.masktxtTel = new System.Windows.Forms.MaskedTextBox();
-            this.txtDni = new System.Windows.Forms.MaskedTextBox();
-            this.masktxtNombre = new System.Windows.Forms.MaskedTextBox();
-            this.masktxtCodPos = new System.Windows.Forms.MaskedTextBox();
             this.lstCiudadesElegidas = new System.Windows.Forms.CheckedListBox();
             this.cmbCiudades = new System.Windows.Forms.ComboBox();
             this.txtFecNac = new System.Windows.Forms.TextBox();
@@ -49,23 +45,28 @@
             this.lblApellido = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.txtMail = new System.Windows.Forms.TextBox();
-            this.txtDireccion = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.btnHabilitar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnHabilitar = new System.Windows.Forms.Button();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.txtTel = new System.Windows.Forms.TextBox();
+            this.txtDireccion = new System.Windows.Forms.TextBox();
+            this.txtCP = new System.Windows.Forms.TextBox();
+            this.txtDni = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.monthCalendar1);
-            this.groupBox1.Controls.Add(this.masktxtTel);
             this.groupBox1.Controls.Add(this.txtDni);
-            this.groupBox1.Controls.Add(this.masktxtNombre);
-            this.groupBox1.Controls.Add(this.masktxtCodPos);
+            this.groupBox1.Controls.Add(this.txtCP);
+            this.groupBox1.Controls.Add(this.txtDireccion);
+            this.groupBox1.Controls.Add(this.txtTel);
+            this.groupBox1.Controls.Add(this.txtNombre);
+            this.groupBox1.Controls.Add(this.monthCalendar1);
             this.groupBox1.Controls.Add(this.lstCiudadesElegidas);
             this.groupBox1.Controls.Add(this.cmbCiudades);
             this.groupBox1.Controls.Add(this.txtFecNac);
@@ -81,7 +82,6 @@
             this.groupBox1.Controls.Add(this.lblApellido);
             this.groupBox1.Controls.Add(this.lblNombre);
             this.groupBox1.Controls.Add(this.txtMail);
-            this.groupBox1.Controls.Add(this.txtDireccion);
             this.groupBox1.Controls.Add(this.txtApellido);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.btnHabilitar);
@@ -104,52 +104,13 @@
             this.monthCalendar1.Visible = false;
             this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
             // 
-            // masktxtTel
-            // 
-            this.masktxtTel.AsciiOnly = true;
-            this.masktxtTel.Location = new System.Drawing.Point(18, 155);
-            this.masktxtTel.Mask = "999999999999999999";
-            this.masktxtTel.Name = "masktxtTel";
-            this.masktxtTel.PromptChar = ' ';
-            this.masktxtTel.Size = new System.Drawing.Size(286, 20);
-            this.masktxtTel.TabIndex = 2;
-            // 
-            // txtDni
-            // 
-            this.txtDni.AsciiOnly = true;
-            this.txtDni.Location = new System.Drawing.Point(341, 43);
-            this.txtDni.Mask = "999999999";
-            this.txtDni.Name = "txtDni";
-            this.txtDni.PromptChar = ' ';
-            this.txtDni.Size = new System.Drawing.Size(286, 20);
-            this.txtDni.TabIndex = 6;
-            // 
-            // masktxtNombre
-            // 
-            this.masktxtNombre.AsciiOnly = true;
-            this.masktxtNombre.Location = new System.Drawing.Point(18, 41);
-            this.masktxtNombre.Name = "masktxtNombre";
-            this.masktxtNombre.PromptChar = ' ';
-            this.masktxtNombre.Size = new System.Drawing.Size(286, 20);
-            this.masktxtNombre.TabIndex = 0;
-            // 
-            // masktxtCodPos
-            // 
-            this.masktxtCodPos.AsciiOnly = true;
-            this.masktxtCodPos.Location = new System.Drawing.Point(18, 259);
-            this.masktxtCodPos.Mask = "9999999999";
-            this.masktxtCodPos.Name = "masktxtCodPos";
-            this.masktxtCodPos.PromptChar = ' ';
-            this.masktxtCodPos.Size = new System.Drawing.Size(286, 20);
-            this.masktxtCodPos.TabIndex = 4;
-            // 
             // lstCiudadesElegidas
             // 
             this.lstCiudadesElegidas.FormattingEnabled = true;
             this.lstCiudadesElegidas.Location = new System.Drawing.Point(343, 198);
             this.lstCiudadesElegidas.Name = "lstCiudadesElegidas";
             this.lstCiudadesElegidas.Size = new System.Drawing.Size(174, 124);
-            this.lstCiudadesElegidas.TabIndex = 9;
+            this.lstCiudadesElegidas.TabIndex = 10;
             // 
             // cmbCiudades
             // 
@@ -158,7 +119,7 @@
             this.cmbCiudades.Location = new System.Drawing.Point(18, 310);
             this.cmbCiudades.Name = "cmbCiudades";
             this.cmbCiudades.Size = new System.Drawing.Size(286, 21);
-            this.cmbCiudades.TabIndex = 5;
+            this.cmbCiudades.TabIndex = 6;
             // 
             // txtFecNac
             // 
@@ -193,7 +154,7 @@
             this.button.Location = new System.Drawing.Point(546, 141);
             this.button.Name = "button";
             this.button.Size = new System.Drawing.Size(87, 23);
-            this.button.TabIndex = 8;
+            this.button.TabIndex = 9;
             this.button.Text = "Seleccionar";
             this.button.Click += new System.EventHandler(this.button_Click);
             // 
@@ -283,15 +244,7 @@
             this.txtMail.MaxLength = 255;
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(286, 20);
-            this.txtMail.TabIndex = 7;
-            // 
-            // txtDireccion
-            // 
-            this.txtDireccion.Location = new System.Drawing.Point(18, 212);
-            this.txtDireccion.MaxLength = 255;
-            this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(286, 20);
-            this.txtDireccion.TabIndex = 3;
+            this.txtMail.TabIndex = 8;
             // 
             // txtApellido
             // 
@@ -299,7 +252,7 @@
             this.txtApellido.MaxLength = 255;
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(286, 20);
-            this.txtApellido.TabIndex = 1;
+            this.txtApellido.TabIndex = 2;
             // 
             // label10
             // 
@@ -310,12 +263,22 @@
             this.label10.TabIndex = 21;
             this.label10.Text = "Los campos marcados con (*) son obliogatorios";
             // 
+            // btnHabilitar
+            // 
+            this.btnHabilitar.Enabled = false;
+            this.btnHabilitar.Location = new System.Drawing.Point(546, 286);
+            this.btnHabilitar.Name = "btnHabilitar";
+            this.btnHabilitar.Size = new System.Drawing.Size(87, 23);
+            this.btnHabilitar.TabIndex = 22;
+            this.btnHabilitar.Text = "Habilitado";
+            this.btnHabilitar.Click += new System.EventHandler(this.btnHabilitar_Click);
+            // 
             // btnLimpiar
             // 
             this.btnLimpiar.Location = new System.Drawing.Point(168, 369);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(100, 23);
-            this.btnLimpiar.TabIndex = 22;
+            this.btnLimpiar.TabIndex = 11;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
@@ -326,7 +289,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(415, 369);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 23);
-            this.btnCancelar.TabIndex = 24;
+            this.btnCancelar.TabIndex = 13;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -336,20 +299,50 @@
             this.btnGuardar.Location = new System.Drawing.Point(291, 369);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(100, 23);
-            this.btnGuardar.TabIndex = 23;
+            this.btnGuardar.TabIndex = 12;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // btnHabilitar
+            // txtNombre
             // 
-            this.btnHabilitar.Enabled = false;
-            this.btnHabilitar.Location = new System.Drawing.Point(546, 286);
-            this.btnHabilitar.Name = "btnHabilitar";
-            this.btnHabilitar.Size = new System.Drawing.Size(87, 23);
-            this.btnHabilitar.TabIndex = 22;
-            this.btnHabilitar.Text = "Habilitado";
-            this.btnHabilitar.Click += new System.EventHandler(this.btnHabilitar_Click);
+            this.txtNombre.Location = new System.Drawing.Point(18, 43);
+            this.txtNombre.MaxLength = 255;
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(286, 20);
+            this.txtNombre.TabIndex = 1;
+            // 
+            // txtTel
+            // 
+            this.txtTel.Location = new System.Drawing.Point(18, 155);
+            this.txtTel.MaxLength = 18;
+            this.txtTel.Name = "txtTel";
+            this.txtTel.Size = new System.Drawing.Size(286, 20);
+            this.txtTel.TabIndex = 3;
+            // 
+            // txtDireccion
+            // 
+            this.txtDireccion.Location = new System.Drawing.Point(18, 215);
+            this.txtDireccion.MaxLength = 255;
+            this.txtDireccion.Name = "txtDireccion";
+            this.txtDireccion.Size = new System.Drawing.Size(286, 20);
+            this.txtDireccion.TabIndex = 4;
+            // 
+            // txtCP
+            // 
+            this.txtCP.Location = new System.Drawing.Point(18, 259);
+            this.txtCP.MaxLength = 10;
+            this.txtCP.Name = "txtCP";
+            this.txtCP.Size = new System.Drawing.Size(286, 20);
+            this.txtCP.TabIndex = 5;
+            // 
+            // txtDni
+            // 
+            this.txtDni.Location = new System.Drawing.Point(341, 43);
+            this.txtDni.MaxLength = 18;
+            this.txtDni.Name = "txtDni";
+            this.txtDni.Size = new System.Drawing.Size(286, 20);
+            this.txtDni.TabIndex = 7;
             // 
             // ModCli
             // 
@@ -378,9 +371,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.MaskedTextBox txtDni;
-        private System.Windows.Forms.MaskedTextBox masktxtNombre;
-        private System.Windows.Forms.MaskedTextBox masktxtCodPos;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.CheckedListBox lstCiudadesElegidas;
         private System.Windows.Forms.ComboBox cmbCiudades;
@@ -397,14 +387,17 @@
         private System.Windows.Forms.Label lblApellido;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.TextBox txtMail;
-        private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.MaskedTextBox masktxtTel;
         private System.Windows.Forms.Button btnHabilitar;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.TextBox txtTel;
+        private System.Windows.Forms.TextBox txtDireccion;
+        private System.Windows.Forms.TextBox txtCP;
+        private System.Windows.Forms.TextBox txtDni;
 
     }
 }

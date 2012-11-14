@@ -118,6 +118,8 @@ namespace GrouponDesktop.CargaCredito
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             string strError="";
+            this.lblTarjeta.ForeColor = System.Drawing.Color.Black;
+            this.lblCarga.ForeColor = System.Drawing.Color.Black;
             DateTime fechaHoy = Support.fechaConfig(); 
             bool No_hay_datos_incompletos = true; 
 
@@ -134,15 +136,37 @@ namespace GrouponDesktop.CargaCredito
                     No_hay_datos_incompletos = false;
 
                 }
+                else
+                {
+                    if (!Support.esNumerico(this.txtTarjeta.Text) || this.txtTarjeta.Text.Contains('.')
+                            || this.txtTarjeta.Text.Contains(','))
+                    {
+                        this.lblTarjeta.ForeColor = System.Drawing.Color.Red;
+                        strError += "- Debe ingresar valores numericos enteros el campo 'Nro de Tarjeta'\n";
+                        No_hay_datos_incompletos = false;
+                    }
+                }
 
             }
-
-            if (txtCarga.Text == "")
+            if (this.txtCarga.Text == "")
             {
+                this.lblCarga.ForeColor = System.Drawing.Color.Red;
                 strError += "- Por favor complete el campo 'Crédito a cargar'\n";
                 No_hay_datos_incompletos = false;
             }
+            else
+            {
+                if (!Support.esNumerico(this.txtCarga.Text) || this.txtCarga.Text.Contains('.')
+                    || this.txtCarga.Text.Contains(','))
+                {
+                    this.lblCarga.ForeColor = System.Drawing.Color.Red;
+                    strError += "- Debe ingresar valores numericos enteros el campo 'Crédito a cargar'\n";
+                    No_hay_datos_incompletos = false;
+                }
 
+            }
+  
+                       
             if (!tarjetaNoVencida())
             {
                 strError += "- La tarjeta ingresada esta vencida\n";

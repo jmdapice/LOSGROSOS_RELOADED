@@ -97,12 +97,7 @@ namespace GrouponDesktop.AbmCliente
             dgvClientes.DataSource = dt;
             dgvClientes.Columns[10].Visible = false;
             
-            //DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
-            //buttonColumn.Name = "btnEliminar";
-            //buttonColumn.HeaderText = "Eliminar";
-            //buttonColumn.Text = " ";
-            //dgvClientes.Columns["Ciudad"].Width = 95;
-            //dgvClientes.Columns.Insert(10, buttonColumn);
+
         }
 
         private void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

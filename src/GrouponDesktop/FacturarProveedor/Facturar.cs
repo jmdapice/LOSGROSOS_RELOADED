@@ -195,7 +195,7 @@ namespace GrouponDesktop.FacturarProveedor
 
                 if (txtFechaDesde.Text != "")
                 {
-                    cmd.CommandText += " and fechaCanje > @fechaDesde";
+                    cmd.CommandText += " and fechaCanje >= @fechaDesde";
                     cmd.Parameters.Add("@fechaDesde", SqlDbType.DateTime);
                     cmd.Parameters["@fechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
 
@@ -203,7 +203,7 @@ namespace GrouponDesktop.FacturarProveedor
 
                 if (txtFechaHasta.Text != "")
                 {
-                    cmd.CommandText += "    and fechaCanje < @fechaHasta";
+                    cmd.CommandText += "    and fechaCanje <= @fechaHasta";
                     cmd.Parameters.Add("@fechaHasta", SqlDbType.DateTime);
                     cmd.Parameters["@fechaHasta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
                 }

@@ -118,8 +118,8 @@ namespace GrouponDesktop.ArmarCupon
             }
             else
             {
-                if (!Support.esNumerico(this.txtCantDisp.Text) || this.txtCantMax.Text.Contains('.')
-                    || this.txtCantMax.Text.Contains(','))
+                if (!Support.esNumerico(this.txtCantDisp.Text) || this.txtCantDisp.Text.Contains('.')
+                    || this.txtCantDisp.Text.Contains(','))
                 {
                     this.lblCantDisp.ForeColor = System.Drawing.Color.Red;
                     strError += "- Debe ingresar valores numericos enteros en Cantidad Disponible\n";
