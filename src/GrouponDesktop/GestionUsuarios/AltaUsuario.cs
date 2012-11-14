@@ -60,6 +60,11 @@ namespace GrouponDesktop.GestionUsuarios
                     dbcon.Open();
                     Support.agregarUsuario(dbcon,Convert.ToInt32(this.cmbRol.SelectedValue),this.txtPass1.Text,this.txtUser.Text);
                     dbcon.Close();
+                    Support.mostrarInfo(" Su registro finalizo con exito ");
+                    txtPass1.Clear();
+                    txtPass2.Clear();
+                    txtUser.Clear();
+                    cmbRol.SelectedIndex = 0;
                 }
                 else
                 {

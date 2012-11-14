@@ -86,7 +86,7 @@
             this.txtCuit.Mask = "00-00000000-0";
             this.txtCuit.Name = "txtCuit";
             this.txtCuit.Size = new System.Drawing.Size(286, 20);
-            this.txtCuit.TabIndex = 20;
+            this.txtCuit.TabIndex = 6;
             // 
             // cmbRubro
             // 
@@ -95,7 +95,7 @@
             this.cmbRubro.Location = new System.Drawing.Point(341, 169);
             this.cmbRubro.Name = "cmbRubro";
             this.cmbRubro.Size = new System.Drawing.Size(286, 21);
-            this.cmbRubro.TabIndex = 19;
+            this.cmbRubro.TabIndex = 7;
             // 
             // cmbCiudad
             // 
@@ -104,7 +104,7 @@
             this.cmbCiudad.Location = new System.Drawing.Point(341, 53);
             this.cmbCiudad.Name = "cmbCiudad";
             this.cmbCiudad.Size = new System.Drawing.Size(286, 21);
-            this.cmbCiudad.TabIndex = 18;
+            this.cmbCiudad.TabIndex = 5;
             // 
             // lblContacto
             // 
@@ -244,7 +244,7 @@
             this.btnGuardar.Location = new System.Drawing.Point(291, 360);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(100, 23);
-            this.btnGuardar.TabIndex = 1;
+            this.btnGuardar.TabIndex = 10;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -254,7 +254,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(397, 360);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 23);
-            this.btnCancelar.TabIndex = 2;
+            this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -264,7 +264,7 @@
             this.btnLimpiar.Location = new System.Drawing.Point(185, 360);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(100, 23);
-            this.btnLimpiar.TabIndex = 3;
+            this.btnLimpiar.TabIndex = 9;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);

@@ -103,7 +103,7 @@ namespace GrouponDesktop.AbmCliente
                 Support.mostrarInfo("Su registro finalizo con exito ");
               
                 dbcon.Close();
-                frmPaso1.Close();
+                frmPaso1.btnCancelar_Click(frmPaso1,e);
                 this.Close();
        
             }

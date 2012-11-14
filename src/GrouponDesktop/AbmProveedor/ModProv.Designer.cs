@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnHabilitar = new System.Windows.Forms.Button();
             this.txtCuit = new System.Windows.Forms.MaskedTextBox();
             this.cmbRubro = new System.Windows.Forms.ComboBox();
             this.cmbCiudad = new System.Windows.Forms.ComboBox();
@@ -50,7 +51,6 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnHabilitar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,13 +82,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Paso 2";
             // 
+            // btnHabilitar
+            // 
+            this.btnHabilitar.Enabled = false;
+            this.btnHabilitar.Location = new System.Drawing.Point(527, 280);
+            this.btnHabilitar.Name = "btnHabilitar";
+            this.btnHabilitar.Size = new System.Drawing.Size(100, 23);
+            this.btnHabilitar.TabIndex = 21;
+            this.btnHabilitar.Text = "Habilitado";
+            this.btnHabilitar.UseVisualStyleBackColor = true;
+            this.btnHabilitar.Click += new System.EventHandler(this.btnHabilitar_Click);
+            // 
             // txtCuit
             // 
             this.txtCuit.Location = new System.Drawing.Point(341, 111);
             this.txtCuit.Mask = "00-00000000-0";
             this.txtCuit.Name = "txtCuit";
             this.txtCuit.Size = new System.Drawing.Size(286, 20);
-            this.txtCuit.TabIndex = 20;
+            this.txtCuit.TabIndex = 6;
             // 
             // cmbRubro
             // 
@@ -97,7 +108,7 @@
             this.cmbRubro.Location = new System.Drawing.Point(341, 169);
             this.cmbRubro.Name = "cmbRubro";
             this.cmbRubro.Size = new System.Drawing.Size(286, 21);
-            this.cmbRubro.TabIndex = 19;
+            this.cmbRubro.TabIndex = 7;
             // 
             // cmbCiudad
             // 
@@ -106,7 +117,7 @@
             this.cmbCiudad.Location = new System.Drawing.Point(341, 53);
             this.cmbCiudad.Name = "cmbCiudad";
             this.cmbCiudad.Size = new System.Drawing.Size(286, 21);
-            this.cmbCiudad.TabIndex = 18;
+            this.cmbCiudad.TabIndex = 5;
             // 
             // lblContacto
             // 
@@ -246,7 +257,7 @@
             this.btnGuardar.Location = new System.Drawing.Point(291, 360);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(100, 23);
-            this.btnGuardar.TabIndex = 1;
+            this.btnGuardar.TabIndex = 10;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -256,7 +267,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(397, 360);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 23);
-            this.btnCancelar.TabIndex = 2;
+            this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -266,21 +277,10 @@
             this.btnLimpiar.Location = new System.Drawing.Point(185, 360);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(100, 23);
-            this.btnLimpiar.TabIndex = 3;
+            this.btnLimpiar.TabIndex = 9;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
-            // 
-            // btnHabilitar
-            // 
-            this.btnHabilitar.Enabled = false;
-            this.btnHabilitar.Location = new System.Drawing.Point(527, 280);
-            this.btnHabilitar.Name = "btnHabilitar";
-            this.btnHabilitar.Size = new System.Drawing.Size(100, 23);
-            this.btnHabilitar.TabIndex = 21;
-            this.btnHabilitar.Text = "Habilitado";
-            this.btnHabilitar.UseVisualStyleBackColor = true;
-            this.btnHabilitar.Click += new System.EventHandler(this.btnHabilitar_Click);
             // 
             // ModProv
             // 
