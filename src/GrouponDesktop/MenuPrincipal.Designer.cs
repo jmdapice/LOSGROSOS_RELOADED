@@ -324,21 +324,21 @@
             // nuevoToolStripMenuItem1
             // 
             this.nuevoToolStripMenuItem1.Name = "nuevoToolStripMenuItem1";
-            this.nuevoToolStripMenuItem1.Size = new System.Drawing.Size(191, 22);
+            this.nuevoToolStripMenuItem1.Size = new System.Drawing.Size(177, 22);
             this.nuevoToolStripMenuItem1.Text = "Nuevo...";
             this.nuevoToolStripMenuItem1.Click += new System.EventHandler(this.nuevoToolStripMenuItem1_Click);
             // 
             // cambiarContraseñaToolStripMenuItem
             // 
             this.cambiarContraseñaToolStripMenuItem.Name = "cambiarContraseñaToolStripMenuItem";
-            this.cambiarContraseñaToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.cambiarContraseñaToolStripMenuItem.Text = "Cambiar Contraseña...";
+            this.cambiarContraseñaToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.cambiarContraseñaToolStripMenuItem.Text = "Modificar Usuario...";
             this.cambiarContraseñaToolStripMenuItem.Click += new System.EventHandler(this.cambiarContraseñaToolStripMenuItem_Click);
             // 
             // eliminarToolStripMenuItem
             // 
             this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.eliminarToolStripMenuItem.Text = "Eliminar...";
             this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
             // 

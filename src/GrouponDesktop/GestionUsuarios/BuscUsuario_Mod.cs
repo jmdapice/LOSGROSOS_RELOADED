@@ -27,7 +27,7 @@ namespace GrouponDesktop.GestionUsuarios
         private void btnBuscar_Click_1(object sender, EventArgs e)
         {
             SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
-            SqlCommand cmd = new SqlCommand(@"Select nombreUsuario as 'Nombre Usuario',idUsuario from LOSGROSOS_RELOADED.Usuario
+            SqlCommand cmd = new SqlCommand(@"Select nombreUsuario as 'Nombre Usuario',idUsuario,inhabilitado as 'inhab' from LOSGROSOS_RELOADED.Usuario
                                             where nombreUsuario like '%'+@criterio+'%'", dbcon);
             
             cmd.Parameters.Add("@criterio", SqlDbType.VarChar, 100);
@@ -52,6 +52,7 @@ namespace GrouponDesktop.GestionUsuarios
 
             dgvUsers.DataSource = dt;
             dgvUsers.Columns["idUsuario"].Visible = false;
+            dgvUsers.Columns["inhab"].Visible = false;
             dgvUsers.AutoResizeColumns();
 
         }

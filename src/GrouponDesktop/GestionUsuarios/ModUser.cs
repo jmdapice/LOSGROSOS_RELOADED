@@ -12,6 +12,7 @@ namespace GrouponDesktop.GestionUsuarios
 {
     public partial class ModUser : Form
     {
+        bool habPresionado = false;
         BuscUsuario_Mod frmPadre = null;
         public ModUser(BuscUsuario_Mod frm)
         {
@@ -52,7 +53,13 @@ namespace GrouponDesktop.GestionUsuarios
                 {
                     Support.mostrarError(ex.Message);
                 }
-                Support.mostrarInfo("La contraseña fue cambiada correctamente");
+
+                if (habPresionado)
+                {
+                    actualizarHabilitado(dbcon);
+                }
+                frmPadre.dgvUsers.Columns.Clear();
+                Support.mostrarInfo("Los cambios fueron guardados");
                 this.Close();
             
             }
@@ -64,7 +71,7 @@ namespace GrouponDesktop.GestionUsuarios
             bool validado = true;
             string strError = "";
    
-            if (txtPass1.Text.Length < 8 || txtPass1.Text == "")
+            if (txtPass1.Text.Length < 8 && txtPass1.Text.Length >0)
             {
                 label2.ForeColor = System.Drawing.Color.Red;
                 strError += "- La contraseña debe ser mayor a 8 caracteres\n";
@@ -79,6 +86,44 @@ namespace GrouponDesktop.GestionUsuarios
        
             if (!validado) Support.mostrarError(strError);
             return validado;
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            habPresionado = true;
+            btnHabilitar.Text = "Habilitado";
+            btnHabilitar.Enabled = false;
+        }
+
+        private void ModUser_Load(object sender, EventArgs e)
+        {
+            txtUser.Text = frmPadre.dgvUsers.CurrentRow.Cells["Nombre Usuario"].Value.ToString();
+            if (frmPadre.dgvUsers.CurrentRow.Cells["inhab"].Value.ToString().Equals("1"))
+            {
+                btnHabilitar.Enabled = true;
+                btnHabilitar.Text = "Habilitar";
+            }
+        }
+        private void actualizarHabilitado(SqlConnection dbcon)
+        {
+
+            SqlCommand cmd = new SqlCommand(@"update LOSGROSOS_RELOADED.Usuario 
+                                                  set inhabilitado='0'
+                                                  where idUsuario = @usuario", dbcon);
+
+
+            cmd.Parameters.Add("@usuario", SqlDbType.Int, 18);
+            cmd.Parameters["@usuario"].Value = Convert.ToInt32(frmPadre.dgvUsers.CurrentRow.Cells["idUsuario"].Value);
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Support.mostrarError(ex.Message);
+            }
+
 
         }
     }

@@ -729,6 +729,27 @@ CREATE TRIGGER LOSGROSOS_RELOADED.tr_actualizarStockCupon ON LOSGROSOS_RELOADED.
 
 GO
 
+CREATE TRIGGER LOSGROSOS_RELOADED.tr_actualizarStockCuponDevuelto ON LOSGROSOS_RELOADED.CuponComprado
+
+	AFTER UPDATE
+	
+	AS
+	
+	BEGIN
+	IF UPDATE(fechaDevolucion)
+		BEGIN
+	
+			UPDATE LOSGROSOS_RELOADED.Cupon 
+			SET LOSGROSOS_RELOADED.Cupon.stock = LOSGROSOS_RELOADED.Cupon.stock + 1
+			FROM inserted 
+			WHERE LOSGROSOS_RELOADED.Cupon.codigoCupon = inserted.codigoCupon
+		END
+		
+	
+	END
+
+GO
+
 
 
 ----------------------FIN CREACIÓN TRIGGERS SEGUNDA PARTE----------------------------
