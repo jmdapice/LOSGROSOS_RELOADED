@@ -787,7 +787,7 @@ IF  EXISTS (SELECT *
 			FROM sys.objects 
 			WHERE object_id = OBJECT_ID(N'LOSGROSOS_RELOADED.P_Alta_Cupon') 
 				AND type in (N'P')) 
-DROP PROCEDURE LOSGROSOS_RELOADED.P_Insertar_Carga;
+DROP PROCEDURE LOSGROSOS_RELOADED.P_Alta_Cupon;
 
 IF  EXISTS (SELECT * 
 			FROM sys.objects 
@@ -987,8 +987,8 @@ GO
 
 
 CREATE PROCEDURE [LOSGROSOS_RELOADED].[P_Alta_Cupon]
-	@precio numeric(18,0) = null,
-	@precioFicticio numeric(18,0) = null,
+	@precio numeric(18,2) = null,
+	@precioFicticio numeric(18,2) = null,
 	@descripcion nvarchar(255) = null,
 	@idProveedor numeric(18,0) = null,
 	@cantMaxima numeric(18,0) = null,
