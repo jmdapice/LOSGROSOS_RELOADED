@@ -30,7 +30,6 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.masktxtTel = new System.Windows.Forms.MaskedTextBox();
             this.txtDni = new System.Windows.Forms.MaskedTextBox();
             this.masktxtNombre = new System.Windows.Forms.MaskedTextBox();
@@ -56,13 +55,13 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnHabilitar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.monthCalendar1);
-            this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.masktxtTel);
             this.groupBox1.Controls.Add(this.txtDni);
             this.groupBox1.Controls.Add(this.masktxtNombre);
@@ -85,6 +84,7 @@
             this.groupBox1.Controls.Add(this.txtDireccion);
             this.groupBox1.Controls.Add(this.txtApellido);
             this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.btnHabilitar);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(655, 342);
@@ -95,7 +95,7 @@
             // monthCalendar1
             // 
             this.monthCalendar1.FirstDayOfWeek = System.Windows.Forms.Day.Thursday;
-            this.monthCalendar1.Location = new System.Drawing.Point(394, 169);
+            this.monthCalendar1.Location = new System.Drawing.Point(384, 169);
             this.monthCalendar1.MaxSelectionCount = 1;
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.ShowTodayCircle = false;
@@ -103,16 +103,6 @@
             this.monthCalendar1.TabIndex = 0;
             this.monthCalendar1.Visible = false;
             this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(560, 198);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(73, 17);
-            this.checkBox1.TabIndex = 22;
-            this.checkBox1.Text = "Habilitado";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // masktxtTel
             // 
@@ -351,6 +341,16 @@
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // btnHabilitar
+            // 
+            this.btnHabilitar.Enabled = false;
+            this.btnHabilitar.Location = new System.Drawing.Point(546, 286);
+            this.btnHabilitar.Name = "btnHabilitar";
+            this.btnHabilitar.Size = new System.Drawing.Size(87, 23);
+            this.btnHabilitar.TabIndex = 22;
+            this.btnHabilitar.Text = "Habilitado";
+            this.btnHabilitar.Click += new System.EventHandler(this.btnHabilitar_Click);
+            // 
             // ModCli
             // 
             this.AcceptButton = this.btnGuardar;
@@ -404,7 +404,7 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.MaskedTextBox masktxtTel;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button btnHabilitar;
 
     }
 }

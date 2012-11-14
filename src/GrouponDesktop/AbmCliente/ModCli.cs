@@ -14,7 +14,7 @@ namespace GrouponDesktop.AbmCliente
     {
         AbmCliente.ModCliente frmPadre = null;
         bool listaCambio = false;
-        bool habilitado = false;
+        bool habPresionado = false;
 
         public ModCli(AbmCliente.ModCliente frmMod)
 
@@ -95,12 +95,14 @@ namespace GrouponDesktop.AbmCliente
             {
                 Support.mostrarError(ex.Message);
             }
-            if (frmPadre.dgvClientes.CurrentRow.Cells["inhabilitado"].Value.ToString() == "0")
+            
+            if (frmPadre.dgvClientes.CurrentRow.Cells["inhabilitado"].Value.ToString().Equals("1"))
             {
-                checkBox1.Checked = true;
-                habilitado = true;
+                btnHabilitar.Enabled = true;
+                btnHabilitar.Text = "Habilitar";
             }
             
+           
             
             foreach (DataRow fila in dt3.Rows)
             {
@@ -163,9 +165,10 @@ namespace GrouponDesktop.AbmCliente
                 {
                     Support.mostrarError(ex.Message);
                 }
-                if (!(habilitado && this.checkBox1.Checked))
+
+                if (habPresionado)
                 {
-                   actualizarHabilitado(dbcon);
+                    actualizarHabilitado(dbcon);
                 }
                 modificarCliente(dbcon);
                 MessageBox.Show("La modificacion se realizo con exito ");
@@ -180,23 +183,12 @@ namespace GrouponDesktop.AbmCliente
 
    private void actualizarHabilitado(SqlConnection dbcon)
         {
-            string inhabilitado = "";
-            if (checkBox1.Checked)
-            {
-                inhabilitado="0";
-            }
-            if(!checkBox1.Checked)
-            {
-                inhabilitado = "1";
-            }
-
+     
              SqlCommand cmd = new SqlCommand(@"EXEC LOSGROSOS_RELOADED.P_HabilitacionCliente 
-                                            @idCli,@hab",dbcon);
+                                            @idCli,'0'",dbcon);
 
 
             cmd.Parameters.Add("@idCli", SqlDbType.Int, 18); 
-            cmd.Parameters.Add("@hab", SqlDbType.Char, 1);
-            cmd.Parameters["@hab"].Value = inhabilitado;
             cmd.Parameters["@idCli"].Value = Convert.ToInt32(frmPadre.dgvClientes.CurrentRow.Cells["id"].Value);
             try
             {
@@ -486,6 +478,13 @@ namespace GrouponDesktop.AbmCliente
             dbcon.Close();
 
        }
+
+        private void btnHabilitar_Click(object sender, EventArgs e)
+        {
+            habPresionado = true;
+            btnHabilitar.Text = "Habilitado";
+            btnHabilitar.Enabled = false;
+        }
 
         
     }

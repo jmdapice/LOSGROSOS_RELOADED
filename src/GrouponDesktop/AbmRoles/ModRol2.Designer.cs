@@ -32,10 +32,10 @@
             this.lblFun = new System.Windows.Forms.Label();
             this.txtNombRol = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnHabilitar = new System.Windows.Forms.Button();
             this.lblNomRol = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,7 +68,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.btnHabilitar);
             this.groupBox1.Controls.Add(this.lstFuncElegidas);
             this.groupBox1.Controls.Add(this.lblFun);
             this.groupBox1.Controls.Add(this.txtNombRol);
@@ -79,6 +79,17 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modificar Rol";
+            // 
+            // btnHabilitar
+            // 
+            this.btnHabilitar.Enabled = false;
+            this.btnHabilitar.Location = new System.Drawing.Point(234, 50);
+            this.btnHabilitar.Name = "btnHabilitar";
+            this.btnHabilitar.Size = new System.Drawing.Size(100, 21);
+            this.btnHabilitar.TabIndex = 8;
+            this.btnHabilitar.Text = "Habilitado";
+            this.btnHabilitar.UseVisualStyleBackColor = true;
+            this.btnHabilitar.Click += new System.EventHandler(this.btnHabilitar_Click);
             // 
             // lblNomRol
             // 
@@ -110,16 +121,6 @@
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(247, 50);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(73, 17);
-            this.checkBox1.TabIndex = 19;
-            this.checkBox1.Text = "Habilitado";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // ModRol2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -150,6 +151,6 @@
         private System.Windows.Forms.Label lblNomRol;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button btnHabilitar;
     }
 }

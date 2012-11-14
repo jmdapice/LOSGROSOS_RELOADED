@@ -14,7 +14,7 @@ namespace GrouponDesktop.AbmRoles
     {
         string nomRol = "";
         bool listaCambio = false;
-        bool habilitado = false;
+        bool habPresionado = false;
         ModRol frmPadre = null;
         public ModRol2(ModRol frm)
         {
@@ -68,11 +68,13 @@ namespace GrouponDesktop.AbmRoles
                 Support.mostrarError(ex.Message);
             }
 
-            if (dt2.Rows[0]["inhabilitado"].ToString() == "0")
+            if (dt2.Rows[0]["inhabilitado"].ToString() == "1")
             {
-                checkBox1.Checked = true;
-                habilitado = true;
+                btnHabilitar.Enabled = true;
+                btnHabilitar.Text = "Habilitar";
             }
+                       
+            
             
             foreach (DataRow fila in dt2.Rows)
             {
@@ -101,9 +103,8 @@ namespace GrouponDesktop.AbmRoles
             {
                 if (!nombreDuplicado(txtNombRol.Text.ToString()))
                 {
-                    if (!(habilitado && this.checkBox1.Checked))
+                    if (habPresionado)
                     {
-                        //se toco el tilde de habilitado
                         actualizarHabilitado();
                     }
                     if (listaCambio)
@@ -115,6 +116,7 @@ namespace GrouponDesktop.AbmRoles
                     {
                         actualizarNombreRol();
                     }
+                    frmPadre.dgvRoles.Columns.Clear();
                 }
                 else
                 {
@@ -206,22 +208,11 @@ namespace GrouponDesktop.AbmRoles
         }
         private void actualizarHabilitado()
         {
-            string inhabilitado = "";
-            if (checkBox1.Checked)
-            {
-                inhabilitado="0";
-            }
-            if(!checkBox1.Checked)
-            {
-                inhabilitado = "1";
-            }
-            
             SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
             SqlCommand cmd = new SqlCommand(@"update LOSGROSOS_RELOADED.Rol 
-                                              set inhabilitado=@inhab
+                                              set inhabilitado='0'
                                               where descripcion=@nomRol", dbcon);
-            cmd.Parameters.Add("@inhab", SqlDbType.Char, 1);
-            cmd.Parameters["@inhab"].Value = inhabilitado;
+            
             cmd.Parameters.Add("@nomRol", SqlDbType.VarChar, 100);
             cmd.Parameters["@nomRol"].Value = nomRol;
             dbcon.Open();
@@ -288,6 +279,13 @@ namespace GrouponDesktop.AbmRoles
             return duplicado;
 
 
+        }
+
+        private void btnHabilitar_Click(object sender, EventArgs e)
+        {
+            habPresionado = true;
+            btnHabilitar.Text = "Habilitado";
+            btnHabilitar.Enabled = false;
         }
 
     }
