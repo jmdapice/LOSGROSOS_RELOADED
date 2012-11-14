@@ -119,7 +119,8 @@
             // 
             // calendarioVencimiento
             // 
-            this.calendarioVencimiento.Location = new System.Drawing.Point(6, 18);
+            this.calendarioVencimiento.Location = new System.Drawing.Point(73, 26);
+            this.calendarioVencimiento.MaxSelectionCount = 1;
             this.calendarioVencimiento.Name = "calendarioVencimiento";
             this.calendarioVencimiento.TabIndex = 13;
             this.calendarioVencimiento.Visible = false;

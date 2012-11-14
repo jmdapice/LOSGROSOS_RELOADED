@@ -47,7 +47,9 @@ namespace GrouponDesktop.AbmCliente
             this.cmbCiudades.DisplayMember = "nombre";
             this.cmbCiudades.ValueMember = "idCiudad";
 
-            this.monthCalendar1.MaxDate = Support.fechaConfig();
+            DateTime fechaActual = Support.fechaConfig();
+            this.monthCalendar1.MaxDate = fechaActual;
+            this.monthCalendar1.TodayDate = fechaActual;
         }
 
         private void button_Click(object sender, EventArgs e)

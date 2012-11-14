@@ -28,9 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // GiftCard_BuscarCliAdmincs
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "GiftCard_BuscarCliAdmincs";
+            this.ClientSize = new System.Drawing.Size(891, 464);
+            this.Name = "GiftCard_BuscarCliAdmincs";
+            this.Text = "Buscar Cliente (Giftcard)";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

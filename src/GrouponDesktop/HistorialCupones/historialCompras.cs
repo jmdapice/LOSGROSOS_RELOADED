@@ -21,6 +21,11 @@ namespace GrouponDesktop.HistorialCupones
 
         private void historialCompras_Load(object sender, EventArgs e)
         {
+            DateTime fechaActual = Support.fechaConfig();
+            this.calendDesde.MaxDate = fechaActual;
+            this.calendDesde.TodayDate = fechaActual;
+            this.calendHasta.MaxDate = fechaActual;
+            this.calendHasta.TodayDate = fechaActual;
 
             historialCompra_BuscarCli frmBuscarCli;
 

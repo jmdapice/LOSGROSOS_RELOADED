@@ -13,7 +13,7 @@ namespace GrouponDesktop.ComprarCupon
     public partial class ComprarCupon : Form
     {
         public int idCli=0;
-        private static int saldo = 0;
+        private static double saldo = 0;
 
         public ComprarCupon()
         {
@@ -58,8 +58,8 @@ namespace GrouponDesktop.ComprarCupon
                 cmd.Parameters.Add("@idCli", SqlDbType.NVarChar, 100);
                 cmd.Parameters["@idCli"].Value = idCli;
 
-                saldo = Convert.ToInt32(cmd.ExecuteScalar());
-                txtSaldo.Text = Convert.ToString(saldo);
+                saldo = Convert.ToDouble(cmd.ExecuteScalar());
+                txtSaldo.Text = saldo.ToString("0.00");
 
             }
             catch (Exception ex)
@@ -184,7 +184,7 @@ namespace GrouponDesktop.ComprarCupon
 
         private bool leAlcanzaElSaldo()
         {
-            int precioCupon = Convert.ToInt32(dgvCupones.CurrentRow.Cells["Precio Cuponete"].Value);
+            double precioCupon = Convert.ToDouble(dgvCupones.CurrentRow.Cells["Precio Cuponete"].Value);
             return (saldo >= precioCupon );
         }
 

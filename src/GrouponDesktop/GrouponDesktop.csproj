@@ -338,14 +338,23 @@
     <EmbeddedResource Include="CargaCredito\CargaCredito.resx">
       <DependentUpon>CargaCredito.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CargaCredito\Carga_BuscarCli.resx">
+      <DependentUpon>Carga_BuscarCli.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ComprarCupon\ComprarCupon.resx">
       <DependentUpon>ComprarCupon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComprarCupon\ComprarCupon_BuscarCli.resx">
+      <DependentUpon>ComprarCupon_BuscarCli.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComprarGiftCard\Giftcard.resx">
       <DependentUpon>Giftcard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComprarGiftCard\GiftCard_BuscarCli.resx">
       <DependentUpon>GiftCard_BuscarCli.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComprarGiftCard\GiftCard_BuscarCliAdmincs.resx">
+      <DependentUpon>GiftCard_BuscarCliAdmincs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FacturarProveedor\BuscarProv_Facturar.resx">
       <DependentUpon>BuscarProv_Facturar.cs</DependentUpon>
@@ -359,11 +368,17 @@
     <EmbeddedResource Include="GestionUsuarios\BuscUsuario_Mod.resx">
       <DependentUpon>BuscUsuario_Mod.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GestionUsuarios\ElimUser.resx">
+      <DependentUpon>ElimUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GestionUsuarios\ModUser.resx">
       <DependentUpon>ModUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HistorialCupones\historialCompras.resx">
       <DependentUpon>historialCompras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistorialCupones\historialCompra_BuscarCli.resx">
+      <DependentUpon>historialCompra_BuscarCli.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListadoEstadistico\Listado.resx">
       <DependentUpon>Listado.cs</DependentUpon>
@@ -377,6 +392,9 @@
     <EmbeddedResource Include="PedirDevolucion\Devolucion.resx">
       <DependentUpon>Devolucion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PedirDevolucion\Devolucion_BuscarCli.resx">
+      <DependentUpon>Devolucion_BuscarCli.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PedirDevolucion\MotivoDevolucion.resx">
       <DependentUpon>MotivoDevolucion.cs</DependentUpon>
     </EmbeddedResource>
@@ -387,6 +405,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PublicarCupon\PublicarCupon.resx">
       <DependentUpon>PublicarCupon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PublicarCupon\Publicar_BuscarProv.resx">
+      <DependentUpon>Publicar_BuscarProv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistroConsumoCupon\Consumo_BuscarCli.resx">
+      <DependentUpon>Consumo_BuscarCli.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistroConsumoCupon\Consumo_BuscarProv.resx">
+      <DependentUpon>Consumo_BuscarProv.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegistroConsumoCupon\RegistrarConsumo.resx">
       <DependentUpon>RegistrarConsumo.cs</DependentUpon>

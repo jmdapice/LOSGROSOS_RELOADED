@@ -36,7 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(891, 464);
             this.Name = "BuscarProv_Facturar";
-            this.Text = "BuscarProv_Facturar";
+            this.Text = "Buscar Proveedor (Facturar)";
             this.ResumeLayout(false);
             this.PerformLayout();
 

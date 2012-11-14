@@ -31,20 +31,22 @@ namespace GrouponDesktop.FacturarProveedor
         private void calendarDesde_DateSelected(object sender, DateRangeEventArgs e)
         {
             txtFechaDesde.Text = calendarDesde.SelectionStart.ToShortDateString();
-            calendarDesde.MaxDate = Support.fechaConfig();
             calendarDesde.Visible = false;
         }
 
         private void calendHasta_DateSelected(object sender, DateRangeEventArgs e)
         {
             txtFechaHasta.Text = calendHasta.SelectionStart.ToShortDateString();
-            calendHasta.MaxDate = Support.fechaConfig();
             calendHasta.Visible = false;
         }
 
         private void BuscarParaFacturar_Load(object sender, EventArgs e)
         {
-
+            DateTime fechaActual = Support.fechaConfig();
+            calendarDesde.MaxDate = fechaActual;
+            calendarDesde.TodayDate = fechaActual;
+            calendHasta.MaxDate = fechaActual;
+            calendHasta.TodayDate = fechaActual;
      
         }
 
@@ -87,7 +89,7 @@ namespace GrouponDesktop.FacturarProveedor
 
                 if (txtFechaDesde.Text != "")
                 {
-                    cmd.CommandText += " and fechaCanje > @fechaDesde";
+                    cmd.CommandText += " and fechaCanje >= @fechaDesde";
                     cmd.Parameters.Add("@fechaDesde", SqlDbType.DateTime);
                     cmd.Parameters["@fechaDesde"].Value = Convert.ToDateTime(txtFechaDesde.Text);
 
@@ -95,7 +97,7 @@ namespace GrouponDesktop.FacturarProveedor
 
                 if (txtFechaHasta.Text != "")
                 {
-                    cmd.CommandText += "    and fechaCanje < @fechaHasta";
+                    cmd.CommandText += "    and fechaCanje <= @fechaHasta";
                     cmd.Parameters.Add("@fechaHasta", SqlDbType.DateTime);
                     cmd.Parameters["@fechaHasta"].Value = Convert.ToDateTime(txtFechaHasta.Text);
                 }
@@ -149,7 +151,7 @@ namespace GrouponDesktop.FacturarProveedor
             {
                 total += Convert.ToDouble(r["Precio"]);
             }
-            lblTotal.Text += " $ "+total.ToString();
+            lblTotal.Text += " $ "+total.ToString("0.00");
             return total;
         }
 
@@ -208,7 +210,7 @@ namespace GrouponDesktop.FacturarProveedor
 
                 cmd.ExecuteNonQuery();
                 trans.Commit();
-                Support.mostrarInfo("El total de la Factura N°"+nroFact.ToString()+" es: $"+total.ToString());
+                Support.mostrarInfo("El total de la Factura N°"+nroFact.ToString()+" es: $"+total.ToString("0.00"));
             }
             catch (Exception ex)
             {

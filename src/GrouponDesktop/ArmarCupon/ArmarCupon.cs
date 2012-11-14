@@ -80,7 +80,7 @@ namespace GrouponDesktop.ArmarCupon
                 }
                 else
                 {
-                    this.txtPrecioFict.Text = this.txtPrecioFict.Text.Replace(",", ".");
+                    this.txtPrecioFict.Text = this.txtPrecioFict.Text.Replace(".", ",");
                 }
             }
 
@@ -100,7 +100,7 @@ namespace GrouponDesktop.ArmarCupon
                 }
                 else
                 {
-                    this.txtPrecioReal.Text = this.txtPrecioReal.Text.Replace(",", ".");
+                    this.txtPrecioReal.Text = this.txtPrecioReal.Text.Replace(".", ",");
                 }
             }
             
@@ -179,6 +179,11 @@ namespace GrouponDesktop.ArmarCupon
 
         private void ArmarCupon_Load(object sender, EventArgs e)
         {
+            DateTime fechaActual = Support.fechaConfig();
+            this.monthCalendar1.TodayDate = fechaActual;
+            this.monthCalendar2.TodayDate = fechaActual;
+            this.monthCalendar3.TodayDate = fechaActual;
+
             idProv = Support.obtenerIdProveedor(Support.traerIdUsuario(Support.nombreUsuario));
             if (idProv == 0)
             {

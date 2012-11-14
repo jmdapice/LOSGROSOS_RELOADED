@@ -28,9 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Carga_BuscarCli
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Carga_BuscarCli";
+            this.ClientSize = new System.Drawing.Size(891, 464);
+            this.Name = "Carga_BuscarCli";
+            this.Text = "Buscar Cliente para Cargar Credito";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

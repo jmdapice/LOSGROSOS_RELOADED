@@ -13,7 +13,7 @@ namespace GrouponDesktop.PedirDevolucion
     public partial class Devolucion : Form
     {
         public int idCli = 0;
-        private static int saldo = 0;
+        private static double saldo = 0;
         public string motivoDevolucion = "";
 
         public Devolucion()
@@ -60,8 +60,8 @@ namespace GrouponDesktop.PedirDevolucion
                 cmd.Parameters.Add("@idCli", SqlDbType.NVarChar, 100);
                 cmd.Parameters["@idCli"].Value = idCli;
 
-                saldo = Convert.ToInt32(cmd.ExecuteScalar());
-                txtSaldo.Text = Convert.ToString(saldo);
+                saldo = Convert.ToDouble(cmd.ExecuteScalar());
+                txtSaldo.Text = saldo.ToString("0.00");
 
             }
             catch (Exception ex)

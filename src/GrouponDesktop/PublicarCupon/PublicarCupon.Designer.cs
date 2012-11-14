@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gbFiltro = new System.Windows.Forms.GroupBox();
-            this.btnSacarFiltro = new System.Windows.Forms.Button();
             this.btn_Buscar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnAplicar = new System.Windows.Forms.Button();
             this.txtProveedor = new System.Windows.Forms.TextBox();
             this.lblProveedor = new System.Windows.Forms.Label();
+            this.btnSacarFiltro = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAplicar = new System.Windows.Forms.Button();
             this.gbDatos = new System.Windows.Forms.GroupBox();
             this.dgvCupones = new System.Windows.Forms.DataGridView();
             this.gbFiltro.SuspendLayout();
@@ -55,16 +55,6 @@
             this.gbFiltro.TabStop = false;
             this.gbFiltro.Text = "Filtro opcional";
             // 
-            // btnSacarFiltro
-            // 
-            this.btnSacarFiltro.Location = new System.Drawing.Point(398, 400);
-            this.btnSacarFiltro.Name = "btnSacarFiltro";
-            this.btnSacarFiltro.Size = new System.Drawing.Size(100, 23);
-            this.btnSacarFiltro.TabIndex = 23;
-            this.btnSacarFiltro.Text = "Sacar Filtro";
-            this.btnSacarFiltro.UseVisualStyleBackColor = true;
-            this.btnSacarFiltro.Click += new System.EventHandler(this.btnSacarFiltro_Click);
-            // 
             // btn_Buscar
             // 
             this.btn_Buscar.Location = new System.Drawing.Point(206, 34);
@@ -74,6 +64,34 @@
             this.btn_Buscar.Text = "Buscar";
             this.btn_Buscar.UseVisualStyleBackColor = true;
             this.btn_Buscar.Click += new System.EventHandler(this.btn_Buscar_Click);
+            // 
+            // txtProveedor
+            // 
+            this.txtProveedor.Enabled = false;
+            this.txtProveedor.Location = new System.Drawing.Point(22, 37);
+            this.txtProveedor.Name = "txtProveedor";
+            this.txtProveedor.Size = new System.Drawing.Size(178, 20);
+            this.txtProveedor.TabIndex = 15;
+            // 
+            // lblProveedor
+            // 
+            this.lblProveedor.AutoSize = true;
+            this.lblProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.lblProveedor.Location = new System.Drawing.Point(19, 16);
+            this.lblProveedor.Name = "lblProveedor";
+            this.lblProveedor.Size = new System.Drawing.Size(77, 18);
+            this.lblProveedor.TabIndex = 2;
+            this.lblProveedor.Text = "Proveedor";
+            // 
+            // btnSacarFiltro
+            // 
+            this.btnSacarFiltro.Location = new System.Drawing.Point(398, 400);
+            this.btnSacarFiltro.Name = "btnSacarFiltro";
+            this.btnSacarFiltro.Size = new System.Drawing.Size(100, 23);
+            this.btnSacarFiltro.TabIndex = 23;
+            this.btnSacarFiltro.Text = "Sacar Filtro";
+            this.btnSacarFiltro.UseVisualStyleBackColor = true;
+            this.btnSacarFiltro.Click += new System.EventHandler(this.btnSacarFiltro_Click);
             // 
             // btnCancelar
             // 
@@ -95,24 +113,6 @@
             this.btnAplicar.UseVisualStyleBackColor = true;
             this.btnAplicar.Click += new System.EventHandler(this.btnAplicar_Click);
             // 
-            // txtProveedor
-            // 
-            this.txtProveedor.Enabled = false;
-            this.txtProveedor.Location = new System.Drawing.Point(22, 37);
-            this.txtProveedor.Name = "txtProveedor";
-            this.txtProveedor.Size = new System.Drawing.Size(178, 20);
-            this.txtProveedor.TabIndex = 15;
-            // 
-            // lblProveedor
-            // 
-            this.lblProveedor.AutoSize = true;
-            this.lblProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.lblProveedor.Location = new System.Drawing.Point(19, 16);
-            this.lblProveedor.Name = "lblProveedor";
-            this.lblProveedor.Size = new System.Drawing.Size(77, 18);
-            this.lblProveedor.TabIndex = 2;
-            this.lblProveedor.Text = "Proveedor";
-            // 
             // gbDatos
             // 
             this.gbDatos.Controls.Add(this.dgvCupones);
@@ -129,14 +129,14 @@
             this.dgvCupones.AllowUserToDeleteRows = false;
             this.dgvCupones.AllowUserToResizeRows = false;
             this.dgvCupones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCupones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCupones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvCupones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCupones.Location = new System.Drawing.Point(6, 19);
             this.dgvCupones.MultiSelect = false;
@@ -164,7 +164,7 @@
             this.MinimizeBox = false;
             this.Name = "PublicarCupon";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "PublicarCupon";
+            this.Text = "Publicar Cupon";
             this.Load += new System.EventHandler(this.PublicarCupon_Load);
             this.gbFiltro.ResumeLayout(false);
             this.gbFiltro.PerformLayout();

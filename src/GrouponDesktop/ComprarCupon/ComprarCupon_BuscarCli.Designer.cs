@@ -28,9 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ComprarCupon_BuscarCli
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "ComprarCupon_BuscarCli";
+            this.ClientSize = new System.Drawing.Size(891, 464);
+            this.Name = "ComprarCupon_BuscarCli";
+            this.Text = "Buscar Cliente para Comprar Cupon";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

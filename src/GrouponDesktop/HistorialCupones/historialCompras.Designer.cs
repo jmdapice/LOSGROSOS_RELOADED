@@ -34,15 +34,15 @@
             this.calendDesde = new System.Windows.Forms.MonthCalendar();
             this.dgvCupones = new System.Windows.Forms.DataGridView();
             this.gbFiltro = new System.Windows.Forms.GroupBox();
-            this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnAceptar = new System.Windows.Forms.Button();
             this.btnSelecHasta = new System.Windows.Forms.Button();
             this.txtFechaHasta = new System.Windows.Forms.TextBox();
             this.lblFechaHasta = new System.Windows.Forms.Label();
             this.txtFechaDesde = new System.Windows.Forms.TextBox();
             this.btnSelecDesde = new System.Windows.Forms.Button();
             this.lblFechaDesde = new System.Windows.Forms.Label();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCupones)).BeginInit();
             this.gbFiltro.SuspendLayout();
@@ -63,6 +63,7 @@
             // calendHasta
             // 
             this.calendHasta.Location = new System.Drawing.Point(414, 19);
+            this.calendHasta.MaxSelectionCount = 1;
             this.calendHasta.Name = "calendHasta";
             this.calendHasta.TabIndex = 15;
             this.calendHasta.Visible = false;
@@ -71,6 +72,7 @@
             // calendDesde
             // 
             this.calendDesde.Location = new System.Drawing.Point(12, 19);
+            this.calendDesde.MaxSelectionCount = 1;
             this.calendDesde.Name = "calendDesde";
             this.calendDesde.TabIndex = 14;
             this.calendDesde.Visible = false;
@@ -115,36 +117,6 @@
             this.gbFiltro.TabIndex = 2;
             this.gbFiltro.TabStop = false;
             this.gbFiltro.Text = "Filtro";
-            // 
-            // btnLimpiar
-            // 
-            this.btnLimpiar.Location = new System.Drawing.Point(370, 384);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(100, 23);
-            this.btnLimpiar.TabIndex = 21;
-            this.btnLimpiar.Text = "Limpiar";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Location = new System.Drawing.Point(476, 384);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(100, 23);
-            this.btnCancelar.TabIndex = 20;
-            this.btnCancelar.Text = "Salir";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Location = new System.Drawing.Point(264, 384);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(100, 23);
-            this.btnAceptar.TabIndex = 19;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnSelecHasta
             // 
@@ -201,6 +173,36 @@
             this.lblFechaDesde.Size = new System.Drawing.Size(168, 18);
             this.lblFechaDesde.TabIndex = 2;
             this.lblFechaDesde.Text = "Fecha de compra desde";
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(370, 384);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(100, 23);
+            this.btnLimpiar.TabIndex = 21;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(476, 384);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(100, 23);
+            this.btnCancelar.TabIndex = 20;
+            this.btnCancelar.Text = "Salir";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Location = new System.Drawing.Point(264, 384);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(100, 23);
+            this.btnAceptar.TabIndex = 19;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // historialCompras
             // 

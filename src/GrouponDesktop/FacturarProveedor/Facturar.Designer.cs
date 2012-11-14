@@ -73,10 +73,10 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.lblTotal.Location = new System.Drawing.Point(585, 16);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(157, 18);
+            this.lblTotal.Size = new System.Drawing.Size(114, 13);
             this.lblTotal.TabIndex = 31;
             this.lblTotal.Text = "Importe Total Factura: ";
             // 
@@ -221,6 +221,7 @@
             this.calendHasta.MaxSelectionCount = 1;
             this.calendHasta.Name = "calendHasta";
             this.calendHasta.TabIndex = 33;
+            this.calendHasta.TodayDate = new System.DateTime(2012, 11, 14, 0, 0, 0, 0);
             this.calendHasta.Visible = false;
             this.calendHasta.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.calendHasta_DateSelected);
             // 

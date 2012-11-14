@@ -15,8 +15,8 @@ namespace GrouponDesktop.ComprarGiftCard
 {
     public partial class Giftcard : Form
     {
-        private static int regaloMinimo;
-        private static int regaloMaximo;
+        private static double regaloMinimo;
+        private static double regaloMaximo;
         private static int idUserDestino;
         private static int idUserOrigen;
         private static int idCliDestino;
@@ -39,8 +39,8 @@ namespace GrouponDesktop.ComprarGiftCard
             regaloMinimo = obtenerSaldo("giftcard_min");
             regaloMaximo = obtenerSaldo("giftcard_max");
 
-            numMonto.Maximum = regaloMaximo;
-            numMonto.Minimum = regaloMinimo;
+            numMonto.Maximum = Convert.ToDecimal(regaloMaximo);
+            numMonto.Minimum = Convert.ToDecimal(regaloMinimo);
             
 
             lblRangoSaldo.Text = "El monto debe estar entre los valores " +
@@ -93,16 +93,16 @@ namespace GrouponDesktop.ComprarGiftCard
                         cmd.Parameters.Add("@idCliOrigen", SqlDbType.Int, 18);
                         cmd.Parameters.Add("@idCliDestino", SqlDbType.Int, 18);
                         cmd.Parameters.Add("@fecha", SqlDbType.DateTime, 20);
-                        cmd.Parameters.Add("@monto", SqlDbType.Money);
+                        cmd.Parameters.Add("@monto", SqlDbType.Float);
 
                         cmd.Parameters["@idCliOrigen"].Value = idCliOrigen;
                         cmd.Parameters["@idCliDestino"].Value = idCliDestino;
                         cmd.Parameters["@fecha"].Value = Support.fechaConfig();
-                        cmd.Parameters["@monto"].Value = Convert.ToDecimal(numMonto.Value);
+                        cmd.Parameters["@monto"].Value = Convert.ToDouble(numMonto.Value);
 
                         cmd.ExecuteNonQuery();
 
-                        Support.mostrarInfo("Se le han cargado $" + numMonto.Value.ToString() + " al usuario " + txtDestino.Text);
+                        Support.mostrarInfo("Se le han cargado $" + numMonto.Value.ToString("0.00") + " al usuario " + txtDestino.Text);
 
                         borrar_pantalla();
                     }
@@ -198,9 +198,9 @@ namespace GrouponDesktop.ComprarGiftCard
         }
 
 
-        private int obtenerSaldo(string key)
+        private double obtenerSaldo(string key)
         {
-            int saldo = 0;
+            double saldo = 0;
 
             try
             {
@@ -215,7 +215,7 @@ namespace GrouponDesktop.ComprarGiftCard
 
 
 
-                saldo = Convert.ToInt32(cmd.ExecuteScalar());
+                saldo = Convert.ToDouble(cmd.ExecuteScalar());
                
             }
             catch (Exception ex)
@@ -299,7 +299,7 @@ namespace GrouponDesktop.ComprarGiftCard
         private bool tieneSaldoSuficiente(int idCli) 
         {
 
-            int saldo = 0;
+            double saldo = 0;
 
             try
             {
@@ -312,7 +312,7 @@ namespace GrouponDesktop.ComprarGiftCard
                 cmd.Parameters.Add("@idCli", SqlDbType.NVarChar, 100);
                 cmd.Parameters["@idCli"].Value = idCli;
 
-                saldo = Convert.ToInt32(cmd.ExecuteScalar());
+                saldo = Convert.ToDouble(cmd.ExecuteScalar());
 
             }
             catch (Exception ex)
@@ -321,7 +321,7 @@ namespace GrouponDesktop.ComprarGiftCard
                 this.Close();
             }
 
-            return (saldo >= numMonto.Value);
+            return (saldo >= Convert.ToDouble(numMonto.Value));
 
         }
     }

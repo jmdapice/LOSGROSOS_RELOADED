@@ -25,12 +25,12 @@ namespace GrouponDesktop.CargaCredito
 
         private void CargaCredito_Load(object sender, EventArgs e)
         {
-
+            this.calendarioVencimiento.TodayDate = Support.fechaConfig();
             int idCli = 0;
             Carga_BuscarCli frmBuscar;
 
 //Inicialización grupo pantallas
-            //gb_tarjeta.Visible = false;
+
             txtTarjeta.Enabled = true;
             txtTitular.Enabled = true;
             btnSeleccion.Enabled = true;
@@ -90,8 +90,7 @@ namespace GrouponDesktop.CargaCredito
 
             if (str_seleccionado == "2") //Al contado
             {
-//Proximamente, el grupo tarjeta va a desaparecer y el form cambiara de tamaño
-                //gb_tarjeta.Visible = false;
+
                 txtFechaVenc.Text = "";
                 txtTitular.Text = "";
                 txtTarjeta.Text = "";
@@ -102,7 +101,7 @@ namespace GrouponDesktop.CargaCredito
             }
             else { //Crédito
 
-                //gb_tarjeta.Visible = true;
+
                 btnSeleccion.Enabled = true;
                 txtTarjeta.Enabled = true;
                 txtTitular.Enabled = true;
@@ -119,8 +118,8 @@ namespace GrouponDesktop.CargaCredito
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             string strError="";
-            DateTime fechaHoy = Support.fechaConfig(); //DateTime.Now;
-            bool No_hay_datos_incompletos = true; //Es una negrada.... ya lo voy a corregir
+            DateTime fechaHoy = Support.fechaConfig(); 
+            bool No_hay_datos_incompletos = true; 
 
             String str_seleccionado = cb_medioPago.SelectedValue.ToString();
 
@@ -242,7 +241,7 @@ namespace GrouponDesktop.CargaCredito
         private bool tarjetaNoVencida()
         {
             bool noEstaVencida = true;
-            DateTime fechaHoy = Support.fechaConfig(); //Cambiar por fecha arch. config
+            DateTime fechaHoy = Support.fechaConfig(); 
 
             if (txtFechaVenc.Text != "")
             {

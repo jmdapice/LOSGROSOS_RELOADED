@@ -33,7 +33,10 @@ namespace GrouponDesktop.AbmCliente
             this.txtFecNac.Text = frmPadre.dgvClientes.CurrentRow.Cells["Fecha Nacimiento"].Value.ToString();
             this.txtDireccion.Text = frmPadre.dgvClientes.CurrentRow.Cells["Direccion"].Value.ToString();
             this.masktxtCodPos.Text = frmPadre.dgvClientes.CurrentRow.Cells["CP"].Value.ToString();
-            this.monthCalendar1.MaxDate = Support.fechaConfig();
+            
+            DateTime fechaActual = Support.fechaConfig();
+            this.monthCalendar1.MaxDate = fechaActual;
+            this.monthCalendar1.TodayDate = fechaActual;
 
             SqlConnection dbcon = new SqlConnection(GrouponDesktop.Properties.Settings.Default["conStr"].ToString());
             SqlCommand cmd = new SqlCommand(@"Select RTRIM(nombre) as nombre, idCiudad 
