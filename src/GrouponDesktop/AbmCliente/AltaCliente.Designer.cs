@@ -32,6 +32,10 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtCP = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.txtTel = new System.Windows.Forms.TextBox();
+            this.txtDni = new System.Windows.Forms.TextBox();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.lstCiudadesElegidas = new System.Windows.Forms.CheckedListBox();
             this.cmbCiudades = new System.Windows.Forms.ComboBox();
@@ -51,10 +55,6 @@
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtDni = new System.Windows.Forms.TextBox();
-            this.txtTel = new System.Windows.Forms.TextBox();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtCP = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,7 +63,7 @@
             this.btnLimpiar.Location = new System.Drawing.Point(159, 365);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(100, 23);
-            this.btnLimpiar.TabIndex = 10;
+            this.btnLimpiar.TabIndex = 11;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
@@ -74,7 +74,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(406, 365);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 23);
-            this.btnCancelar.TabIndex = 12;
+            this.btnCancelar.TabIndex = 13;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -84,7 +84,7 @@
             this.btnGuardar.Location = new System.Drawing.Point(282, 365);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(100, 23);
-            this.btnGuardar.TabIndex = 11;
+            this.btnGuardar.TabIndex = 12;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -121,6 +121,38 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Paso 2";
             // 
+            // txtCP
+            // 
+            this.txtCP.Location = new System.Drawing.Point(18, 259);
+            this.txtCP.MaxLength = 10;
+            this.txtCP.Name = "txtCP";
+            this.txtCP.Size = new System.Drawing.Size(286, 20);
+            this.txtCP.TabIndex = 5;
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(18, 41);
+            this.txtNombre.MaxLength = 255;
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(286, 20);
+            this.txtNombre.TabIndex = 1;
+            // 
+            // txtTel
+            // 
+            this.txtTel.Location = new System.Drawing.Point(18, 155);
+            this.txtTel.MaxLength = 18;
+            this.txtTel.Name = "txtTel";
+            this.txtTel.Size = new System.Drawing.Size(286, 20);
+            this.txtTel.TabIndex = 3;
+            // 
+            // txtDni
+            // 
+            this.txtDni.Location = new System.Drawing.Point(341, 41);
+            this.txtDni.MaxLength = 18;
+            this.txtDni.Name = "txtDni";
+            this.txtDni.Size = new System.Drawing.Size(286, 20);
+            this.txtDni.TabIndex = 7;
+            // 
             // monthCalendar1
             // 
             this.monthCalendar1.FirstDayOfWeek = System.Windows.Forms.Day.Thursday;
@@ -139,7 +171,7 @@
             this.lstCiudadesElegidas.Location = new System.Drawing.Point(343, 198);
             this.lstCiudadesElegidas.Name = "lstCiudadesElegidas";
             this.lstCiudadesElegidas.Size = new System.Drawing.Size(290, 124);
-            this.lstCiudadesElegidas.TabIndex = 9;
+            this.lstCiudadesElegidas.TabIndex = 10;
             // 
             // cmbCiudades
             // 
@@ -148,7 +180,7 @@
             this.cmbCiudades.Location = new System.Drawing.Point(18, 310);
             this.cmbCiudades.Name = "cmbCiudades";
             this.cmbCiudades.Size = new System.Drawing.Size(286, 21);
-            this.cmbCiudades.TabIndex = 5;
+            this.cmbCiudades.TabIndex = 6;
             // 
             // txtFecNac
             // 
@@ -183,7 +215,7 @@
             this.button.Location = new System.Drawing.Point(546, 141);
             this.button.Name = "button";
             this.button.Size = new System.Drawing.Size(87, 23);
-            this.button.TabIndex = 8;
+            this.button.TabIndex = 9;
             this.button.Text = "Seleccionar";
             this.button.Click += new System.EventHandler(this.button_Click);
             // 
@@ -273,7 +305,7 @@
             this.txtMail.MaxLength = 255;
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(286, 20);
-            this.txtMail.TabIndex = 7;
+            this.txtMail.TabIndex = 8;
             // 
             // txtDireccion
             // 
@@ -281,7 +313,7 @@
             this.txtDireccion.MaxLength = 255;
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(286, 20);
-            this.txtDireccion.TabIndex = 3;
+            this.txtDireccion.TabIndex = 4;
             // 
             // txtApellido
             // 
@@ -289,7 +321,7 @@
             this.txtApellido.MaxLength = 255;
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(286, 20);
-            this.txtApellido.TabIndex = 1;
+            this.txtApellido.TabIndex = 2;
             // 
             // label10
             // 
@@ -299,38 +331,6 @@
             this.label10.Size = new System.Drawing.Size(229, 13);
             this.label10.TabIndex = 21;
             this.label10.Text = "Los campos marcados con (*) son obliogatorios";
-            // 
-            // txtDni
-            // 
-            this.txtDni.Location = new System.Drawing.Point(341, 41);
-            this.txtDni.MaxLength = 18;
-            this.txtDni.Name = "txtDni";
-            this.txtDni.Size = new System.Drawing.Size(286, 20);
-            this.txtDni.TabIndex = 7;
-            // 
-            // txtTel
-            // 
-            this.txtTel.Location = new System.Drawing.Point(18, 155);
-            this.txtTel.MaxLength = 18;
-            this.txtTel.Name = "txtTel";
-            this.txtTel.Size = new System.Drawing.Size(286, 20);
-            this.txtTel.TabIndex = 3;
-            // 
-            // txtNombre
-            // 
-            this.txtNombre.Location = new System.Drawing.Point(18, 41);
-            this.txtNombre.MaxLength = 255;
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(286, 20);
-            this.txtNombre.TabIndex = 23;
-            // 
-            // txtCP
-            // 
-            this.txtCP.Location = new System.Drawing.Point(18, 259);
-            this.txtCP.MaxLength = 10;
-            this.txtCP.Name = "txtCP";
-            this.txtCP.Size = new System.Drawing.Size(286, 20);
-            this.txtCP.TabIndex = 24;
             // 
             // AltaCliente
             // 
